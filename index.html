@@ -13,17 +13,18 @@
 
 <!-- HEADER -->
 <header class="app-header">
-  <div class="app-header__title">Point<span>G</span></div>
+  <div class="app-header__title">Point<span><strong>G</strong></span></div>
   <button class="burger-btn" id="burgerBtn" aria-label="Ouvrir le menu">
     <span></span><span></span><span></span>
   </button>
 </header>
 
 <!-- MENU BURGER -->
-<div class="burger-overlay" id="burgerOverlay">
+<div class="burger-overlay hidden" id="burgerOverlay">
   <nav class="burger-menu">
     <a href="https://www.emdev.fr" target="_blank" rel="noopener">Site web EmDev</a>
-    <a href="contact.html" target="_blank" rel="noopener">Formulaire de contact</a>
+    <a href="contact.html">Formulaire de contact</a>
+    <button type="button" class="burger-menu__reset" id="resetDataBtn">Réinitialiser mes données</button>
   </nav>
 </div>
 
@@ -107,6 +108,18 @@
     <div class="modal-actions">
       <button class="btn btn--ghost" id="abandonNo">Non</button>
       <button class="btn btn--danger" id="abandonYes">Oui</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODALE RÉINITIALISATION DES DONNÉES -->
+<div class="modal-overlay hidden" id="resetModal">
+  <div class="modal-box">
+    <p class="modal-question">Réinitialiser toutes vos données ?</p>
+    <p class="modal-warning">Cette action est irréversible. Votre score global et toutes vos statistiques seront définitivement perdus.</p>
+    <div class="modal-actions">
+      <button class="btn btn--ghost" id="resetNo">Annuler</button>
+      <button class="btn btn--danger" id="resetYes">Réinitialiser</button>
     </div>
   </div>
 </div>

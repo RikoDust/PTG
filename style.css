@@ -426,6 +426,34 @@ button { font-family: inherit; }
 }
 .modal-actions .btn { flex: 1; padding: 12px; }
 
+/* ---------- MENU : bouton réinitialiser ---------- */
+.burger-menu__reset {
+  color: var(--danger);
+  text-decoration: none;
+  font-weight: 700;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 84, 112, 0.12);
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+.burger-menu__reset:hover {
+  background: rgba(255, 84, 112, 0.2);
+  border-color: var(--danger);
+}
+
+/* ---------- MODAL : texte d'avertissement ---------- */
+.modal-warning {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  margin: 0 0 20px;
+}
+
 /* ---------- RESPONSIVE ---------- */
 @media (min-width: 540px) {
   .result-actions { flex-direction: row; }

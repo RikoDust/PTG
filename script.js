@@ -215,6 +215,11 @@ const els = {
   abandonModal: document.getElementById("abandonModal"),
   abandonYes: document.getElementById("abandonYes"),
   abandonNo: document.getElementById("abandonNo"),
+
+  resetDataBtn: document.getElementById("resetDataBtn"),
+  resetModal: document.getElementById("resetModal"),
+  resetYes: document.getElementById("resetYes"),
+  resetNo: document.getElementById("resetNo"),
 };
 
 const CIRCUMFERENCE = 2 * Math.PI * 60; // r=60, cf. SVG
@@ -394,7 +399,24 @@ function confirmAbandon() {
 }
 
 /* =========================================================
-   8. MENU BURGER
+   8. RÉINITIALISATION DES DONNÉES
+   ========================================================= */
+
+function openResetModal() {
+  els.resetModal.classList.remove("hidden");
+}
+function closeResetModal() {
+  els.resetModal.classList.add("hidden");
+}
+function confirmReset() {
+  localStorage.removeItem(STORAGE_KEY);
+  closeResetModal();
+  toggleBurgerMenu(); // referme aussi le menu burger
+  renderHomeScreen();
+}
+
+/* =========================================================
+   9. MENU BURGER
    ========================================================= */
 
 function toggleBurgerMenu() {
@@ -409,7 +431,7 @@ function toggleBurgerMenu() {
 }
 
 /* =========================================================
-   9. ÉVÉNEMENTS
+   10. ÉVÉNEMENTS
    ========================================================= */
 
 function bindEvents() {
@@ -429,6 +451,10 @@ function bindEvents() {
   els.abandonNo.addEventListener("click", closeAbandonModal);
   els.abandonYes.addEventListener("click", confirmAbandon);
 
+  els.resetDataBtn.addEventListener("click", openResetModal);
+  els.resetNo.addEventListener("click", closeResetModal);
+  els.resetYes.addEventListener("click", confirmReset);
+
   els.retryQuizBtn.addEventListener("click", () => {
     resetProgressBarVisual();
     startQuiz();
@@ -441,7 +467,7 @@ function bindEvents() {
 }
 
 /* =========================================================
-   10. INITIALISATION
+   11. INITIALISATION
    ========================================================= */
 
 async function init() {
