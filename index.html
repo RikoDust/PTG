@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuizMaster — Culture Générale</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="app-header">
+  <div class="app-header__title">Point<span>G</span></div>
+  <button class="burger-btn" id="burgerBtn" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<!-- MENU BURGER -->
+<div class="burger-overlay" id="burgerOverlay">
+  <nav class="burger-menu">
+    <a href="https://www.emdev.fr" target="_blank" rel="noopener">Site web EmDev</a>
+    <a href="contact.html" target="_blank" rel="noopener">Formulaire de contact</a>
+  </nav>
+</div>
+
+<main class="app-main">
+
+  <!-- ÉCRAN ACCUEIL -->
+  <section id="home-screen" class="screen home-screen">
+    <div class="score-ring-wrap">
+      <svg class="score-ring" viewBox="0 0 140 140">
+        <circle class="score-ring__bg" cx="70" cy="70" r="60"></circle>
+        <circle class="score-ring__value" id="scoreRingValue" cx="70" cy="70" r="60"></circle>
+      </svg>
+      <div class="score-ring__label">
+        <span id="globalScore">--</span>
+        <small>/ 100</small>
+      </div>
+    </div>
+
+    <p class="answers-ratio">
+      <strong id="totalCorrect">0</strong> bonnes réponses sur <strong id="totalAnswered">0</strong>
+    </p>
+
+    <button id="startQuizBtn" class="btn btn--primary btn--large">Faire un QCM</button>
+
+    <p class="home-hint" id="homeHint">Réponds à 20 questions choisies dans 6 thèmes différents.</p>
+  </section>
+
+  <!-- ÉCRAN QCM -->
+  <section id="quiz-screen" class="screen quiz-screen hidden">
+    <div class="quiz-topbar">
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <button class="abandon-btn" id="abandonBtn" aria-label="Abandonner le QCM">&times;</button>
+    </div>
+
+    <div class="question-card">
+      <p class="question-index" id="questionIndex">Question 1</p>
+      <p class="question-text" id="questionText"></p>
+      <div class="question-image-wrap" id="questionImageWrap">
+        <img id="questionImage" alt="Illustration de la question">
+      </div>
+
+      <div class="answers-grid" id="answersGrid"></div>
+
+      <div class="feedback" id="feedback">
+        <p class="feedback__status" id="feedbackStatus"></p>
+        <p class="feedback__correct" id="feedbackCorrect"></p>
+      </div>
+    </div>
+
+    <button class="btn btn--primary btn--large continue-btn hidden" id="continueBtn">Continuer</button>
+  </section>
+
+  <!-- ÉCRAN RÉSULTAT -->
+  <section id="result-screen" class="screen result-screen hidden">
+    <div class="quiz-topbar quiz-topbar--result">
+      <div class="progress-track">
+        <div class="progress-fill progress-fill--done"></div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <p class="result-title">QCM terminé !</p>
+      <div class="result-score" id="resultScore">--<small>/100</small></div>
+      <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong>20</strong></p>
+    </div>
+
+    <div class="result-actions">
+      <button class="btn btn--primary btn--large" id="retryQuizBtn">Refaire un QCM</button>
+      <button class="btn btn--ghost btn--large" id="backHomeBtn">Revenir à l'accueil</button>
+    </div>
+  </section>
+
+</main>
+
+<!-- MODALE ABANDON -->
+<div class="modal-overlay hidden" id="abandonModal">
+  <div class="modal-box">
+    <p class="modal-question">Êtes-vous certain d'abandonner le QCM en cours ?</p>
+    <div class="modal-actions">
+      <button class="btn btn--ghost" id="abandonNo">Non</button>
+      <button class="btn btn--danger" id="abandonYes">Oui</button>
+    </div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

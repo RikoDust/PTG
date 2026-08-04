@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — QuizMaster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="app-header">
+  <div class="app-header__title">Quiz<span>Master</span></div>
+</header>
+
+<main class="app-main">
+  <section class="screen home-screen" style="justify-content:flex-start; padding-top:20px;">
+    <h1 style="font-family:var(--font-display); font-size:1.4rem; margin:0;">Nous contacter</h1>
+    <p class="home-hint" style="max-width:360px;">Une question, un bug ou une idée de fonctionnalité ? Écrivez-nous.</p>
+
+    <form action="mailto:contact@emdev.fr" method="post" enctype="text/plain" style="width:100%; display:flex; flex-direction:column; gap:14px;">
+      <input type="text" name="nom" placeholder="Votre nom" required
+        style="padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:var(--font-body);">
+      <input type="email" name="email" placeholder="Votre email" required
+        style="padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:var(--font-body);">
+      <textarea name="message" placeholder="Votre message" rows="5" required
+        style="padding:14px; border-radius:12px; border:1px solid var(--border); background:var(--surface-2); color:var(--text); font-family:var(--font-body); resize:vertical;"></textarea>
+      <button type="submit" class="btn btn--primary btn--large">Envoyer</button>
+    </form>
+
+    <a href="index.html" class="btn btn--ghost btn--large" style="text-decoration:none; text-align:center; margin-top:6px;">Retour à l'application</a>
+  </section>
+</main>
+</body>
+</html>
