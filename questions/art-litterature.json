@@ -1,0 +1,23 @@
+{
+  "category": "art-litterature",
+  "questions": [
+    { "id": "art-litterature_1", "question": "Qui a peint 'La Nuit étoilée' ?", "options": ["Claude Monet", "Vincent van Gogh", "Pablo Picasso", "Paul Cézanne"], "answer": 1 },
+    { "id": "art-litterature_2", "question": "Dans quel musée se trouve la Joconde ?", "options": ["Le Louvre", "Le Prado", "Le British Museum", "Les Offices"], "answer": 0 },
+    { "id": "art-litterature_3", "question": "Quel mouvement artistique est associé à Salvador Dalí ?", "options": ["Le cubisme", "Le surréalisme", "L'impressionnisme", "Le pop art"], "answer": 1 },
+    { "id": "art-litterature_4", "question": "Qui a sculpté 'Le Penseur' ?", "options": ["Auguste Rodin", "Michel-Ange", "Camille Claudel", "Constantin Brancusi"], "answer": 0 },
+    { "id": "art-litterature_5", "question": "Quel peintre est célèbre pour ses œuvres cubistes comme 'Guernica' ?", "options": ["Henri Matisse", "Georges Braque", "Pablo Picasso", "Joan Miró"], "answer": 2 },
+    { "id": "art-litterature_6", "question": "Qui a peint le plafond de la chapelle Sixtine ?", "options": ["Raphaël", "Michel-Ange", "Léonard de Vinci", "Le Titien"], "answer": 1 },
+    { "id": "art-litterature_7", "question": "Quel courant artistique est représenté par Claude Monet ?", "options": ["L'impressionnisme", "Le baroque", "Le romantisme", "Le fauvisme"], "answer": 0 },
+    { "id": "art-litterature_8", "question": "Quel artiste a créé la série des 'Nymphéas' ?", "options": ["Edgar Degas", "Claude Monet", "Pierre-Auguste Renoir", "Édouard Manet"], "answer": 1 },
+    { "id": "art-litterature_9", "question": "Qui a écrit 'Roméo et Juliette' ?", "options": ["Molière", "William Shakespeare", "Christopher Marlowe", "Oscar Wilde"], "answer": 1 },
+    { "id": "art-litterature_10", "question": "Quel auteur russe a écrit 'Guerre et Paix' ?", "options": ["Fiodor Dostoïevski", "Anton Tchekhov", "Léon Tolstoï", "Alexandre Pouchkine"], "answer": 2 },
+    { "id": "art-litterature_11", "question": "Qui est le créateur du manga 'One Piece' ?", "options": ["Akira Toriyama", "Eiichiro Oda", "Masashi Kishimoto", "Naoko Takeuchi"], "answer": 1 },
+    { "id": "art-litterature_12", "question": "Quelle bande dessinée franco-belge met en scène un village gaulois résistant aux Romains ?", "options": ["Tintin", "Lucky Luke", "Astérix", "Les Schtroumpfs"], "answer": 2 },
+    { "id": "art-litterature_13", "question": "Quel dramaturge français a écrit 'Le Malade imaginaire' ?", "options": ["Racine", "Corneille", "Molière", "Beaumarchais"], "answer": 2 },
+    { "id": "art-litterature_14", "question": "Quel style architectural, typique des cathédrales médiévales, se caractérise par des arcs en ogive ?", "options": ["Le roman", "Le gothique", "Le baroque", "Le classique"], "answer": 1 },
+    { "id": "art-litterature_15", "question": "Quel auteur britannique a écrit le roman '1984' ?", "options": ["George Orwell", "Aldous Huxley", "H.G. Wells", "Ray Bradbury"], "answer": 0 },
+    { "id": "art-litterature_16", "question": "Quel manga met en scène des ninjas dans le village de Konoha ?", "options": ["Bleach", "Naruto", "Dragon Ball", "Death Note"], "answer": 1 },
+    { "id": "art-litterature_17", "question": "De quel artiste est cette peinture ?", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/400px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", "options": ["Raphaël", "Léonard de Vinci", "Sandro Botticelli", "Titien"], "answer": 1 },
+    { "id": "art-litterature_18", "question": "De quel artiste est cette peinture ?", "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/400px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg", "options": ["Paul Gauguin", "Henri Matisse", "Vincent van Gogh", "Edvard Munch"], "answer": 2 }
+  ]
+}

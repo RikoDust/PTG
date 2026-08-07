@@ -1,0 +1,17 @@
+{
+  "category": "institution-droit",
+  "questions": [
+    { "id": "institution-droit_1", "question": "En quelle année la Constitution de la Ve République a-t-elle été adoptée ?", "options": ["1946", "1958", "1962", "1981"], "answer": 1 },
+    { "id": "institution-droit_2", "question": "Combien d'articles compte la Déclaration des droits de l'homme et du citoyen de 1789 ?", "options": ["10", "17", "25", "33"], "answer": 1 },
+    { "id": "institution-droit_3", "question": "Qui est le chef de l'État en France ?", "options": ["Le Premier ministre", "Le président de l'Assemblée nationale", "Le président de la République", "Le président du Sénat"], "answer": 2 },
+    { "id": "institution-droit_4", "question": "Combien de chambres compose le Parlement français ?", "options": ["1", "2", "3", "4"], "answer": 1 },
+    { "id": "institution-droit_5", "question": "Quelle institution vérifie la conformité des lois à la Constitution en France ?", "options": ["Le Conseil d'État", "La Cour de cassation", "Le Conseil constitutionnel", "La Cour des comptes"], "answer": 2 },
+    { "id": "institution-droit_6", "question": "Combien de pays compte l'Union européenne depuis le retrait du Royaume-Uni ?", "options": ["25", "27", "28", "30"], "answer": 1 },
+    { "id": "institution-droit_7", "question": "À partir de quel âge peut-on voter en France ?", "options": ["16 ans", "18 ans", "21 ans", "25 ans"], "answer": 1 },
+    { "id": "institution-droit_8", "question": "Quelle est la devise de la République française ?", "options": ["Paix, Travail, Patrie", "Liberté, Égalité, Fraternité", "Unité, Justice, Progrès", "Ordre et Progrès"], "answer": 1 },
+    { "id": "institution-droit_9", "question": "Combien de pouvoirs distincts compose la séparation des pouvoirs théorisée par Montesquieu ?", "options": ["2", "3", "4", "5"], "answer": 1 },
+    { "id": "institution-droit_10", "question": "Quel traité fondateur de la construction européenne a été signé en 1957 ?", "options": ["Le traité de Maastricht", "Le traité de Rome", "Le traité de Lisbonne", "Le traité de Nice"], "answer": 1 },
+    { "id": "institution-droit_11", "question": "Quelle assemblée vote les lois en France, aux côtés du Sénat ?", "options": ["Le Conseil économique et social", "L'Assemblée nationale", "Le Conseil d'État", "La Cour de justice"], "answer": 1 },
+    { "id": "institution-droit_12", "question": "Comment appelle-t-on le fait de posséder la nationalité et les droits civiques d'un pays ?", "options": ["La souveraineté", "La citoyenneté", "La suzeraineté", "La légitimité"], "answer": 1 }
+  ]
+}

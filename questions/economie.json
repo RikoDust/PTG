@@ -1,0 +1,15 @@
+{
+  "category": "economie",
+  "questions": [
+    { "id": "economie_1", "question": "Quelle est la monnaie officielle utilisée par la majorité des pays de l'Union européenne ?", "options": ["Le franc", "L'euro", "Le dollar", "La livre"], "answer": 1 },
+    { "id": "economie_2", "question": "Que signifie le sigle PIB ?", "options": ["Produit Intérieur Brut", "Prix Industriel de Base", "Plan d'Investissement Budgétaire", "Produit Interne Bancaire"], "answer": 0 },
+    { "id": "economie_3", "question": "Quelle institution est responsable de la politique monétaire de la zone euro ?", "options": ["Le FMI", "La Banque centrale européenne", "La Banque mondiale", "L'OCDE"], "answer": 1 },
+    { "id": "economie_4", "question": "Comment appelle-t-on la hausse générale et durable des prix ?", "options": ["La déflation", "La récession", "L'inflation", "La stagnation"], "answer": 2 },
+    { "id": "economie_5", "question": "Comment appelle-t-on une jeune entreprise innovante à fort potentiel de croissance ?", "options": ["Une PME", "Une start-up", "Une multinationale", "Une coopérative"], "answer": 1 },
+    { "id": "economie_6", "question": "Quel indicateur mesure la part de la population active sans emploi dans un pays ?", "options": ["Le taux de croissance", "Le taux de chômage", "Le taux d'inflation", "Le taux d'épargne"], "answer": 1 },
+    { "id": "economie_7", "question": "Comment appelle-t-on l'ensemble des biens et services qu'un pays vend à l'étranger ?", "options": ["Les importations", "Les exportations", "Les investissements", "Les subventions"], "answer": 1 },
+    { "id": "economie_8", "question": "Quelle monnaie numérique décentralisée a été créée en 2009 ?", "options": ["L'Ethereum", "Le Bitcoin", "Le Litecoin", "Le Dogecoin"], "answer": 1 },
+    { "id": "economie_9", "question": "Comment appelle-t-on la situation où les dépenses d'un État dépassent ses recettes ?", "options": ["Un excédent budgétaire", "Un déficit budgétaire", "Un équilibre budgétaire", "Une dette publique nulle"], "answer": 1 },
+    { "id": "economie_10", "question": "Comment appelle-t-on le lieu où s'échangent les actions des entreprises cotées ?", "options": ["La banque centrale", "La bourse", "Le trésor public", "La chambre de commerce"], "answer": 1 }
+  ]
+}

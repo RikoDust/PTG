@@ -1,0 +1,20 @@
+{
+  "category": "francais",
+  "questions": [
+    { "id": "francais_1", "question": "Quel est le pluriel de 'cheval' ?", "options": ["Chevals", "Chevaux", "Chevales", "Chevaus"], "answer": 1 },
+    { "id": "francais_2", "question": "Quelle est la nature grammaticale du mot 'rapidement' ?", "options": ["Un adjectif", "Un adverbe", "Un nom", "Un verbe"], "answer": 1 },
+    { "id": "francais_3", "question": "Qui est l'auteur des 'Misérables' ?", "options": ["Émile Zola", "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac"], "answer": 1 },
+    { "id": "francais_4", "question": "Comment appelle-t-on une figure de style qui exagère volontairement ?", "options": ["Une litote", "Une métaphore", "Une hyperbole", "Une antithèse"], "answer": 2 },
+    { "id": "francais_5", "question": "Quel est le féminin de 'acteur' ?", "options": ["Actrice", "Acteure", "Actoresse", "Actrise"], "answer": 0 },
+    { "id": "francais_6", "question": "Quel auteur a écrit 'Le Petit Prince' ?", "options": ["Albert Camus", "Antoine de Saint-Exupéry", "Marcel Proust", "Jean-Paul Sartre"], "answer": 1 },
+    { "id": "francais_7", "question": "Quel temps exprime une action passée dans 'il mangea' ?", "options": ["Imparfait", "Passé simple", "Passé composé", "Plus-que-parfait"], "answer": 1 },
+    { "id": "francais_8", "question": "Quel est le synonyme de 'joyeux' ?", "options": ["Triste", "Content", "Fatigué", "Fâché"], "answer": 1 },
+    { "id": "francais_9", "question": "Combien de personnes (grammaticales) compte la conjugaison française ?", "options": ["4", "5", "6", "7"], "answer": 2 },
+    { "id": "francais_10", "question": "Quel mot est un antonyme de 'rapide' ?", "options": ["Lent", "Vif", "Prompt", "Agile"], "answer": 0 },
+    { "id": "francais_11", "question": "Quel est le contraire de 'commencer' ?", "options": ["Débuter", "Terminer", "Continuer", "Entamer"], "answer": 1 },
+    { "id": "francais_12", "question": "Comment appelle-t-on deux mots qui se prononcent pareil mais s'écrivent différemment ?", "options": ["Des synonymes", "Des antonymes", "Des homophones", "Des paronymes"], "answer": 2 },
+    { "id": "francais_13", "question": "Qui a écrit 'Le Rouge et le Noir' ?", "options": ["Stendhal", "Balzac", "Flaubert", "Zola"], "answer": 0 },
+    { "id": "francais_14", "question": "Quelle expression signifie 'être très content' ?", "options": ["Avoir le cafard", "Être aux anges", "Filer un mauvais coton", "Avoir le trac"], "answer": 1 },
+    { "id": "francais_15", "question": "Quel signe de ponctuation introduit généralement une énumération ?", "options": ["Le point-virgule", "Les deux-points", "Les points de suspension", "Le tiret"], "answer": 1 }
+  ]
+}

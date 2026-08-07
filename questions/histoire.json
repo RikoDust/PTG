@@ -1,0 +1,20 @@
+{
+  "category": "histoire",
+  "questions": [
+    { "id": "histoire_1", "question": "En quelle année a eu lieu la prise de la Bastille ?", "options": ["1789", "1799", "1804", "1815"], "answer": 0 },
+    { "id": "histoire_2", "question": "Qui était empereur des Français en 1810 ?", "options": ["Louis XVI", "Napoléon Bonaparte", "Charlemagne", "Louis XIV"], "answer": 1 },
+    { "id": "histoire_3", "question": "En quelle année s'est terminée la Seconde Guerre mondiale ?", "options": ["1943", "1944", "1945", "1946"], "answer": 2 },
+    { "id": "histoire_4", "question": "Quel mur est tombé en 1989 ?", "options": ["Le mur de Berlin", "Le mur d'Hadrien", "La Grande Muraille", "Le mur des Lamentations"], "answer": 0 },
+    { "id": "histoire_5", "question": "Qui a été le premier président de la Ve République française ?", "options": ["Georges Pompidou", "Charles de Gaulle", "François Mitterrand", "Vincent Auriol"], "answer": 1 },
+    { "id": "histoire_6", "question": "Quelle civilisation a construit les pyramides de Gizeh ?", "options": ["Les Romains", "Les Grecs", "Les Égyptiens", "Les Mayas"], "answer": 2 },
+    { "id": "histoire_7", "question": "En quelle année a débuté la Première Guerre mondiale ?", "options": ["1912", "1914", "1916", "1918"], "answer": 1 },
+    { "id": "histoire_8", "question": "Quel roi de France est surnommé le Roi Soleil ?", "options": ["Louis XIII", "Louis XIV", "Louis XV", "Louis XVI"], "answer": 1 },
+    { "id": "histoire_9", "question": "Quel événement a marqué le début de la Révolution française ?", "options": ["Le sacre de Napoléon", "La prise de la Bastille", "La bataille de Waterloo", "L'édit de Nantes"], "answer": 1 },
+    { "id": "histoire_10", "question": "Qui a découvert l'Amérique en 1492 ?", "options": ["Vasco de Gama", "Christophe Colomb", "Fernand de Magellan", "Marco Polo"], "answer": 1 },
+    { "id": "histoire_11", "question": "Quelle civilisation précolombienne a construit le Machu Picchu ?", "options": ["Les Aztèques", "Les Incas", "Les Mayas", "Les Olmèques"], "answer": 1 },
+    { "id": "histoire_12", "question": "Quelle reine d'Égypte est célèbre pour ses liaisons avec Jules César puis Marc Antoine ?", "options": ["Néfertiti", "Hatchepsout", "Cléopâtre", "Nefertari"], "answer": 2 },
+    { "id": "histoire_13", "question": "Quel empereur chinois est à l'origine de la construction de la Grande Muraille de Chine ?", "options": ["Qin Shi Huang", "Kublai Khan", "Sun Tzu", "Confucius"], "answer": 0 },
+    { "id": "histoire_14", "question": "Quelle guerre antique a opposé Athènes et Sparte ?", "options": ["La guerre des Gaules", "La guerre du Péloponnèse", "Les guerres puniques", "La guerre de Troie"], "answer": 1 },
+    { "id": "histoire_15", "question": "Qui a été le premier empereur romain ?", "options": ["Jules César", "Néron", "Auguste", "Trajan"], "answer": 2 }
+  ]
+}

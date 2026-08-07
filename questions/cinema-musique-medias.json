@@ -1,0 +1,17 @@
+{
+  "category": "cinema-musique-medias",
+  "questions": [
+    { "id": "cinema-musique-medias_1", "question": "Qui a réalisé le film 'Titanic' (1997) ?", "options": ["Steven Spielberg", "James Cameron", "Christopher Nolan", "Ridley Scott"], "answer": 1 },
+    { "id": "cinema-musique-medias_2", "question": "Quel groupe britannique a interprété 'Bohemian Rhapsody' ?", "options": ["The Beatles", "Queen", "Pink Floyd", "Led Zeppelin"], "answer": 1 },
+    { "id": "cinema-musique-medias_3", "question": "Quel réalisateur est connu pour les films 'Pulp Fiction' et 'Kill Bill' ?", "options": ["Martin Scorsese", "Quentin Tarantino", "David Fincher", "Guy Ritchie"], "answer": 1 },
+    { "id": "cinema-musique-medias_4", "question": "Quelle saga de science-fiction met en scène les Jedi et les Sith ?", "options": ["Star Trek", "Star Wars", "Dune", "Interstellar"], "answer": 1 },
+    { "id": "cinema-musique-medias_5", "question": "Quel compositeur autrichien, mort en 1791, est célèbre pour ses symphonies et opéras ?", "options": ["Ludwig van Beethoven", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "Joseph Haydn"], "answer": 2 },
+    { "id": "cinema-musique-medias_6", "question": "Quel acteur incarne Iron Man dans l'univers cinématographique Marvel ?", "options": ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo"], "answer": 2 },
+    { "id": "cinema-musique-medias_7", "question": "Quelle cérémonie récompense chaque année les meilleurs films à Hollywood ?", "options": ["Les Golden Globes", "Les Oscars", "Les Emmy Awards", "Les Grammy Awards"], "answer": 1 },
+    { "id": "cinema-musique-medias_8", "question": "Comment s'appelle le célèbre festival de cinéma français organisé chaque année sur la Côte d'Azur ?", "options": ["Le Festival de Deauville", "Le Festival de Cannes", "Le Festival de Venise", "Le Festival de Berlin"], "answer": 1 },
+    { "id": "cinema-musique-medias_9", "question": "Quel chanteur américain est surnommé le 'Roi de la pop' ?", "options": ["Prince", "Elvis Presley", "Michael Jackson", "Stevie Wonder"], "answer": 2 },
+    { "id": "cinema-musique-medias_10", "question": "Quelle série met en scène des familles nobles se disputant le Trône de Fer ?", "options": ["The Witcher", "Vikings", "Game of Thrones", "The Crown"], "answer": 2 },
+    { "id": "cinema-musique-medias_11", "question": "Quel type de média diffuse des programmes en direct par ondes hertziennes, câble ou satellite ?", "options": ["La presse écrite", "La radio", "La télévision", "L'affichage"], "answer": 2 },
+    { "id": "cinema-musique-medias_12", "question": "Quel réalisateur français a créé 'Le Fabuleux Destin d'Amélie Poulain' ?", "options": ["Luc Besson", "Jean-Pierre Jeunet", "Michel Gondry", "François Ozon"], "answer": 1 }
+  ]
+}

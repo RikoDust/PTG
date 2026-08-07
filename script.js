@@ -7,11 +7,13 @@
    ========================================================= */
 
 const STORAGE_KEY = "quizmaster_stats_v1";
-const QUESTIONS_PER_QUIZ = 20;
+const THEMES_CONFIG_PATH = "themes.json";
 
 /* ---------- État global ---------- */
-let allQuestions = [];
-let currentQuiz = [];      // les 20 questions de la session en cours
+let themesConfig = [];     // liste des thèmes { id, label, file, quota } depuis themes.json
+let questionsByTheme = {}; // { themeId: [questions...] } après chargement de tous les fichiers
+let quizLength = 0;        // = somme des quotas (généralement 20)
+let currentQuiz = [];      // les questions de la session en cours
 let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
@@ -55,7 +57,7 @@ function registerQuizResult(correctCount, totalQuestionsInQuiz) {
 }
 
 /* =========================================================
-   2. SÉLECTION DES 20 QUESTIONS DU QCM
+   2. SÉLECTION DES QUESTIONS DU QCM (quotas fixes par thème)
    ========================================================= */
 
 function shuffleArray(arr) {
@@ -67,7 +69,7 @@ function shuffleArray(arr) {
   return a;
 }
 
-/* Regroupe les questions par thème */
+/* Regroupe les questions par thème (utile pour l'algorithme d'agencement) */
 function groupByCategory(questions) {
   const groups = {};
   questions.forEach(q => {
@@ -78,48 +80,37 @@ function groupByCategory(questions) {
 }
 
 /*
-  Choisit QUESTIONS_PER_QUIZ questions en répartissant le nombre
-  de manière la plus égale possible entre chaque thème disponible.
-  Si un thème n'a pas assez de questions, le manque est réparti
-  sur les autres thèmes.
+  Pioche, pour chaque thème défini dans themes.json, exactement le
+  nombre de questions indiqué par son "quota" (ex : Histoire = 3,
+  Sport = 1, etc.). La somme des quotas définit la taille du QCM.
+  Si un thème ne contient pas assez de questions pour son quota
+  (cas anormal), on prend tout ce qui est disponible pour ce thème
+  et on complète avec des questions piochées au hasard parmi les
+  autres thèmes, afin de ne jamais faire planter le QCM.
 */
-function pickBalancedQuestions(questions, total) {
-  const groups = groupByCategory(questions);
-  const categories = shuffleArray(Object.keys(groups));
-  const n = categories.length;
-
-  const base = Math.floor(total / n);
-  let remainder = total % n;
-
-  // quota initial par thème
-  const quota = {};
-  categories.forEach(cat => { quota[cat] = base; });
-  // distribue le reste aléatoirement (1 question de plus) sur des thèmes différents
-  for (let i = 0; i < remainder; i++) {
-    quota[categories[i]] += 1;
-  }
-
-  // mélange le pool de chaque thème pour piocher aléatoirement dedans
-  const shuffledPools = {};
-  categories.forEach(cat => { shuffledPools[cat] = shuffleArray(groups[cat]); });
-
+function pickQuizQuestions() {
   const selected = [];
-  let missing = 0;
+  const shortfalls = []; // thèmes n'ayant pas pu fournir leur quota complet
+  const usedIds = new Set();
 
-  categories.forEach(cat => {
-    const need = quota[cat];
-    const available = shuffledPools[cat];
-    const take = Math.min(need, available.length);
-    selected.push(...available.slice(0, take));
-    shuffledPools[cat] = available.slice(take); // ce qu'il reste dans le pool
-    if (take < need) missing += (need - take);
+  themesConfig.forEach(theme => {
+    const pool = shuffleArray(questionsByTheme[theme.id] || []);
+    const take = pool.slice(0, theme.quota);
+    take.forEach(q => usedIds.add(q.id));
+    selected.push(...take);
+    if (take.length < theme.quota) {
+      shortfalls.push(theme.quota - take.length);
+    }
   });
 
-  // s'il manque des questions (thème trop petit), on complète avec
-  // ce qui reste dans les autres thèmes, au hasard
+  const missing = shortfalls.reduce((a, b) => a + b, 0);
   if (missing > 0) {
     let leftover = [];
-    categories.forEach(cat => { leftover.push(...shuffledPools[cat]); });
+    themesConfig.forEach(theme => {
+      (questionsByTheme[theme.id] || []).forEach(q => {
+        if (!usedIds.has(q.id)) leftover.push(q);
+      });
+    });
     leftover = shuffleArray(leftover);
     selected.push(...leftover.slice(0, missing));
   }
@@ -160,20 +151,36 @@ function arrangeNoAdjacentSameCategory(questions) {
   return result;
 }
 
-/* Construit un nouveau QCM de 20 questions prêt à être joué */
+/* Construit un nouveau QCM prêt à être joué */
 function buildNewQuiz() {
-  const balanced = pickBalancedQuestions(allQuestions, QUESTIONS_PER_QUIZ);
-  return arrangeNoAdjacentSameCategory(balanced);
+  const picked = pickQuizQuestions();
+  return arrangeNoAdjacentSameCategory(picked);
 }
 
 /* =========================================================
-   3. CHARGEMENT DES QUESTIONS
+   3. CHARGEMENT DES QUESTIONS (1 fichier de config + 1 fichier par thème)
    ========================================================= */
 
 async function loadQuestions() {
-  const res = await fetch("questions.json");
-  const data = await res.json();
-  allQuestions = data.questions;
+  const configRes = await fetch(THEMES_CONFIG_PATH);
+  const configData = await configRes.json();
+  themesConfig = configData.themes;
+
+  const fetches = themesConfig.map(theme => fetch(theme.file).then(r => r.json()));
+  const results = await Promise.all(fetches);
+
+  questionsByTheme = {};
+  results.forEach((fileData, i) => {
+    const theme = themesConfig[i];
+    // la propriété "category" de chaque question est toujours forcée
+    // à l'id du thème, pour garantir la cohérence avec themes.json
+    questionsByTheme[theme.id] = fileData.questions.map(q => ({
+      ...q,
+      category: theme.id
+    }));
+  });
+
+  quizLength = themesConfig.reduce((sum, t) => sum + t.quota, 0);
 }
 
 /* =========================================================
@@ -232,10 +239,11 @@ function renderHomeScreen() {
   const stats = loadStats();
   const score = getGlobalScoreOn100(stats);
 
+  els.homeHint.textContent = `Réponds à ${quizLength} questions réparties dans ${themesConfig.length} thèmes différents.`;
+
   if (score === null) {
     els.globalScore.textContent = "--";
     els.scoreRingValue.style.strokeDashoffset = CIRCUMFERENCE;
-    els.homeHint.textContent = "Réponds à 20 questions choisies dans 6 thèmes différents.";
   } else {
     els.globalScore.textContent = score;
     const offset = CIRCUMFERENCE - (score / 100) * CIRCUMFERENCE;

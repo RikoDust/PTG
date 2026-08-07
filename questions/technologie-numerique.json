@@ -1,0 +1,15 @@
+{
+  "category": "technologie-numerique",
+  "questions": [
+    { "id": "technologie-numerique_1", "question": "Que signifie le sigle 'IA', couramment utilisé en technologie ?", "options": ["Interface Automatisée", "Intelligence Artificielle", "Information Analytique", "Internet Avancé"], "answer": 1 },
+    { "id": "technologie-numerique_2", "question": "Quelle entreprise a créé le système d'exploitation Windows ?", "options": ["Apple", "Google", "Microsoft", "IBM"], "answer": 2 },
+    { "id": "technologie-numerique_3", "question": "Que signifie l'acronyme 'URL' ?", "options": ["Uniform Resource Locator", "Universal Router Link", "User Reference Layer", "Unified Resource Language"], "answer": 0 },
+    { "id": "technologie-numerique_4", "question": "Quel réseau social a été fondé par Mark Zuckerberg en 2004 ?", "options": ["Twitter", "Facebook", "Instagram", "LinkedIn"], "answer": 1 },
+    { "id": "technologie-numerique_5", "question": "Quelle entreprise est à l'origine de l'iPhone ?", "options": ["Samsung", "Google", "Apple", "Huawei"], "answer": 2 },
+    { "id": "technologie-numerique_6", "question": "Que permet la technologie 'Wi-Fi' dans son usage courant ?", "options": ["Recharger un appareil sans fil", "Se connecter à Internet sans fil", "Stocker des données en ligne", "Compresser des fichiers"], "answer": 1 },
+    { "id": "technologie-numerique_7", "question": "Quel langage sert principalement à structurer le contenu des pages web ?", "options": ["Le HTML", "Le SQL", "Le Python", "Le C++"], "answer": 0 },
+    { "id": "technologie-numerique_8", "question": "Quel est le moteur de recherche le plus utilisé au monde ?", "options": ["Bing", "Yahoo", "Google", "DuckDuckGo"], "answer": 2 },
+    { "id": "technologie-numerique_9", "question": "Comment appelle-t-on un logiciel malveillant conçu pour endommager un système informatique ?", "options": ["Un firewall", "Un virus", "Un cookie", "Un plug-in"], "answer": 1 },
+    { "id": "technologie-numerique_10", "question": "Quelle entreprise a développé la console de jeux vidéo PlayStation ?", "options": ["Nintendo", "Microsoft", "Sega", "Sony"], "answer": 3 }
+  ]
+}

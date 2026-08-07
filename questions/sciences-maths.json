@@ -1,0 +1,27 @@
+{
+  "category": "sciences-maths",
+  "questions": [
+    { "id": "sciences-maths_1", "question": "Combien font 7 x 8 ?", "options": ["54", "56", "58", "64"], "answer": 1 },
+    { "id": "sciences-maths_2", "question": "Quelle est la racine carrée de 144 ?", "options": ["10", "11", "12", "14"], "answer": 2 },
+    { "id": "sciences-maths_3", "question": "Combien y a-t-il de degrés dans un triangle ?", "options": ["90°", "180°", "270°", "360°"], "answer": 1 },
+    { "id": "sciences-maths_4", "question": "Quel est le résultat de 15 % de 200 ?", "options": ["15", "20", "30", "45"], "answer": 2 },
+    { "id": "sciences-maths_5", "question": "Combien de côtés possède un hexagone ?", "options": ["5", "6", "7", "8"], "answer": 1 },
+    { "id": "sciences-maths_6", "question": "Quel est le nombre pi arrondi à deux décimales ?", "options": ["3,12", "3,14", "3,16", "3,18"], "answer": 1 },
+    { "id": "sciences-maths_7", "question": "Combien font 9² ?", "options": ["18", "72", "81", "99"], "answer": 2 },
+    { "id": "sciences-maths_8", "question": "Quel est le plus petit nombre premier ?", "options": ["0", "1", "2", "3"], "answer": 2 },
+    { "id": "sciences-maths_9", "question": "Combien font 1/4 + 1/2 ?", "options": ["1/6", "2/6", "3/4", "1"], "answer": 2 },
+    { "id": "sciences-maths_10", "question": "Combien de minutes y a-t-il dans 2 heures ?", "options": ["100", "110", "120", "140"], "answer": 2 },
+    { "id": "sciences-maths_11", "question": "Quel est le symbole chimique de l'or ?", "options": ["Ag", "Au", "Fe", "Or"], "answer": 1 },
+    { "id": "sciences-maths_12", "question": "Quelle planète est la plus proche du Soleil ?", "options": ["Vénus", "Mercure", "Mars", "Terre"], "answer": 1 },
+    { "id": "sciences-maths_13", "question": "Combien d'os compte le corps humain adulte ?", "options": ["186", "206", "226", "246"], "answer": 1 },
+    { "id": "sciences-maths_14", "question": "Quel gaz les plantes absorbent-elles principalement lors de la photosynthèse ?", "options": ["Oxygène", "Azote", "Dioxyde de carbone", "Hydrogène"], "answer": 2 },
+    { "id": "sciences-maths_15", "question": "Quelle est l'unité de mesure de la force ?", "options": ["Le watt", "Le newton", "Le joule", "Le pascal"], "answer": 1 },
+    { "id": "sciences-maths_16", "question": "Quel scientifique a formulé la théorie de la relativité ?", "options": ["Isaac Newton", "Niels Bohr", "Albert Einstein", "Galilée"], "answer": 2 },
+    { "id": "sciences-maths_17", "question": "Quel est l'organe principal du système circulatoire ?", "options": ["Le foie", "Le cœur", "Le poumon", "Le rein"], "answer": 1 },
+    { "id": "sciences-maths_18", "question": "Quelle est la vitesse approximative de la lumière dans le vide ?", "options": ["300 000 km/s", "150 000 km/s", "3 000 km/s", "30 000 km/s"], "answer": 0 },
+    { "id": "sciences-maths_19", "question": "Quel est le plus grand organe du corps humain ?", "options": ["Le foie", "Le cerveau", "La peau", "Le cœur"], "answer": 2 },
+    { "id": "sciences-maths_20", "question": "Combien de chromosomes possède une cellule humaine normale ?", "options": ["23", "44", "46", "48"], "answer": 2 },
+    { "id": "sciences-maths_21", "question": "Quel scientifique est à l'origine de la découverte de la pénicilline ?", "options": ["Louis Pasteur", "Alexander Fleming", "Marie Curie", "Charles Darwin"], "answer": 1 },
+    { "id": "sciences-maths_22", "question": "Quelle est la plus grande planète du système solaire ?", "options": ["Saturne", "Jupiter", "Uranus", "Neptune"], "answer": 1 }
+  ]
+}

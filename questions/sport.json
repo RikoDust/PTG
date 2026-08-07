@@ -1,0 +1,15 @@
+{
+  "category": "sport",
+  "questions": [
+    { "id": "sport_1", "question": "Tous les combien d'années ont lieu les Jeux olympiques d'été ?", "options": ["2 ans", "3 ans", "4 ans", "5 ans"], "answer": 2 },
+    { "id": "sport_2", "question": "Combien de joueurs une équipe de football aligne-t-elle sur le terrain (hors remplaçants) ?", "options": ["9", "10", "11", "12"], "answer": 2 },
+    { "id": "sport_3", "question": "Dans quel pays sont nés les Jeux olympiques antiques ?", "options": ["L'Italie", "La Grèce", "L'Égypte", "La Turquie"], "answer": 1 },
+    { "id": "sport_4", "question": "Quel sport se joue avec une raquette et un volant ?", "options": ["Le tennis de table", "Le squash", "Le badminton", "Le padel"], "answer": 2 },
+    { "id": "sport_5", "question": "Combien de points vaut un essai au rugby, avant transformation ?", "options": ["3 points", "5 points", "6 points", "7 points"], "answer": 1 },
+    { "id": "sport_6", "question": "Quelle célèbre compétition cycliste traverse la France chaque été ?", "options": ["Le Giro", "La Vuelta", "Le Tour de France", "Paris-Roubaix"], "answer": 2 },
+    { "id": "sport_7", "question": "Dans quel sport peut-on marquer un point directement grâce à un service, appelé 'ace' ?", "options": ["Le badminton", "Le tennis", "Le volley-ball", "Le squash"], "answer": 1 },
+    { "id": "sport_8", "question": "Combien de temps dure un match de football en temps réglementaire ?", "options": ["80 minutes", "90 minutes", "100 minutes", "120 minutes"], "answer": 1 },
+    { "id": "sport_9", "question": "Quel pays a remporté la Coupe du monde de football qu'il organisait, en 1998 ?", "options": ["Le Brésil", "L'Allemagne", "La France", "L'Italie"], "answer": 2 },
+    { "id": "sport_10", "question": "Quel sport olympique se pratique sur un tatami, vêtu d'un kimono ?", "options": ["Le karaté", "Le judo", "L'aïkido", "Le taekwondo"], "answer": 1 }
+  ]
+}
