@@ -151,7 +151,7 @@ button { font-family: inherit; }
 }
 .score-ring__bg { stroke: var(--surface-2); }
 .score-ring__value {
-  stroke: var(--blue);
+  stroke: url(#scoreRingGradient);
   stroke-dasharray: 377;
   stroke-dashoffset: 377;
   transition: stroke-dashoffset 0.8s ease;
@@ -175,6 +175,27 @@ button { font-family: inherit; }
   margin: 0;
 }
 .answers-ratio strong { color: var(--text); }
+
+.stats-lines {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin: -6px 0 2px;
+}
+.stat-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+.stat-line i { font-size: 0.95rem; }
+.stat-line strong { font-weight: 800; }
+.stat-line--streak { color: var(--blue); }
+.stat-line--perfect { color: var(--purple); }
 
 .home-hint {
   color: var(--text-muted);
@@ -391,6 +412,26 @@ button { font-family: inherit; }
 }
 .result-detail { color: var(--text-muted); margin: 6px 0 0; }
 .result-detail strong { color: var(--text); }
+
+.btn-share {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 22px 0 0;
+  padding: 10px 20px;
+  border: 1px solid rgba(61, 220, 132, 0.75);
+  border-radius: var(--radius-md);
+  background: rgba(61, 220, 132, 0.55);
+  color: #eafff2;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease;
+}
+.btn-share i { font-size: 0.95rem; }
+.btn-share:hover { background: rgba(61, 220, 132, 0.7); }
+.btn-share:active { transform: scale(0.96); }
 
 .result-actions {
   width: 100%;

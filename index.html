@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" referrerpolicy="no-referrer">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -34,6 +35,12 @@
   <section id="home-screen" class="screen home-screen">
     <div class="score-ring-wrap">
       <svg class="score-ring" viewBox="0 0 140 140">
+        <defs>
+          <linearGradient id="scoreRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#4e7cff" />
+            <stop offset="100%" stop-color="#9b5de5" />
+          </linearGradient>
+        </defs>
         <circle class="score-ring__bg" cx="70" cy="70" r="60"></circle>
         <circle class="score-ring__value" id="scoreRingValue" cx="70" cy="70" r="60"></circle>
       </svg>
@@ -46,6 +53,17 @@
     <p class="answers-ratio">
       <strong id="totalCorrect">0</strong> bonnes réponses sur <strong id="totalAnswered">0</strong>
     </p>
+
+    <div class="stats-lines">
+      <p class="stat-line stat-line--streak">
+        <i class="fa-solid fa-fire"></i>
+        <strong id="streakCount">0</strong> jour(s) de suite
+      </p>
+      <p class="stat-line stat-line--perfect">
+        <i class="fa-solid fa-star"></i>
+        <strong id="perfectCount">0</strong> perfect (20/20)
+      </p>
+    </div>
 
     <button id="startQuizBtn" class="btn btn--primary btn--large">Faire un QCM</button>
 
@@ -91,6 +109,11 @@
       <p class="result-title">QCM terminé !</p>
       <div class="result-score" id="resultScore">--<small>/100</small></div>
       <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong>20</strong></p>
+
+      <button type="button" class="btn-share" id="shareScoreBtn">
+        <i class="fa-solid fa-share"></i>
+        <span>Partager mon score</span>
+      </button>
     </div>
 
     <div class="result-actions">
@@ -127,3 +150,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+

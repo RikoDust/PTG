@@ -17,6 +17,7 @@ let currentQuiz = [];      // les questions de la session en cours
 let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
+let lastQuizScoreOn100 = 0; // score du dernier QCM terminé, pour le bouton "Partager"
 
 /* =========================================================
    1. STATISTIQUES (localStorage)
@@ -25,16 +26,19 @@ let hasAnsweredCurrent = false;
 function loadStats() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    return { totalCorrect: 0, totalQuestions: 0 };
+    return { totalCorrect: 0, totalQuestions: 0, streakCount: 0, lastPlayedDate: null, perfectCount: 0 };
   }
   try {
     const parsed = JSON.parse(raw);
     return {
       totalCorrect: parsed.totalCorrect || 0,
-      totalQuestions: parsed.totalQuestions || 0
+      totalQuestions: parsed.totalQuestions || 0,
+      streakCount: parsed.streakCount || 0,
+      lastPlayedDate: parsed.lastPlayedDate || null,
+      perfectCount: parsed.perfectCount || 0
     };
   } catch (e) {
-    return { totalCorrect: 0, totalQuestions: 0 };
+    return { totalCorrect: 0, totalQuestions: 0, streakCount: 0, lastPlayedDate: null, perfectCount: 0 };
   }
 }
 
@@ -47,11 +51,73 @@ function getGlobalScoreOn100(stats) {
   return Math.round((stats.totalCorrect / stats.totalQuestions) * 100);
 }
 
+/* ---------- Utilitaires de date (série de jours consécutifs) ---------- */
+
+/* Date du jour au format AAAA-MM-JJ, en heure locale */
+function todayISO() {
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
+function parseISODate(str) {
+  const [y, m, d] = str.split("-").map(Number);
+  return new Date(y, m - 1, d);
+}
+
+/* Nombre de jours calendaires entre deux dates AAAA-MM-JJ (b - a) */
+function diffDays(aStr, bStr) {
+  const MS_PER_DAY = 24 * 60 * 60 * 1000;
+  return Math.round((parseISODate(bStr) - parseISODate(aStr)) / MS_PER_DAY);
+}
+
+/*
+  Streak affichée à l'écran d'accueil : si le dernier QCM date d'hier
+  ou d'aujourd'hui, la série stockée est encore valable. Si le dernier
+  QCM remonte à plus d'un jour, la série est considérée comme perdue
+  (elle ne sera remise à 0 dans le storage qu'au prochain QCM joué,
+  mais on l'affiche déjà à 0 pour refléter la réalité).
+*/
+function getDisplayStreak(stats) {
+  if (!stats.lastPlayedDate) return 0;
+  const diff = diffDays(stats.lastPlayedDate, todayISO());
+  if (diff <= 1) return stats.streakCount || 0;
+  return 0;
+}
+
+/* Met à jour la série de jours consécutifs après un QCM joué aujourd'hui */
+function updateStreak(stats) {
+  const today = todayISO();
+  if (!stats.lastPlayedDate) {
+    stats.streakCount = 1;
+  } else {
+    const diff = diffDays(stats.lastPlayedDate, today);
+    if (diff === 0) {
+      // déjà joué aujourd'hui : la série ne bouge pas
+    } else if (diff === 1) {
+      stats.streakCount = (stats.streakCount || 0) + 1;
+    } else {
+      // au moins un jour manqué : la série repart de 1 (le QCM du jour compte)
+      stats.streakCount = 1;
+    }
+  }
+  stats.lastPlayedDate = today;
+}
+
 /* Met à jour les stats globales à la fin d'un QCM complet */
 function registerQuizResult(correctCount, totalQuestionsInQuiz) {
   const stats = loadStats();
   stats.totalCorrect += correctCount;
   stats.totalQuestions += totalQuestionsInQuiz;
+
+  updateStreak(stats);
+
+  if (correctCount === totalQuestionsInQuiz) {
+    stats.perfectCount += 1;
+  }
+
   saveStats(stats);
   return stats;
 }
@@ -199,6 +265,8 @@ const els = {
   globalScore: document.getElementById("globalScore"),
   totalCorrect: document.getElementById("totalCorrect"),
   totalAnswered: document.getElementById("totalAnswered"),
+  streakCount: document.getElementById("streakCount"),
+  perfectCount: document.getElementById("perfectCount"),
   homeHint: document.getElementById("homeHint"),
   startQuizBtn: document.getElementById("startQuizBtn"),
 
@@ -216,6 +284,7 @@ const els = {
 
   resultScore: document.getElementById("resultScore"),
   resultCorrect: document.getElementById("resultCorrect"),
+  shareScoreBtn: document.getElementById("shareScoreBtn"),
   retryQuizBtn: document.getElementById("retryQuizBtn"),
   backHomeBtn: document.getElementById("backHomeBtn"),
 
@@ -253,6 +322,8 @@ function renderHomeScreen() {
 
   els.totalCorrect.textContent = stats.totalCorrect;
   els.totalAnswered.textContent = stats.totalQuestions;
+  els.streakCount.textContent = getDisplayStreak(stats);
+  els.perfectCount.textContent = stats.perfectCount;
 }
 
 function showScreen(name) {
@@ -294,7 +365,8 @@ function renderQuestion() {
   if (q.image) {
     els.questionImage.onerror = () => {
       // si l'image locale est introuvable (pas encore ajoutée dans assets/images/...),
-      // on masque simplement le bloc image plutôt que d'afficher une icône cassée
+      // on masque le bloc image ET on log le chemin exact en console pour diagnostiquer
+      console.warn(`[QuizMaster] Image introuvable pour la question "${q.id}" : ${q.image}`);
       els.questionImageWrap.classList.remove("is-visible");
     };
     els.questionImage.src = q.image;
@@ -378,6 +450,7 @@ function finishQuiz() {
   els.progressFill.classList.add("progress-fill--done");
 
   const scoreOn100 = Math.round((currentCorrectCount / currentQuiz.length) * 100);
+  lastQuizScoreOn100 = scoreOn100;
 
   els.resultScore.innerHTML = `${scoreOn100}<small>/100</small>`;
   els.resultCorrect.textContent = currentCorrectCount;
@@ -395,7 +468,38 @@ function resetProgressBarVisual() {
 }
 
 /* =========================================================
-   7. ABANDON DU QCM
+   7. PARTAGE DU SCORE
+   ========================================================= */
+
+function shareScore() {
+  const message = `Salut, je viens d'obtenir le score de ${lastQuizScoreOn100}/100 au qcm de culture générale de PointG.`;
+
+  if (navigator.share) {
+    // API de partage native (mobile / navigateurs compatibles)
+    navigator.share({ text: message }).catch(() => {
+      // l'utilisateur a annulé le partage ou l'API a échoué : on ne fait rien de plus
+    });
+    return;
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    // fallback : copie du message dans le presse-papiers avec confirmation visuelle
+    navigator.clipboard.writeText(message).then(() => {
+      const original = els.shareScoreBtn.innerHTML;
+      els.shareScoreBtn.innerHTML = '<i class="fa-solid fa-check"></i><span>Copié !</span>';
+      setTimeout(() => { els.shareScoreBtn.innerHTML = original; }, 1800);
+    }).catch(() => {
+      window.prompt("Copie ton score :", message);
+    });
+    return;
+  }
+
+  // dernier recours si aucune API n'est disponible
+  window.prompt("Copie ton score :", message);
+}
+
+/* =========================================================
+   8. ABANDON DU QCM
    ========================================================= */
 
 function openAbandonModal() {
@@ -412,7 +516,7 @@ function confirmAbandon() {
 }
 
 /* =========================================================
-   8. RÉINITIALISATION DES DONNÉES
+   9. RÉINITIALISATION DES DONNÉES
    ========================================================= */
 
 function openResetModal() {
@@ -429,7 +533,7 @@ function confirmReset() {
 }
 
 /* =========================================================
-   9. MENU BURGER
+   10. MENU BURGER
    ========================================================= */
 
 function toggleBurgerMenu() {
@@ -444,7 +548,7 @@ function toggleBurgerMenu() {
 }
 
 /* =========================================================
-   10. ÉVÉNEMENTS
+   11. ÉVÉNEMENTS
    ========================================================= */
 
 function bindEvents() {
@@ -459,6 +563,8 @@ function bindEvents() {
   });
 
   els.continueBtn.addEventListener("click", handleContinue);
+
+  els.shareScoreBtn.addEventListener("click", shareScore);
 
   els.abandonBtn.addEventListener("click", openAbandonModal);
   els.abandonNo.addEventListener("click", closeAbandonModal);
@@ -480,7 +586,7 @@ function bindEvents() {
 }
 
 /* =========================================================
-   11. INITIALISATION
+   12. INITIALISATION
    ========================================================= */
 
 async function init() {
@@ -491,4 +597,3 @@ async function init() {
 }
 
 init();
-
