@@ -288,9 +288,15 @@ button { font-family: inherit; }
 }
 
 .question-image-wrap { display: none; margin-bottom: 16px; }
-.question-image-wrap.is-visible { display: block; }
+.question-image-wrap.is-visible {
+  display: flex;
+  justify-content: center;
+}
 .question-image-wrap img {
-  width: 100%;
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
   max-height: 220px;
   object-fit: contain;
   border-radius: var(--radius-md);
