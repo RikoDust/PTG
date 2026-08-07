@@ -17,7 +17,7 @@
     { "id": "art-litterature_14", "question": "Quel style architectural, typique des cathédrales médiévales, se caractérise par des arcs en ogive ?", "options": ["Le roman", "Le gothique", "Le baroque", "Le classique"], "answer": 1 },
     { "id": "art-litterature_15", "question": "Quel auteur britannique a écrit le roman '1984' ?", "options": ["George Orwell", "Aldous Huxley", "H.G. Wells", "Ray Bradbury"], "answer": 0 },
     { "id": "art-litterature_16", "question": "Quel manga met en scène des ninjas dans le village de Konoha ?", "options": ["Bleach", "Naruto", "Dragon Ball", "Death Note"], "answer": 1 },
-    { "id": "art-litterature_17", "question": "De quel artiste est cette peinture ?", "image": "img/art-litterature_17", "options": ["Raphaël", "Léonard de Vinci", "Sandro Botticelli", "Titien"], "answer": 1 },
-    { "id": "art-litterature_18", "question": "De quel artiste est cette peinture ?", "image": "img/art-litterature_18", "options": ["Paul Gauguin", "Henri Matisse", "Vincent van Gogh", "Edvard Munch"], "answer": 2 }
+    { "id": "art-litterature_17", "question": "De quel artiste est cette peinture ?", "image": "questions/img/art-litterature_17.png", "options": ["Raphaël", "Léonard de Vinci", "Sandro Botticelli", "Titien"], "answer": 1 },
+    { "id": "art-litterature_18", "question": "De quel artiste est cette peinture ?", "image": "questions/img/art-litterature_18.png", "options": ["Paul Gauguin", "Henri Matisse", "Vincent van Gogh", "Edvard Munch"], "answer": 2 }
   ]
 }

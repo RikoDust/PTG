@@ -14,10 +14,10 @@
     { "id": "geographie_11", "question": "Quel est le point culminant du continent africain ?", "options": ["Le mont Kenya", "Le Kilimandjaro", "Le mont Cameroun", "Le Toubkal"], "answer": 1 },
     { "id": "geographie_12", "question": "Quel type de climat caractérise la forêt amazonienne ?", "options": ["Climat désertique", "Climat polaire", "Climat équatorial", "Climat méditerranéen"], "answer": 2 },
     { "id": "geographie_13", "question": "Quelle organisation internationale regroupe la quasi-totalité des pays du monde pour favoriser la coopération ?", "options": ["L'OTAN", "L'ONU", "L'OMC", "Le FMI"], "answer": 1 },
-    { "id": "geographie_14", "question": "Quel est le pays de ce drapeau ?", "image": "img/geographie_14.png", "options": ["Portugal", "Brésil", "Angola", "Mexique"], "answer": 1 },
-    { "id": "geographie_15", "question": "Quel est le pays de ce drapeau ?", "image": "img/geographie_15.png", "options": ["Chine", "Corée du Sud", "Japon", "Vietnam"], "answer": 2 },
-    { "id": "geographie_16", "question": "Quel est le pays de ce drapeau ?", "image": "img/geographie_16.png", "options": ["Kenya", "Afrique du Sud", "Nigéria", "Ghana"], "answer": 1 },
-    { "id": "geographie_17", "question": "Dans quel pays se trouve ce monument ?", "image": "img/geographie_17.png", "options": ["Pakistan", "Inde", "Népal", "Bangladesh"], "answer": 1 },
-    { "id": "geographie_18", "question": "Dans quel pays se trouve ce monument ?", "image": "img/geographie_18.png", "options": ["Grèce", "Espagne", "Italie", "Turquie"], "answer": 2 }
+    { "id": "geographie_14", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_14.png", "options": ["Portugal", "Brésil", "Angola", "Mexique"], "answer": 1 },
+    { "id": "geographie_15", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_15.png", "options": ["Chine", "Corée du Sud", "Japon", "Vietnam"], "answer": 2 },
+    { "id": "geographie_16", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_16.png", "options": ["Kenya", "Afrique du Sud", "Nigéria", "Ghana"], "answer": 1 },
+    { "id": "geographie_17", "question": "Dans quel pays se trouve ce monument ?", "image": "questions/img/geographie_17.png", "options": ["Pakistan", "Inde", "Népal", "Bangladesh"], "answer": 1 },
+    { "id": "geographie_18", "question": "Dans quel pays se trouve ce monument ?", "image": "questions/img/geographie_18.png", "options": ["Grèce", "Espagne", "Italie", "Turquie"], "answer": 2 }
   ]
 }
