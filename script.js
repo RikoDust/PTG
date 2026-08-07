@@ -292,6 +292,11 @@ function renderQuestion() {
   els.questionText.textContent = q.question;
 
   if (q.image) {
+    els.questionImage.onerror = () => {
+      // si l'image locale est introuvable (pas encore ajoutée dans assets/images/...),
+      // on masque simplement le bloc image plutôt que d'afficher une icône cassée
+      els.questionImageWrap.classList.remove("is-visible");
+    };
     els.questionImage.src = q.image;
     els.questionImageWrap.classList.add("is-visible");
   } else {
@@ -486,3 +491,4 @@ async function init() {
 }
 
 init();
+
