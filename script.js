@@ -10,7 +10,8 @@ const STORAGE_KEY = "quizmaster_stats_v1";
 const THEMES_CONFIG_PATH = "themes.json";
 
 /* ---------- État global ---------- */
-let themesConfig = [];     // liste des thèmes { id, label, file, quota } depuis themes.json
+let themesConfig = [];     // liste des thèmes { id, label, file, quota, flashGroup } depuis themes.json
+let flashConfig = { poolPickCount: 3 }; // paramètres du QCM Flash depuis themes.json
 let questionsByTheme = {}; // { themeId: [questions...] } après chargement de tous les fichiers
 let quizLength = 0;        // = somme des quotas (généralement 20)
 let currentQuiz = [];      // les questions de la session en cours
@@ -18,6 +19,7 @@ let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
 let lastQuizScoreOn100 = 0; // score du dernier QCM terminé, pour le bouton "Partager"
+let currentQuizType = "classic"; // "classic" (20 questions) ou "flash" (10 questions)
 
 /* =========================================================
    1. STATISTIQUES (localStorage)
@@ -106,7 +108,7 @@ function updateStreak(stats) {
   stats.lastPlayedDate = today;
 }
 
-/* Met à jour les stats globales à la fin d'un QCM complet */
+/* Met à jour les stats globales à la fin d'un QCM complet (Classique ou Flash) */
 function registerQuizResult(correctCount, totalQuestionsInQuiz) {
   const stats = loadStats();
   stats.totalCorrect += correctCount;
@@ -114,7 +116,8 @@ function registerQuizResult(correctCount, totalQuestionsInQuiz) {
 
   updateStreak(stats);
 
-  if (correctCount === totalQuestionsInQuiz) {
+  // "Perfect" = 20/20 au QCM Classique précisément (pas 10/10 au Flash)
+  if (totalQuestionsInQuiz === quizLength && correctCount === totalQuestionsInQuiz) {
     stats.perfectCount += 1;
   }
 
@@ -217,10 +220,53 @@ function arrangeNoAdjacentSameCategory(questions) {
   return result;
 }
 
-/* Construit un nouveau QCM prêt à être joué */
-function buildNewQuiz() {
+/* Construit un nouveau QCM Classique (quotas fixes par thème, cf. themes.json) */
+function buildClassicQuiz() {
   const picked = pickQuizQuestions();
   return arrangeNoAdjacentSameCategory(picked);
+}
+
+/*
+  Construit un QCM Flash de 10 questions :
+  - 1 question pour chacun des thèmes "mandatory" (obligatoires)
+  - + N questions (flash.poolPickCount, généralement 3) tirées parmi
+    des thèmes "pool" DIFFÉRENTS les uns des autres (jamais deux
+    questions du même thème parmi les tirées).
+  Comme chaque thème n'apparaît qu'une seule fois au total dans le
+  QCM Flash, il ne peut jamais y avoir deux questions du même thème
+  l'une à la suite de l'autre : un simple mélange final suffit.
+*/
+function pickFlashQuizQuestions() {
+  const mandatoryThemes = themesConfig.filter(t => t.flashGroup === "mandatory");
+  const poolThemes = shuffleArray(themesConfig.filter(t => t.flashGroup === "pool"));
+  const poolPickCount = (flashConfig && flashConfig.poolPickCount) || 3;
+
+  const selected = [];
+  const usedIds = new Set();
+
+  mandatoryThemes.forEach(theme => {
+    const pool = shuffleArray(questionsByTheme[theme.id] || []);
+    if (pool.length > 0) {
+      selected.push(pool[0]);
+      usedIds.add(pool[0].id);
+    }
+  });
+
+  poolThemes.slice(0, poolPickCount).forEach(theme => {
+    const pool = shuffleArray(questionsByTheme[theme.id] || []);
+    if (pool.length > 0) {
+      selected.push(pool[0]);
+      usedIds.add(pool[0].id);
+    }
+  });
+
+  return selected;
+}
+
+/* Construit un nouveau QCM Flash prêt à être joué */
+function buildFlashQuiz() {
+  const picked = pickFlashQuizQuestions();
+  return shuffleArray(picked); // thèmes déjà tous uniques : un simple mélange suffit
 }
 
 /* =========================================================
@@ -231,6 +277,7 @@ async function loadQuestions() {
   const configRes = await fetch(THEMES_CONFIG_PATH);
   const configData = await configRes.json();
   themesConfig = configData.themes;
+  flashConfig = configData.flash || { poolPickCount: 3 };
 
   const fetches = themesConfig.map(theme => fetch(theme.file).then(r => r.json()));
   const results = await Promise.all(fetches);
@@ -258,6 +305,7 @@ const els = {
   burgerOverlay: document.getElementById("burgerOverlay"),
 
   homeScreen: document.getElementById("home-screen"),
+  selectScreen: document.getElementById("select-screen"),
   quizScreen: document.getElementById("quiz-screen"),
   resultScreen: document.getElementById("result-screen"),
 
@@ -267,8 +315,11 @@ const els = {
   totalAnswered: document.getElementById("totalAnswered"),
   streakCount: document.getElementById("streakCount"),
   perfectCount: document.getElementById("perfectCount"),
-  homeHint: document.getElementById("homeHint"),
   startQuizBtn: document.getElementById("startQuizBtn"),
+
+  selectBackBtn: document.getElementById("selectBackBtn"),
+  flashQuizBtn: document.getElementById("flashQuizBtn"),
+  classicQuizBtn: document.getElementById("classicQuizBtn"),
 
   progressFill: document.getElementById("progressFill"),
   abandonBtn: document.getElementById("abandonBtn"),
@@ -284,6 +335,7 @@ const els = {
 
   resultScore: document.getElementById("resultScore"),
   resultCorrect: document.getElementById("resultCorrect"),
+  resultTotal: document.getElementById("resultTotal"),
   shareScoreBtn: document.getElementById("shareScoreBtn"),
   retryQuizBtn: document.getElementById("retryQuizBtn"),
   backHomeBtn: document.getElementById("backHomeBtn"),
@@ -308,8 +360,6 @@ function renderHomeScreen() {
   const stats = loadStats();
   const score = getGlobalScoreOn100(stats);
 
-  els.homeHint.textContent = `Réponds à ${quizLength} questions réparties dans ${themesConfig.length} thèmes différents.`;
-
   if (score === null) {
     els.globalScore.textContent = "--";
     els.scoreRingValue.style.strokeDashoffset = CIRCUMFERENCE;
@@ -328,10 +378,12 @@ function renderHomeScreen() {
 
 function showScreen(name) {
   els.homeScreen.classList.add("hidden");
+  els.selectScreen.classList.add("hidden");
   els.quizScreen.classList.add("hidden");
   els.resultScreen.classList.add("hidden");
 
   if (name === "home") els.homeScreen.classList.remove("hidden");
+  if (name === "select") els.selectScreen.classList.remove("hidden");
   if (name === "quiz") els.quizScreen.classList.remove("hidden");
   if (name === "result") els.resultScreen.classList.remove("hidden");
 }
@@ -340,8 +392,9 @@ function showScreen(name) {
    6. DÉROULÉ DU QCM
    ========================================================= */
 
-function startQuiz() {
-  currentQuiz = buildNewQuiz();
+function startQuiz(quizType = "classic") {
+  currentQuizType = quizType;
+  currentQuiz = quizType === "flash" ? buildFlashQuiz() : buildClassicQuiz();
   currentIndex = 0;
   currentCorrectCount = 0;
   showScreen("quiz");
@@ -454,6 +507,7 @@ function finishQuiz() {
 
   els.resultScore.innerHTML = `${scoreOn100}<small>/100</small>`;
   els.resultCorrect.textContent = currentCorrectCount;
+  els.resultTotal.textContent = currentQuiz.length;
 
   // Sauvegarde des stats globales (uniquement ici, quand on voit le score)
   registerQuizResult(currentCorrectCount, currentQuiz.length);
@@ -558,8 +612,21 @@ function bindEvents() {
   });
 
   els.startQuizBtn.addEventListener("click", () => {
+    showScreen("select");
+  });
+
+  els.selectBackBtn.addEventListener("click", () => {
+    showScreen("home");
+  });
+
+  els.classicQuizBtn.addEventListener("click", () => {
     resetProgressBarVisual();
-    startQuiz();
+    startQuiz("classic");
+  });
+
+  els.flashQuizBtn.addEventListener("click", () => {
+    resetProgressBarVisual();
+    startQuiz("flash");
   });
 
   els.continueBtn.addEventListener("click", handleContinue);
@@ -576,7 +643,7 @@ function bindEvents() {
 
   els.retryQuizBtn.addEventListener("click", () => {
     resetProgressBarVisual();
-    startQuiz();
+    startQuiz(currentQuizType);
   });
   els.backHomeBtn.addEventListener("click", () => {
     resetProgressBarVisual();

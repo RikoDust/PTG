@@ -1,15 +1,18 @@
 {
   "themes": [
-    { "id": "histoire", "label": "Histoire", "file": "questions/histoire.json", "quota": 3 },
-    { "id": "francais", "label": "Français", "file": "questions/francais.json", "quota": 3 },
-    { "id": "geographie", "label": "Géographie", "file": "questions/geographie.json", "quota": 2 },
-    { "id": "sciences-maths", "label": "Sciences & Mathématiques", "file": "questions/sciences-maths.json", "quota": 2 },
-    { "id": "institution-droit", "label": "Institution & Droit", "file": "questions/institution-droit.json", "quota": 2 },
-    { "id": "art-litterature", "label": "Art & Littérature", "file": "questions/art-litterature.json", "quota": 2 },
-    { "id": "cinema-musique-medias", "label": "Cinéma, Musique & Médias", "file": "questions/cinema-musique-medias.json", "quota": 2 },
-    { "id": "nature-environnement", "label": "Nature & Environnement", "file": "questions/nature-environnement.json", "quota": 1 },
-    { "id": "sport", "label": "Sport", "file": "questions/sport.json", "quota": 1 },
-    { "id": "economie", "label": "Économie", "file": "questions/economie.json", "quota": 1 },
-    { "id": "technologie-numerique", "label": "Technologie & Numérique", "file": "questions/technologie-numerique.json", "quota": 1 }
-  ]
+    { "id": "histoire", "label": "Histoire", "file": "questions/histoire.json", "quota": 3, "flashGroup": "mandatory" },
+    { "id": "francais", "label": "Français", "file": "questions/francais.json", "quota": 3, "flashGroup": "mandatory" },
+    { "id": "geographie", "label": "Géographie", "file": "questions/geographie.json", "quota": 2, "flashGroup": "mandatory" },
+    { "id": "sciences-maths", "label": "Sciences & Mathématiques", "file": "questions/sciences-maths.json", "quota": 2, "flashGroup": "mandatory" },
+    { "id": "institution-droit", "label": "Institution & Droit", "file": "questions/institution-droit.json", "quota": 2, "flashGroup": "mandatory" },
+    { "id": "art-litterature", "label": "Art & Littérature", "file": "questions/art-litterature.json", "quota": 2, "flashGroup": "mandatory" },
+    { "id": "cinema-musique-medias", "label": "Cinéma, Musique & Médias", "file": "questions/cinema-musique-medias.json", "quota": 2, "flashGroup": "mandatory" },
+    { "id": "nature-environnement", "label": "Nature & Environnement", "file": "questions/nature-environnement.json", "quota": 1, "flashGroup": "pool" },
+    { "id": "sport", "label": "Sport", "file": "questions/sport.json", "quota": 1, "flashGroup": "pool" },
+    { "id": "economie", "label": "Économie", "file": "questions/economie.json", "quota": 1, "flashGroup": "pool" },
+    { "id": "technologie-numerique", "label": "Technologie & Numérique", "file": "questions/technologie-numerique.json", "quota": 1, "flashGroup": "pool" }
+  ],
+  "flash": {
+    "poolPickCount": 3
+  }
 }

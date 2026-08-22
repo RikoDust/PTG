@@ -65,9 +65,36 @@
       </p>
     </div>
 
-    <button id="startQuizBtn" class="btn btn--primary btn--large">Faire un QCM</button>
+    <div class="home-spacer"></div>
 
-    <p class="home-hint" id="homeHint">Réponds à 20 questions réparties dans 11 thèmes différents.</p>
+    <button id="startQuizBtn" class="btn btn--primary btn--large">Faire un QCM</button>
+  </section>
+
+  <!-- ÉCRAN CHOIX DU TYPE DE QCM -->
+  <section id="select-screen" class="screen select-screen hidden">
+    <button class="back-btn" id="selectBackBtn" aria-label="Retour à l'accueil">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <h1 class="select-title">Choisis ton QCM</h1>
+
+    <div class="quiz-type-list">
+      <button type="button" class="quiz-type-btn quiz-type-btn--flash" id="flashQuizBtn">
+        <i class="fa-solid fa-bolt"></i>
+        <span class="quiz-type-btn__text">
+          <strong>QCM Flash</strong>
+          <small>10 questions rapides</small>
+        </span>
+      </button>
+
+      <button type="button" class="quiz-type-btn quiz-type-btn--classic" id="classicQuizBtn">
+        <i class="fa-solid fa-bullseye"></i>
+        <span class="quiz-type-btn__text">
+          <strong>QCM Classique</strong>
+          <small>20 questions, tous thèmes</small>
+        </span>
+      </button>
+    </div>
   </section>
 
   <!-- ÉCRAN QCM -->
@@ -108,7 +135,7 @@
     <div class="result-card">
       <p class="result-title">QCM terminé !</p>
       <div class="result-score" id="resultScore">--<small>/100</small></div>
-      <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong>20</strong></p>
+      <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong id="resultTotal">20</strong></p>
 
       <button type="button" class="btn-share" id="shareScoreBtn">
         <i class="fa-solid fa-share"></i>
@@ -150,4 +177,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
