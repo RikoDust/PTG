@@ -60,8 +60,16 @@
         <strong id="streakCount">0</strong> jour(s) de suite
       </p>
       <p class="stat-line stat-line--perfect">
-        <i class="fa-solid fa-star"></i>
-        <strong id="perfectCount">0</strong> perfect (20/20)
+        <i class="fa-solid fa-bolt"></i>
+        <strong id="perfectFlashCount">0</strong> perfect flash (10/10)
+      </p>
+      <p class="stat-line stat-line--perfect">
+        <i class="fa-solid fa-bullseye"></i>
+        <strong id="perfectClassicCount">0</strong> perfect classique (20/20)
+      </p>
+      <p class="stat-line stat-line--survival">
+        <i class="fa-solid fa-heart"></i>
+        <strong id="survivalBestCount">0</strong> questions max survie
       </p>
     </div>
 
@@ -94,15 +102,38 @@
           <small>20 questions, tous thèmes</small>
         </span>
       </button>
+
+      <div class="quiz-type-divider"></div>
+
+      <button type="button" class="quiz-type-btn quiz-type-btn--survival" id="survivalQuizBtn">
+        <i class="fa-solid fa-heart"></i>
+        <span class="quiz-type-btn__text">
+          <strong>QCM Survie</strong>
+          <small>3 vies, enchaîne les bonnes réponses</small>
+        </span>
+      </button>
     </div>
   </section>
 
   <!-- ÉCRAN QCM -->
   <section id="quiz-screen" class="screen quiz-screen hidden">
     <div class="quiz-topbar">
-      <div class="progress-track">
+      <div class="progress-track" id="progressTrack">
         <div class="progress-fill" id="progressFill"></div>
       </div>
+
+      <div class="survival-bar hidden" id="survivalBar">
+        <div class="survival-hearts" id="survivalHearts">
+          <i class="fa-solid fa-heart" data-heart="0"></i>
+          <i class="fa-solid fa-heart" data-heart="1"></i>
+          <i class="fa-solid fa-heart" data-heart="2"></i>
+        </div>
+        <div class="survival-counter">
+          <i class="fa-solid fa-check"></i>
+          <span id="survivalCorrectCount">0</span>
+        </div>
+      </div>
+
       <button class="abandon-btn" id="abandonBtn" aria-label="Abandonner le QCM">&times;</button>
     </div>
 
@@ -134,8 +165,16 @@
 
     <div class="result-card">
       <p class="result-title">QCM terminé !</p>
-      <div class="result-score" id="resultScore">--<small>/100</small></div>
-      <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong id="resultTotal">20</strong></p>
+
+      <div class="result-block" id="resultBlockScore">
+        <div class="result-score" id="resultScore">--<small>/100</small></div>
+        <p class="result-detail"><strong id="resultCorrect">0</strong> bonnes réponses sur <strong id="resultTotal">20</strong></p>
+      </div>
+
+      <div class="result-block hidden" id="resultBlockSurvival">
+        <div class="result-score" id="resultSurvivalScore">0</div>
+        <p class="result-detail" id="resultSurvivalSubtitle">bonne(s) réponse(s) enchaînée(s)</p>
+      </div>
 
       <button type="button" class="btn-share" id="shareScoreBtn">
         <i class="fa-solid fa-share"></i>

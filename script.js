@@ -19,7 +19,13 @@ let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
 let lastQuizScoreOn100 = 0; // score du dernier QCM terminé, pour le bouton "Partager"
-let currentQuizType = "classic"; // "classic" (20 questions) ou "flash" (10 questions)
+let currentQuizType = "classic"; // "classic" (20 questions), "flash" (10 questions) ou "survival"
+let survivalMistakes = 0;         // nombre d'erreurs commises dans la partie Survie en cours
+let lastSurvivalCorrectCount = 0; // record atteint lors du dernier QCM Survie, pour le partage
+let lastSurvivalCompletedFullPool = false; // true si le dernier QCM Survie s'est terminé par épuisement de la base
+// ordre de vidage des cœurs (index dans le DOM) : 1ère erreur -> cœur de droite,
+// 2ème erreur -> cœur du milieu, 3ème erreur -> cœur de gauche
+const SURVIVAL_HEART_DRAIN_ORDER = [2, 1, 0];
 
 /* =========================================================
    1. STATISTIQUES (localStorage)
@@ -28,7 +34,12 @@ let currentQuizType = "classic"; // "classic" (20 questions) ou "flash" (10 ques
 function loadStats() {
   const raw = localStorage.getItem(STORAGE_KEY);
   if (!raw) {
-    return { totalCorrect: 0, totalQuestions: 0, streakCount: 0, lastPlayedDate: null, perfectCount: 0 };
+    return {
+      totalCorrect: 0, totalQuestions: 0,
+      streakCount: 0, lastPlayedDate: null,
+      perfectClassicCount: 0, perfectFlashCount: 0,
+      survivalBest: 0
+    };
   }
   try {
     const parsed = JSON.parse(raw);
@@ -37,10 +48,19 @@ function loadStats() {
       totalQuestions: parsed.totalQuestions || 0,
       streakCount: parsed.streakCount || 0,
       lastPlayedDate: parsed.lastPlayedDate || null,
-      perfectCount: parsed.perfectCount || 0
+      // migration douce : l'ancien champ "perfectCount" (avant l'ajout du Flash)
+      // devient perfectClassicCount s'il existe encore
+      perfectClassicCount: parsed.perfectClassicCount ?? parsed.perfectCount ?? 0,
+      perfectFlashCount: parsed.perfectFlashCount || 0,
+      survivalBest: parsed.survivalBest || 0
     };
   } catch (e) {
-    return { totalCorrect: 0, totalQuestions: 0, streakCount: 0, lastPlayedDate: null, perfectCount: 0 };
+    return {
+      totalCorrect: 0, totalQuestions: 0,
+      streakCount: 0, lastPlayedDate: null,
+      perfectClassicCount: 0, perfectFlashCount: 0,
+      survivalBest: 0
+    };
   }
 }
 
@@ -108,19 +128,39 @@ function updateStreak(stats) {
   stats.lastPlayedDate = today;
 }
 
-/* Met à jour les stats globales à la fin d'un QCM complet (Classique ou Flash) */
-function registerQuizResult(correctCount, totalQuestionsInQuiz) {
+/* Met à jour les stats globales à la fin d'un QCM Classique ou Flash */
+function registerQuizResult(correctCount, totalQuestionsInQuiz, quizType) {
   const stats = loadStats();
   stats.totalCorrect += correctCount;
   stats.totalQuestions += totalQuestionsInQuiz;
 
   updateStreak(stats);
 
-  // "Perfect" = 20/20 au QCM Classique précisément (pas 10/10 au Flash)
-  if (totalQuestionsInQuiz === quizLength && correctCount === totalQuestionsInQuiz) {
-    stats.perfectCount += 1;
+  const isPerfect = correctCount === totalQuestionsInQuiz;
+  if (quizType === "classic" && isPerfect) {
+    stats.perfectClassicCount += 1;
+  } else if (quizType === "flash" && isPerfect) {
+    stats.perfectFlashCount += 1;
   }
 
+  saveStats(stats);
+  return stats;
+}
+
+/*
+  Met à jour les stats après un QCM Survie. Conformément à la
+  consigne, ce mode n'a AUCUNE incidence sur le score global
+  (totalCorrect / totalQuestions / perfects) : on met seulement à
+  jour la série de jours consécutifs (jouer un QCM Survie compte
+  comme "avoir joué aujourd'hui") et le record personnel du nombre
+  de bonnes réponses enchaînées.
+*/
+function registerSurvivalResult(correctCount) {
+  const stats = loadStats();
+  updateStreak(stats);
+  if (correctCount > stats.survivalBest) {
+    stats.survivalBest = correctCount;
+  }
   saveStats(stats);
   return stats;
 }
@@ -269,6 +309,21 @@ function buildFlashQuiz() {
   return shuffleArray(picked); // thèmes déjà tous uniques : un simple mélange suffit
 }
 
+/*
+  Construit le pool du QCM Survie : TOUTES les questions de TOUS les
+  thèmes (mélangées, jamais deux du même thème à la suite grâce à
+  l'algorithme déjà utilisé pour le Classique). La partie s'arrête
+  dès que le joueur perd ses 3 cœurs (ou, cas limite très rare, s'il
+  répond juste à absolument toutes les questions de la base).
+*/
+function buildSurvivalPool() {
+  const all = [];
+  themesConfig.forEach(theme => {
+    (questionsByTheme[theme.id] || []).forEach(q => all.push(q));
+  });
+  return arrangeNoAdjacentSameCategory(shuffleArray(all));
+}
+
 /* =========================================================
    3. CHARGEMENT DES QUESTIONS (1 fichier de config + 1 fichier par thème)
    ========================================================= */
@@ -314,14 +369,21 @@ const els = {
   totalCorrect: document.getElementById("totalCorrect"),
   totalAnswered: document.getElementById("totalAnswered"),
   streakCount: document.getElementById("streakCount"),
-  perfectCount: document.getElementById("perfectCount"),
+  perfectFlashCount: document.getElementById("perfectFlashCount"),
+  perfectClassicCount: document.getElementById("perfectClassicCount"),
+  survivalBestCount: document.getElementById("survivalBestCount"),
   startQuizBtn: document.getElementById("startQuizBtn"),
 
   selectBackBtn: document.getElementById("selectBackBtn"),
   flashQuizBtn: document.getElementById("flashQuizBtn"),
   classicQuizBtn: document.getElementById("classicQuizBtn"),
+  survivalQuizBtn: document.getElementById("survivalQuizBtn"),
 
+  progressTrack: document.getElementById("progressTrack"),
   progressFill: document.getElementById("progressFill"),
+  survivalBar: document.getElementById("survivalBar"),
+  survivalHearts: document.querySelectorAll("#survivalHearts i"),
+  survivalCorrectCount: document.getElementById("survivalCorrectCount"),
   abandonBtn: document.getElementById("abandonBtn"),
   questionIndex: document.getElementById("questionIndex"),
   questionText: document.getElementById("questionText"),
@@ -333,9 +395,13 @@ const els = {
   feedbackCorrect: document.getElementById("feedbackCorrect"),
   continueBtn: document.getElementById("continueBtn"),
 
+  resultBlockScore: document.getElementById("resultBlockScore"),
   resultScore: document.getElementById("resultScore"),
   resultCorrect: document.getElementById("resultCorrect"),
   resultTotal: document.getElementById("resultTotal"),
+  resultBlockSurvival: document.getElementById("resultBlockSurvival"),
+  resultSurvivalScore: document.getElementById("resultSurvivalScore"),
+  resultSurvivalSubtitle: document.getElementById("resultSurvivalSubtitle"),
   shareScoreBtn: document.getElementById("shareScoreBtn"),
   retryQuizBtn: document.getElementById("retryQuizBtn"),
   backHomeBtn: document.getElementById("backHomeBtn"),
@@ -373,7 +439,9 @@ function renderHomeScreen() {
   els.totalCorrect.textContent = stats.totalCorrect;
   els.totalAnswered.textContent = stats.totalQuestions;
   els.streakCount.textContent = getDisplayStreak(stats);
-  els.perfectCount.textContent = stats.perfectCount;
+  els.perfectFlashCount.textContent = stats.perfectFlashCount;
+  els.perfectClassicCount.textContent = stats.perfectClassicCount;
+  els.survivalBestCount.textContent = stats.survivalBest;
 }
 
 function showScreen(name) {
@@ -394,11 +462,33 @@ function showScreen(name) {
 
 function startQuiz(quizType = "classic") {
   currentQuizType = quizType;
-  currentQuiz = quizType === "flash" ? buildFlashQuiz() : buildClassicQuiz();
+
+  if (quizType === "flash") {
+    currentQuiz = buildFlashQuiz();
+  } else if (quizType === "survival") {
+    currentQuiz = buildSurvivalPool();
+    survivalMistakes = 0;
+  } else {
+    currentQuiz = buildClassicQuiz();
+  }
+
   currentIndex = 0;
   currentCorrectCount = 0;
+
+  updateQuizTopBarForType(quizType);
   showScreen("quiz");
   renderQuestion();
+}
+
+/* Affiche la barre de progression (Classique/Flash) OU la barre Survie (cœurs) */
+function updateQuizTopBarForType(quizType) {
+  if (quizType === "survival") {
+    els.progressTrack.classList.add("hidden");
+    els.survivalBar.classList.remove("hidden");
+  } else {
+    els.survivalBar.classList.add("hidden");
+    els.progressTrack.classList.remove("hidden");
+  }
 }
 
 function updateProgressBar() {
@@ -406,11 +496,26 @@ function updateProgressBar() {
   els.progressFill.style.width = pct + "%";
 }
 
+/* Met à jour l'affichage des 3 cœurs et du compteur de bonnes réponses (mode Survie) */
+function updateSurvivalBar() {
+  els.survivalHearts.forEach((heart, i) => {
+    const isEmpty = SURVIVAL_HEART_DRAIN_ORDER.slice(0, survivalMistakes).includes(i);
+    heart.classList.toggle("fa-solid", !isEmpty);
+    heart.classList.toggle("fa-regular", isEmpty);
+    heart.classList.toggle("is-empty", isEmpty);
+  });
+  els.survivalCorrectCount.textContent = currentCorrectCount;
+}
+
 function renderQuestion() {
   hasAnsweredCurrent = false;
   const q = currentQuiz[currentIndex];
 
-  updateProgressBar();
+  if (currentQuizType === "survival") {
+    updateSurvivalBar();
+  } else {
+    updateProgressBar();
+  }
 
   els.questionIndex.textContent = `Question ${currentIndex + 1}`;
   els.questionText.textContent = q.question;
@@ -481,14 +586,37 @@ function handleAnswer(selectedIdx, selectedBtn) {
     els.feedbackCorrect.textContent = `Bonne réponse : ${q.options[q.answer]}`;
   }
 
+  if (currentQuizType === "survival") {
+    if (!isCorrect) {
+      survivalMistakes++;
+    }
+    updateSurvivalBar();
+    const isOutOfHearts = survivalMistakes >= 3;
+    const isLastQuestionOfPool = currentIndex === currentQuiz.length - 1;
+    els.continueBtn.textContent = (isOutOfHearts || isLastQuestionOfPool) ? "Résultat" : "Continuer";
+    els.continueBtn.classList.remove("hidden");
+    return;
+  }
+
   const isLastQuestion = currentIndex === currentQuiz.length - 1;
   els.continueBtn.textContent = isLastQuestion ? "Voir le score" : "Continuer";
   els.continueBtn.classList.remove("hidden");
 }
 
 function handleContinue() {
-  const isLastQuestion = currentIndex === currentQuiz.length - 1;
+  if (currentQuizType === "survival") {
+    const isOutOfHearts = survivalMistakes >= 3;
+    const isPoolExhausted = currentIndex === currentQuiz.length - 1;
+    if (isOutOfHearts || isPoolExhausted) {
+      finishSurvivalQuiz(isPoolExhausted);
+    } else {
+      currentIndex++;
+      renderQuestion();
+    }
+    return;
+  }
 
+  const isLastQuestion = currentIndex === currentQuiz.length - 1;
   if (isLastQuestion) {
     finishQuiz();
   } else {
@@ -505,12 +633,38 @@ function finishQuiz() {
   const scoreOn100 = Math.round((currentCorrectCount / currentQuiz.length) * 100);
   lastQuizScoreOn100 = scoreOn100;
 
+  els.resultBlockSurvival.classList.add("hidden");
+  els.resultBlockScore.classList.remove("hidden");
   els.resultScore.innerHTML = `${scoreOn100}<small>/100</small>`;
   els.resultCorrect.textContent = currentCorrectCount;
   els.resultTotal.textContent = currentQuiz.length;
 
   // Sauvegarde des stats globales (uniquement ici, quand on voit le score)
-  registerQuizResult(currentCorrectCount, currentQuiz.length);
+  registerQuizResult(currentCorrectCount, currentQuiz.length, currentQuizType);
+
+  showScreen("result");
+}
+
+/* Fin d'un QCM Survie : n'a AUCUNE incidence sur le score global (cf. consigne) */
+function finishSurvivalQuiz(completedFullPool = false) {
+  lastSurvivalCorrectCount = currentCorrectCount;
+  lastSurvivalCompletedFullPool = completedFullPool;
+
+  els.resultBlockScore.classList.add("hidden");
+  els.resultBlockSurvival.classList.remove("hidden");
+  els.resultSurvivalScore.textContent = currentCorrectCount;
+
+  if (completedFullPool) {
+    // le joueur a répondu à toutes les questions disponibles dans la base de données
+    els.resultSurvivalSubtitle.textContent =
+      "Vous avez répondu à toutes les questions de la base de données. Félicitations, vous êtes un maître du QCM !";
+    els.resultSurvivalSubtitle.classList.add("is-mastery");
+  } else {
+    els.resultSurvivalSubtitle.textContent = "bonne(s) réponse(s) enchaînée(s)";
+    els.resultSurvivalSubtitle.classList.remove("is-mastery");
+  }
+
+  registerSurvivalResult(currentCorrectCount);
 
   showScreen("result");
 }
@@ -521,12 +675,34 @@ function resetProgressBarVisual() {
   els.progressFill.style.width = "0%";
 }
 
+/* Réinitialise l'état visuel des cœurs pour un nouveau QCM Survie */
+function resetSurvivalBarVisual() {
+  survivalMistakes = 0;
+  els.survivalHearts.forEach(heart => {
+    heart.classList.add("fa-solid");
+    heart.classList.remove("fa-regular", "is-empty");
+  });
+  els.survivalCorrectCount.textContent = "0";
+}
+
+/* Réinitialise les deux barres (progression ET cœurs), quel que soit le type de QCM lancé ensuite */
+function resetQuizVisuals() {
+  resetProgressBarVisual();
+  resetSurvivalBarVisual();
+}
+
 /* =========================================================
    7. PARTAGE DU SCORE
    ========================================================= */
 
 function shareScore() {
-  const message = `Salut, je viens d'obtenir le score de ${lastQuizScoreOn100}/100 au qcm de culture générale de PointG.`;
+  const survivalMessage = lastSurvivalCompletedFullPool
+    ? `Salut, j'ai répondu à toutes les questions du QCM Survie de culture générale de PointG (${lastSurvivalCorrectCount} bonnes réponses). Je suis un maître du QCM !`
+    : `Salut, j'ai enchaîné ${lastSurvivalCorrectCount} bonne(s) réponse(s) au QCM Survie de culture générale de PointG.`;
+
+  const message = currentQuizType === "survival"
+    ? survivalMessage
+    : `Salut, je viens d'obtenir le score de ${lastQuizScoreOn100}/100 au qcm de culture générale de PointG.`;
 
   if (navigator.share) {
     // API de partage native (mobile / navigateurs compatibles)
@@ -564,7 +740,7 @@ function closeAbandonModal() {
 }
 function confirmAbandon() {
   closeAbandonModal();
-  resetProgressBarVisual();
+  resetQuizVisuals();
   showScreen("home");
   renderHomeScreen();
 }
@@ -620,13 +796,18 @@ function bindEvents() {
   });
 
   els.classicQuizBtn.addEventListener("click", () => {
-    resetProgressBarVisual();
+    resetQuizVisuals();
     startQuiz("classic");
   });
 
   els.flashQuizBtn.addEventListener("click", () => {
-    resetProgressBarVisual();
+    resetQuizVisuals();
     startQuiz("flash");
+  });
+
+  els.survivalQuizBtn.addEventListener("click", () => {
+    resetQuizVisuals();
+    startQuiz("survival");
   });
 
   els.continueBtn.addEventListener("click", handleContinue);
@@ -642,11 +823,11 @@ function bindEvents() {
   els.resetYes.addEventListener("click", confirmReset);
 
   els.retryQuizBtn.addEventListener("click", () => {
-    resetProgressBarVisual();
+    resetQuizVisuals();
     startQuiz(currentQuizType);
   });
   els.backHomeBtn.addEventListener("click", () => {
-    resetProgressBarVisual();
+    resetQuizVisuals();
     showScreen("home");
     renderHomeScreen();
   });

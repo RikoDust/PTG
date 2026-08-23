@@ -210,6 +210,14 @@ button { font-family: inherit; }
 
 .quiz-type-btn--flash > i { background: rgba(255, 196, 61, 0.15); color: #ffc43d; }
 .quiz-type-btn--classic > i { background: rgba(78, 124, 255, 0.15); color: var(--blue); }
+.quiz-type-btn--survival > i { background: rgba(255, 84, 112, 0.15); color: var(--danger); }
+
+.quiz-type-divider {
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  margin: 6px 0;
+}
 
 .quiz-type-btn__text {
   display: flex;
@@ -282,6 +290,7 @@ button { font-family: inherit; }
 .stat-line strong { font-weight: 800; }
 .stat-line--streak { color: var(--blue); }
 .stat-line--perfect { color: var(--purple); }
+.stat-line--survival { color: var(--danger); }
 
 .home-spacer {
   flex: 1 1 auto;
@@ -346,6 +355,45 @@ button { font-family: inherit; }
   transition: width 0.35s ease, background 0.3s ease;
 }
 .progress-fill--done { width: 100%; background: var(--success); }
+
+/* ---------- BARRE SURVIE (cœurs + compteur) ---------- */
+.survival-bar {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.survival-hearts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.survival-hearts i {
+  font-size: 1.35rem;
+  color: var(--danger);
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+.survival-hearts i.is-empty {
+  color: var(--text-muted);
+  opacity: 0.5;
+  transform: scale(0.9);
+}
+.survival-counter {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: var(--surface-2);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+.survival-counter i {
+  color: var(--success);
+  font-size: 0.85rem;
+}
 
 .abandon-btn {
   width: 36px; height: 36px;
@@ -495,6 +543,16 @@ button { font-family: inherit; }
 }
 .result-detail { color: var(--text-muted); margin: 6px 0 0; }
 .result-detail strong { color: var(--text); }
+.result-detail.is-mastery {
+  font-weight: 700;
+  line-height: 1.4;
+  max-width: 320px;
+  margin: 8px auto 0;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 .btn-share {
   display: inline-flex;
