@@ -1,7 +1,7 @@
 {
   "category": "histoire",
   "questions": [
-    { "id": "histoire_1", "question": "En quelle année a eu lieu la prise de la Bastille ?", "options": ["1789", "1799", "1804", "1815"], "answer": 0 },
+    { "id": "histoire_1", "question": "En quelle année a eu lieu la prise de la Bastille ?", "options": ["1789", "1799", "1804", "1815"], "answer": 0, "explication": "La prise de la Bastille, le 14 juillet 1789, est devenue le symbole du soulèvement populaire contre la monarchie absolue et marque traditionnellement le début de la Révolution française." },
     { "id": "histoire_2", "question": "Qui était empereur des Français en 1810 ?", "options": ["Louis XVI", "Napoléon Bonaparte", "Charlemagne", "Louis XIV"], "answer": 1 },
     { "id": "histoire_3", "question": "En quelle année s'est terminée la Seconde Guerre mondiale ?", "options": ["1943", "1944", "1945", "1946"], "answer": 2 },
     { "id": "histoire_4", "question": "Quel mur est tombé en 1989 ?", "options": ["Le mur de Berlin", "Le mur d'Hadrien", "La Grande Muraille", "Le mur des Lamentations"], "answer": 0 },

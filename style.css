@@ -506,6 +506,59 @@ button { font-family: inherit; }
   font-size: 0.9rem;
 }
 
+/* ---------- ACCORDÉON "PLUS D'INFOS" ---------- */
+.info-accordion {
+  width: 100%;
+  margin-top: 14px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.info-accordion__toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 13px 16px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  text-align: left;
+  transition: color 0.15s ease;
+}
+.info-accordion__toggle:hover { color: var(--text); }
+.info-accordion__toggle i:first-child { color: #ffc43d; font-size: 1rem; flex-shrink: 0; }
+.info-accordion__toggle span { flex: 1; }
+.info-accordion__chevron {
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: transform 0.22s ease;
+}
+.info-accordion__toggle.is-open .info-accordion__chevron { transform: rotate(180deg); }
+
+.info-accordion__panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+.info-accordion__text {
+  margin: 0;
+  padding: 0 16px 16px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+.info-accordion__text.is-empty {
+  font-style: italic;
+  opacity: 0.7;
+}
+
 .continue-btn { margin-top: 20px; }
 
 /* ---------- RESULT ---------- */

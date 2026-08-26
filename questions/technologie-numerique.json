@@ -9,7 +9,7 @@
     { "id": "technologie-numerique_6", "question": "Que permet la technologie 'Wi-Fi' dans son usage courant ?", "options": ["Recharger un appareil sans fil", "Se connecter à Internet sans fil", "Stocker des données en ligne", "Compresser des fichiers"], "answer": 1 },
     { "id": "technologie-numerique_7", "question": "Quel langage sert principalement à structurer le contenu des pages web ?", "options": ["Le HTML", "Le SQL", "Le Python", "Le C++"], "answer": 0 },
     { "id": "technologie-numerique_8", "question": "Quel est le moteur de recherche le plus utilisé au monde ?", "options": ["Bing", "Yahoo", "Google", "DuckDuckGo"], "answer": 2 },
-    { "id": "technologie-numerique_9", "question": "Comment appelle-t-on un logiciel malveillant conçu pour endommager un système informatique ?", "options": ["Un firewall", "Un virus", "Un cookie", "Un plug-in"], "answer": 1 },
-    { "id": "technologie-numerique_10", "question": "Quelle entreprise a développé la console de jeux vidéo PlayStation ?", "options": ["Nintendo", "Microsoft", "Sega", "Sony"], "answer": 3 }
+    { "id": "technologie-numerique_9", "question": "Comment appelle-t-on un logiciel malveillant conçu pour endommager un système informatique ?", "options": ["Un firewall", "Un virus", "Un cookie", "Un plug-in"], "answer": 1, "explanation": "Un virus informatique est un type de logiciel malveillant capable de se reproduire et de perturber ou endommager un système. Il peut notamment se propager via des fichiers infectés." },
+    { "id": "technologie-numerique_10", "question": "Quelle entreprise a développé la console de jeux vidéo PlayStation ?", "options": ["Nintendo", "Microsoft", "Sega", "Sony"], "answer": 3, "explanation": "Sony a lancé la première PlayStation en 1994 au Japon. La console a connu un immense succès et a donné naissance à une importante famille de consoles." }
   ]
 }

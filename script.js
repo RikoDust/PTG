@@ -393,6 +393,11 @@ const els = {
   feedback: document.getElementById("feedback"),
   feedbackStatus: document.getElementById("feedbackStatus"),
   feedbackCorrect: document.getElementById("feedbackCorrect"),
+  infoAccordion: document.getElementById("infoAccordion"),
+  infoToggleBtn: document.getElementById("infoToggleBtn"),
+  infoChevron: document.getElementById("infoChevron"),
+  infoPanel: document.getElementById("infoPanel"),
+  infoText: document.getElementById("infoText"),
   continueBtn: document.getElementById("continueBtn"),
 
   resultBlockScore: document.getElementById("resultBlockScore"),
@@ -507,6 +512,23 @@ function updateSurvivalBar() {
   els.survivalCorrectCount.textContent = currentCorrectCount;
 }
 
+/* Ferme (referme) l'accordéon "Plus d'infos" sans le masquer */
+function closeInfoAccordion() {
+  els.infoToggleBtn.classList.remove("is-open");
+  els.infoPanel.style.maxHeight = null;
+}
+
+/* Ouvre/ferme l'accordéon "Plus d'infos" (animation via max-height) */
+function toggleInfoAccordion() {
+  const isOpen = els.infoToggleBtn.classList.contains("is-open");
+  if (isOpen) {
+    closeInfoAccordion();
+  } else {
+    els.infoToggleBtn.classList.add("is-open");
+    els.infoPanel.style.maxHeight = els.infoPanel.scrollHeight + "px";
+  }
+}
+
 function renderQuestion() {
   hasAnsweredCurrent = false;
   const q = currentQuiz[currentIndex];
@@ -540,6 +562,11 @@ function renderQuestion() {
   els.feedbackStatus.className = "feedback__status";
   els.feedbackCorrect.textContent = "";
   els.continueBtn.classList.add("hidden");
+
+  // reset de l'accordéon "Plus d'infos" (masqué et refermé jusqu'à la réponse)
+  els.infoAccordion.classList.add("hidden");
+  closeInfoAccordion();
+  els.infoText.textContent = "";
 
   // construit les 4 boutons de réponse
   els.answersGrid.innerHTML = "";
@@ -585,6 +612,13 @@ function handleAnswer(selectedIdx, selectedBtn) {
     els.feedbackStatus.classList.add("is-wrong");
     els.feedbackCorrect.textContent = `Bonne réponse : ${q.options[q.answer]}`;
   }
+
+  // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
+  // sinon un texte par défaut (pratique pour repérer les questions à compléter)
+  const explanationText = (q.explication || "").trim();
+  els.infoText.textContent = explanationText || "Explication bientôt disponible.";
+  els.infoText.classList.toggle("is-empty", !explanationText);
+  els.infoAccordion.classList.remove("hidden");
 
   if (currentQuizType === "survival") {
     if (!isCorrect) {
@@ -811,6 +845,8 @@ function bindEvents() {
   });
 
   els.continueBtn.addEventListener("click", handleContinue);
+
+  els.infoToggleBtn.addEventListener("click", toggleInfoAccordion);
 
   els.shareScoreBtn.addEventListener("click", shareScore);
 
