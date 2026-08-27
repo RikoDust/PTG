@@ -7,25 +7,37 @@
    ========================================================= */
 
 const STORAGE_KEY = "quizmaster_stats_v1";
+const ADVENTURE_STORAGE_KEY = "quizmaster_adventure_v1";
 const THEMES_CONFIG_PATH = "themes.json";
+const ADVENTURE_ZONES_INDEX_PATH = "adventure/zones-index.json";
+const ADVENTURE_UNLOCK_THRESHOLD = 60; // % minimum pour débloquer le carré suivant
+const ADVENTURE_COMPLETE_THRESHOLD = 100; // % requis pour valider un carré/zone (coche verte)
 
 /* ---------- État global ---------- */
-let themesConfig = [];     // liste des thèmes { id, label, file, quota, flashGroup } depuis themes.json
+let themesConfig = [];     // liste des thèmes { id, label, file, quota, flashGroup, icon } depuis themes.json
 let flashConfig = { poolPickCount: 3 }; // paramètres du QCM Flash depuis themes.json
 let questionsByTheme = {}; // { themeId: [questions...] } après chargement de tous les fichiers
+let questionsById = {};    // { questionId: question } pour une résolution rapide (mode Aventure)
 let quizLength = 0;        // = somme des quotas (généralement 20)
 let currentQuiz = [];      // les questions de la session en cours
 let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
 let lastQuizScoreOn100 = 0; // score du dernier QCM terminé, pour le bouton "Partager"
-let currentQuizType = "classic"; // "classic" (20 questions), "flash" (10 questions) ou "survival"
+let currentQuizType = "classic"; // "classic", "flash", "survival" ou "adventure"
 let survivalMistakes = 0;         // nombre d'erreurs commises dans la partie Survie en cours
 let lastSurvivalCorrectCount = 0; // record atteint lors du dernier QCM Survie, pour le partage
 let lastSurvivalCompletedFullPool = false; // true si le dernier QCM Survie s'est terminé par épuisement de la base
 // ordre de vidage des cœurs (index dans le DOM) : 1ère erreur -> cœur de droite,
 // 2ème erreur -> cœur du milieu, 3ème erreur -> cœur de gauche
 const SURVIVAL_HEART_DRAIN_ORDER = [2, 1, 0];
+
+/* ---------- État du mode Aventure ---------- */
+let adventureZonesConfig = [];   // [{ id, label, file }] depuis zones-index.json
+let adventureZonesData = {};     // { zoneId: { id, label, squares: [...] } } (fichiers de zones chargés)
+let adventureOpenZoneId = null;  // id de la zone actuellement dépliée (une seule à la fois)
+let currentAdventureZoneId = null;   // zone du carré en cours de jeu
+let currentAdventureSquareId = null; // carré en cours de jeu
 
 /* =========================================================
    1. STATISTIQUES (localStorage)
@@ -166,7 +178,71 @@ function registerSurvivalResult(correctCount) {
 }
 
 /* =========================================================
-   2. SÉLECTION DES QUESTIONS DU QCM (quotas fixes par thème)
+   2. PROGRESSION DU MODE AVENTURE (localStorage dédié)
+   ========================================================= */
+
+/* { [squareId]: meilleurPourcentageObtenu } */
+function loadAdventureProgress() {
+  const raw = localStorage.getItem(ADVENTURE_STORAGE_KEY);
+  if (!raw) return {};
+  try {
+    const parsed = JSON.parse(raw);
+    return (parsed && typeof parsed === "object") ? parsed : {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveAdventureProgress(progress) {
+  localStorage.setItem(ADVENTURE_STORAGE_KEY, JSON.stringify(progress));
+}
+
+function getSquareBestPercent(squareId) {
+  const progress = loadAdventureProgress();
+  return progress[squareId] || 0;
+}
+
+/*
+  Enregistre le résultat d'un carré Aventure : ne touche à AUCUNE
+  statistique globale (score/100, perfects) — seul le meilleur
+  pourcentage obtenu sur ce carré est conservé. Jouer un carré
+  compte tout de même pour la série de jours consécutifs.
+*/
+function registerAdventureResult(squareId, percent) {
+  const stats = loadStats();
+  updateStreak(stats);
+  saveStats(stats);
+
+  const progress = loadAdventureProgress();
+  const previousBest = progress[squareId] || 0;
+  if (percent > previousBest) {
+    progress[squareId] = percent;
+    saveAdventureProgress(progress);
+  }
+}
+
+/* Un carré est débloqué si c'est le premier de la zone, ou si le précédent atteint >= 60% */
+function isSquareUnlocked(zone, squareIndex) {
+  if (squareIndex === 0) return true;
+  const previousSquare = zone.squares[squareIndex - 1];
+  return getSquareBestPercent(previousSquare.id) >= ADVENTURE_UNLOCK_THRESHOLD;
+}
+
+/* Une zone est complète quand TOUS ses carrés sont à 100% */
+function isZoneComplete(zone) {
+  return zone.squares.every(sq => getSquareBestPercent(sq.id) >= ADVENTURE_COMPLETE_THRESHOLD);
+}
+
+/* La 1ère zone est toujours accessible ; les suivantes le deviennent quand la précédente est à 100% */
+function isZoneUnlocked(zoneIndex) {
+  if (zoneIndex === 0) return true;
+  const previousZoneConfig = adventureZonesConfig[zoneIndex - 1];
+  const previousZone = adventureZonesData[previousZoneConfig.id];
+  return previousZone ? isZoneComplete(previousZone) : false;
+}
+
+/* =========================================================
+   3. SÉLECTION DES QUESTIONS DU QCM (quotas fixes par thème)
    ========================================================= */
 
 function shuffleArray(arr) {
@@ -325,7 +401,7 @@ function buildSurvivalPool() {
 }
 
 /* =========================================================
-   3. CHARGEMENT DES QUESTIONS (1 fichier de config + 1 fichier par thème)
+   4. CHARGEMENT DES QUESTIONS (1 fichier de config + 1 fichier par thème)
    ========================================================= */
 
 async function loadQuestions() {
@@ -338,21 +414,38 @@ async function loadQuestions() {
   const results = await Promise.all(fetches);
 
   questionsByTheme = {};
+  questionsById = {};
   results.forEach((fileData, i) => {
     const theme = themesConfig[i];
     // la propriété "category" de chaque question est toujours forcée
     // à l'id du thème, pour garantir la cohérence avec themes.json
-    questionsByTheme[theme.id] = fileData.questions.map(q => ({
-      ...q,
-      category: theme.id
-    }));
+    questionsByTheme[theme.id] = fileData.questions.map(q => {
+      const question = { ...q, category: theme.id };
+      questionsById[question.id] = question; // index pour le mode Aventure
+      return question;
+    });
   });
 
   quizLength = themesConfig.reduce((sum, t) => sum + t.quota, 0);
 }
 
+/* Charge le manifeste des zones puis chaque fichier de zone qu'il référence */
+async function loadAdventureData() {
+  const indexRes = await fetch(ADVENTURE_ZONES_INDEX_PATH);
+  const indexData = await indexRes.json();
+  adventureZonesConfig = indexData.zones;
+
+  const fetches = adventureZonesConfig.map(zone => fetch(zone.file).then(r => r.json()));
+  const results = await Promise.all(fetches);
+
+  adventureZonesData = {};
+  results.forEach((zoneData, i) => {
+    adventureZonesData[adventureZonesConfig[i].id] = zoneData;
+  });
+}
+
 /* =========================================================
-   4. RÉFÉRENCES DOM
+   5. RÉFÉRENCES DOM
    ========================================================= */
 
 const els = {
@@ -361,6 +454,7 @@ const els = {
 
   homeScreen: document.getElementById("home-screen"),
   selectScreen: document.getElementById("select-screen"),
+  adventureScreen: document.getElementById("adventure-screen"),
   quizScreen: document.getElementById("quiz-screen"),
   resultScreen: document.getElementById("result-screen"),
 
@@ -378,6 +472,10 @@ const els = {
   flashQuizBtn: document.getElementById("flashQuizBtn"),
   classicQuizBtn: document.getElementById("classicQuizBtn"),
   survivalQuizBtn: document.getElementById("survivalQuizBtn"),
+  adventureQuizBtn: document.getElementById("adventureQuizBtn"),
+
+  adventureBackBtn: document.getElementById("adventureBackBtn"),
+  zonesList: document.getElementById("zonesList"),
 
   progressTrack: document.getElementById("progressTrack"),
   progressFill: document.getElementById("progressFill"),
@@ -424,7 +522,7 @@ const els = {
 const CIRCUMFERENCE = 2 * Math.PI * 60; // r=60, cf. SVG
 
 /* =========================================================
-   5. AFFICHAGE : ÉCRAN D'ACCUEIL
+   6. AFFICHAGE : ÉCRAN D'ACCUEIL
    ========================================================= */
 
 function renderHomeScreen() {
@@ -452,17 +550,120 @@ function renderHomeScreen() {
 function showScreen(name) {
   els.homeScreen.classList.add("hidden");
   els.selectScreen.classList.add("hidden");
+  els.adventureScreen.classList.add("hidden");
   els.quizScreen.classList.add("hidden");
   els.resultScreen.classList.add("hidden");
 
   if (name === "home") els.homeScreen.classList.remove("hidden");
   if (name === "select") els.selectScreen.classList.remove("hidden");
+  if (name === "adventure") els.adventureScreen.classList.remove("hidden");
   if (name === "quiz") els.quizScreen.classList.remove("hidden");
   if (name === "result") els.resultScreen.classList.remove("hidden");
 }
 
+/* ---------- RENDU DE L'ÉCRAN AVENTURE (zones + carrés) ---------- */
+
+/* Construit la liste des carrés d'une zone (état verrouillé/validé/complet + titre calculé) */
+function buildSquaresListElement(zone) {
+  const list = document.createElement("div");
+  list.className = "zone-accordion__body-inner";
+
+  const themeOccurrence = {}; // pour numéroter "Histoire 1", "Histoire 2"... dans l'ordre de la zone
+
+  zone.squares.forEach((square, i) => {
+    const theme = themesConfig.find(t => t.id === square.theme);
+    themeOccurrence[square.theme] = (themeOccurrence[square.theme] || 0) + 1;
+    const title = `${theme ? theme.label : square.theme} ${themeOccurrence[square.theme]}`;
+    const icon = theme ? theme.icon : "fa-circle-question";
+
+    const percent = getSquareBestPercent(square.id);
+    const unlocked = isSquareUnlocked(zone, i);
+    let stateClass = "";
+    if (percent >= ADVENTURE_COMPLETE_THRESHOLD) stateClass = "is-complete";
+    else if (percent >= ADVENTURE_UNLOCK_THRESHOLD) stateClass = "is-validated";
+
+    const row = document.createElement("button");
+    row.type = "button";
+    row.className = `square-row ${stateClass}`;
+    row.disabled = !unlocked;
+    row.innerHTML = `
+      <span class="square-box"><i class="fa-solid ${icon}"></i></span>
+      <span class="square-title">${title}</span>
+      ${percent > 0 ? `<span class="square-percent">${percent}%</span>` : ""}
+    `;
+    if (unlocked) {
+      row.addEventListener("click", () => startAdventureSquare(zone.id, square.id));
+    }
+    list.appendChild(row);
+  });
+
+  return list;
+}
+
+/* Affiche toutes les zones (débloquées/verrouillées/terminées) sous forme d'accordéon */
+function renderAdventureScreen() {
+  const container = els.zonesList;
+  container.innerHTML = "";
+
+  adventureZonesConfig.forEach((zoneConfig, zoneIndex) => {
+    const zone = adventureZonesData[zoneConfig.id];
+    if (!zone) return;
+
+    const unlocked = isZoneUnlocked(zoneIndex);
+    const complete = unlocked && isZoneComplete(zone);
+    const isOpen = unlocked && adventureOpenZoneId === zone.id;
+
+    const zoneEl = document.createElement("div");
+    zoneEl.className = "zone-accordion" + (unlocked ? "" : " is-locked") + (isOpen ? " is-open" : "");
+
+    const zoneNumber = zoneIndex + 1;
+    const numberIconClass = zoneNumber >= 1 && zoneNumber <= 9 ? `fa-${zoneNumber}` : "fa-hashtag";
+
+    let rightIconHtml;
+    if (complete) {
+      rightIconHtml = '<i class="fa-solid fa-circle-check zone-accordion__check"></i>';
+    } else if (unlocked) {
+      rightIconHtml = '<i class="fa-solid fa-chevron-down zone-accordion__chevron"></i>';
+    } else {
+      rightIconHtml = '<i class="fa-solid fa-lock zone-accordion__lock"></i>';
+    }
+
+    zoneEl.innerHTML = `
+      <button type="button" class="zone-accordion__header" ${unlocked ? "" : "disabled"}>
+        <span class="zone-accordion__number"><i class="fa-solid ${numberIconClass}"></i></span>
+        <span class="zone-accordion__label">${zoneConfig.label}</span>
+        ${rightIconHtml}
+      </button>
+      <div class="zone-accordion__body"></div>
+    `;
+
+    const header = zoneEl.querySelector(".zone-accordion__header");
+    const body = zoneEl.querySelector(".zone-accordion__body");
+
+    if (unlocked) {
+      header.addEventListener("click", () => {
+        adventureOpenZoneId = isOpen ? null : zone.id;
+        renderAdventureScreen();
+      });
+    }
+
+    if (isOpen) {
+      body.appendChild(buildSquaresListElement(zone));
+    }
+
+    container.appendChild(zoneEl);
+
+    // anime l'ouverture/fermeture de la zone (même technique que l'accordéon "Plus d'infos")
+    if (isOpen) {
+      body.style.maxHeight = body.scrollHeight + "px";
+    } else {
+      body.style.maxHeight = null;
+    }
+  });
+}
+
 /* =========================================================
-   6. DÉROULÉ DU QCM
+   7. DÉROULÉ DU QCM
    ========================================================= */
 
 function startQuiz(quizType = "classic") {
@@ -481,6 +682,24 @@ function startQuiz(quizType = "classic") {
   currentCorrectCount = 0;
 
   updateQuizTopBarForType(quizType);
+  showScreen("quiz");
+  renderQuestion();
+}
+
+/* Lance le mini-QCM de 5 questions (hand-picked) associé à un carré du mode Aventure */
+function startAdventureSquare(zoneId, squareId) {
+  const zone = adventureZonesData[zoneId];
+  const square = zone.squares.find(sq => sq.id === squareId);
+  if (!square) return;
+
+  currentQuizType = "adventure";
+  currentAdventureZoneId = zoneId;
+  currentAdventureSquareId = squareId;
+  currentQuiz = square.questionIds.map(qid => questionsById[qid]).filter(Boolean);
+  currentIndex = 0;
+  currentCorrectCount = 0;
+
+  updateQuizTopBarForType("adventure");
   showScreen("quiz");
   renderQuestion();
 }
@@ -652,7 +871,11 @@ function handleContinue() {
 
   const isLastQuestion = currentIndex === currentQuiz.length - 1;
   if (isLastQuestion) {
-    finishQuiz();
+    if (currentQuizType === "adventure") {
+      finishAdventureQuiz();
+    } else {
+      finishQuiz();
+    }
   } else {
     currentIndex++;
     renderQuestion();
@@ -703,6 +926,31 @@ function finishSurvivalQuiz(completedFullPool = false) {
   showScreen("result");
 }
 
+/*
+  Fin d'un carré du mode Aventure (5 questions). Réutilise l'affichage
+  "score /100" comme le Classique/Flash (3/5 = 60, 4/5 = 80, 5/5 = 100 :
+  ces paliers correspondent exactement aux seuils de déverrouillage).
+  N'a AUCUNE incidence sur le score global (cf. consigne du mode Survie,
+  appliquée ici aussi) : seule la progression du carré est sauvegardée.
+*/
+function finishAdventureQuiz() {
+  els.progressFill.style.width = "100%";
+  els.progressFill.classList.add("progress-fill--done");
+
+  const percent = Math.round((currentCorrectCount / currentQuiz.length) * 100);
+  lastQuizScoreOn100 = percent;
+
+  els.resultBlockSurvival.classList.add("hidden");
+  els.resultBlockScore.classList.remove("hidden");
+  els.resultScore.innerHTML = `${percent}<small>/100</small>`;
+  els.resultCorrect.textContent = currentCorrectCount;
+  els.resultTotal.textContent = currentQuiz.length;
+
+  registerAdventureResult(currentAdventureSquareId, percent);
+
+  showScreen("result");
+}
+
 /* Réinitialise l'état visuel de la barre de progression pour un nouveau QCM */
 function resetProgressBarVisual() {
   els.progressFill.classList.remove("progress-fill--done");
@@ -726,7 +974,7 @@ function resetQuizVisuals() {
 }
 
 /* =========================================================
-   7. PARTAGE DU SCORE
+   8. PARTAGE DU SCORE
    ========================================================= */
 
 function shareScore() {
@@ -763,7 +1011,7 @@ function shareScore() {
 }
 
 /* =========================================================
-   8. ABANDON DU QCM
+   9. ABANDON DU QCM
    ========================================================= */
 
 function openAbandonModal() {
@@ -772,15 +1020,29 @@ function openAbandonModal() {
 function closeAbandonModal() {
   els.abandonModal.classList.add("hidden");
 }
+/*
+  Retour après un QCM (bouton "Revenir à l'accueil" ou abandon confirmé) :
+  pour le mode Aventure, on revient à l'écran des zones (qui rouvre
+  automatiquement la zone en cours) plutôt qu'à l'accueil général.
+*/
+function goBackAfterQuiz() {
+  resetQuizVisuals();
+  if (currentQuizType === "adventure") {
+    showScreen("adventure");
+    renderAdventureScreen();
+  } else {
+    showScreen("home");
+    renderHomeScreen();
+  }
+}
+
 function confirmAbandon() {
   closeAbandonModal();
-  resetQuizVisuals();
-  showScreen("home");
-  renderHomeScreen();
+  goBackAfterQuiz();
 }
 
 /* =========================================================
-   9. RÉINITIALISATION DES DONNÉES
+   10. RÉINITIALISATION DES DONNÉES
    ========================================================= */
 
 function openResetModal() {
@@ -797,7 +1059,7 @@ function confirmReset() {
 }
 
 /* =========================================================
-   10. MENU BURGER
+   11. MENU BURGER
    ========================================================= */
 
 function toggleBurgerMenu() {
@@ -812,7 +1074,7 @@ function toggleBurgerMenu() {
 }
 
 /* =========================================================
-   11. ÉVÉNEMENTS
+   12. ÉVÉNEMENTS
    ========================================================= */
 
 function bindEvents() {
@@ -844,6 +1106,15 @@ function bindEvents() {
     startQuiz("survival");
   });
 
+  els.adventureQuizBtn.addEventListener("click", () => {
+    showScreen("adventure");
+    renderAdventureScreen();
+  });
+
+  els.adventureBackBtn.addEventListener("click", () => {
+    showScreen("select");
+  });
+
   els.continueBtn.addEventListener("click", handleContinue);
 
   els.infoToggleBtn.addEventListener("click", toggleInfoAccordion);
@@ -860,22 +1131,22 @@ function bindEvents() {
 
   els.retryQuizBtn.addEventListener("click", () => {
     resetQuizVisuals();
-    startQuiz(currentQuizType);
+    if (currentQuizType === "adventure") {
+      startAdventureSquare(currentAdventureZoneId, currentAdventureSquareId);
+    } else {
+      startQuiz(currentQuizType);
+    }
   });
-  els.backHomeBtn.addEventListener("click", () => {
-    resetQuizVisuals();
-    showScreen("home");
-    renderHomeScreen();
-  });
+  els.backHomeBtn.addEventListener("click", goBackAfterQuiz);
 }
 
 /* =========================================================
-   12. INITIALISATION
+   13. INITIALISATION
    ========================================================= */
 
 async function init() {
   bindEvents();
-  await loadQuestions();
+  await Promise.all([loadQuestions(), loadAdventureData()]);
   renderHomeScreen();
   showScreen("home");
 }

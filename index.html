@@ -112,7 +112,26 @@
           <small>3 vies, enchaîne les bonnes réponses</small>
         </span>
       </button>
+
+      <button type="button" class="quiz-type-btn quiz-type-btn--adventure" id="adventureQuizBtn">
+        <i class="fa-solid fa-map-location-dot"></i>
+        <span class="quiz-type-btn__text">
+          <strong>QCM Aventure</strong>
+          <small>Progresse de zone en zone, carré par carré</small>
+        </span>
+      </button>
     </div>
+  </section>
+
+  <!-- ÉCRAN AVENTURE : LISTE DES ZONES -->
+  <section id="adventure-screen" class="screen select-screen hidden">
+    <button class="back-btn" id="adventureBackBtn" aria-label="Retour au choix du QCM">
+      <i class="fa-solid fa-chevron-left"></i>
+    </button>
+
+    <h1 class="select-title">QCM Aventure</h1>
+
+    <div class="zones-list" id="zonesList"></div>
   </section>
 
   <!-- ÉCRAN QCM -->

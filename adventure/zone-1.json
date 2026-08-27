@@ -1,0 +1,26 @@
+{
+  "id": "zone-1",
+  "label": "Zone 1",
+  "squares": [
+    { "id": "zone-1_1", "theme": "histoire", "questionIds": ["histoire_1", "histoire_2", "histoire_3", "histoire_4", "histoire_5"] },
+    { "id": "zone-1_2", "theme": "francais", "questionIds": ["francais_1", "francais_2", "francais_3", "francais_4", "francais_5"] },
+    { "id": "zone-1_3", "theme": "geographie", "questionIds": ["geographie_1", "geographie_2", "geographie_3", "geographie_14", "geographie_15"] },
+    { "id": "zone-1_4", "theme": "sciences-maths", "questionIds": ["sciences-maths_1", "sciences-maths_2", "sciences-maths_3", "sciences-maths_4", "sciences-maths_5"] },
+    { "id": "zone-1_5", "theme": "histoire", "questionIds": ["histoire_6", "histoire_7", "histoire_8", "histoire_9", "histoire_10"] },
+    { "id": "zone-1_6", "theme": "institution-droit", "questionIds": ["institution-droit_1", "institution-droit_2", "institution-droit_3", "institution-droit_4", "institution-droit_5"] },
+    { "id": "zone-1_7", "theme": "francais", "questionIds": ["francais_6", "francais_7", "francais_8", "francais_9", "francais_10"] },
+    { "id": "zone-1_8", "theme": "art-litterature", "questionIds": ["art-litterature_1", "art-litterature_2", "art-litterature_3", "art-litterature_17", "art-litterature_18"] },
+    { "id": "zone-1_9", "theme": "geographie", "questionIds": ["geographie_4", "geographie_5", "geographie_16", "geographie_17", "geographie_18"] },
+    { "id": "zone-1_10", "theme": "cinema-musique-medias", "questionIds": ["cinema-musique-medias_1", "cinema-musique-medias_2", "cinema-musique-medias_3", "cinema-musique-medias_4", "cinema-musique-medias_5"] },
+    { "id": "zone-1_11", "theme": "histoire", "questionIds": ["histoire_11", "histoire_12", "histoire_13", "histoire_14", "histoire_15"] },
+    { "id": "zone-1_12", "theme": "sciences-maths", "questionIds": ["sciences-maths_6", "sciences-maths_7", "sciences-maths_8", "sciences-maths_9", "sciences-maths_10"] },
+    { "id": "zone-1_13", "theme": "francais", "questionIds": ["francais_11", "francais_12", "francais_13", "francais_14", "francais_15"] },
+    { "id": "zone-1_14", "theme": "institution-droit", "questionIds": ["institution-droit_6", "institution-droit_7", "institution-droit_8", "institution-droit_9", "institution-droit_10"] },
+    { "id": "zone-1_15", "theme": "nature-environnement", "questionIds": ["nature-environnement_1", "nature-environnement_2", "nature-environnement_3", "nature-environnement_4", "nature-environnement_5"] },
+    { "id": "zone-1_16", "theme": "art-litterature", "questionIds": ["art-litterature_4", "art-litterature_5", "art-litterature_6", "art-litterature_7", "art-litterature_8"] },
+    { "id": "zone-1_17", "theme": "sport", "questionIds": ["sport_1", "sport_2", "sport_3", "sport_4", "sport_5"] },
+    { "id": "zone-1_18", "theme": "cinema-musique-medias", "questionIds": ["cinema-musique-medias_6", "cinema-musique-medias_7", "cinema-musique-medias_8", "cinema-musique-medias_9", "cinema-musique-medias_10"] },
+    { "id": "zone-1_19", "theme": "economie", "questionIds": ["economie_1", "economie_2", "economie_3", "economie_4", "economie_5"] },
+    { "id": "zone-1_20", "theme": "technologie-numerique", "questionIds": ["technologie-numerique_1", "technologie-numerique_2", "technologie-numerique_3", "technologie-numerique_4", "technologie-numerique_5"] }
+  ]
+}

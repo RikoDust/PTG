@@ -1,0 +1,5 @@
+{
+  "zones": [
+    { "id": "zone-1", "label": "Zone 1", "file": "adventure/zone-1.json" }
+  ]
+}
