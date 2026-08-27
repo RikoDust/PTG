@@ -1,20 +1,110 @@
 {
   "category": "francais",
   "questions": [
-    { "id": "francais_1", "question": "Quel est le pluriel de 'cheval' ?", "options": ["Chevals", "Chevaux", "Chevales", "Chevaus"], "answer": 1 },
-    { "id": "francais_2", "question": "Quelle est la nature grammaticale du mot 'rapidement' ?", "options": ["Un adjectif", "Un adverbe", "Un nom", "Un verbe"], "answer": 1 },
-    { "id": "francais_3", "question": "Qui est l'auteur des 'Misérables' ?", "options": ["Émile Zola", "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac"], "answer": 1 },
-    { "id": "francais_4", "question": "Comment appelle-t-on une figure de style qui exagère volontairement ?", "options": ["Une litote", "Une métaphore", "Une hyperbole", "Une antithèse"], "answer": 2 },
-    { "id": "francais_5", "question": "Quel est le féminin de 'acteur' ?", "options": ["Actrice", "Acteure", "Actoresse", "Actrise"], "answer": 0 },
-    { "id": "francais_6", "question": "Quel auteur a écrit 'Le Petit Prince' ?", "options": ["Albert Camus", "Antoine de Saint-Exupéry", "Marcel Proust", "Jean-Paul Sartre"], "answer": 1 },
-    { "id": "francais_7", "question": "Quel temps exprime une action passée dans 'il mangea' ?", "options": ["Imparfait", "Passé simple", "Passé composé", "Plus-que-parfait"], "answer": 1 },
-    { "id": "francais_8", "question": "Quel est le synonyme de 'joyeux' ?", "options": ["Triste", "Content", "Fatigué", "Fâché"], "answer": 1 },
-    { "id": "francais_9", "question": "Combien de personnes (grammaticales) compte la conjugaison française ?", "options": ["4", "5", "6", "7"], "answer": 2 },
-    { "id": "francais_10", "question": "Quel mot est un antonyme de 'rapide' ?", "options": ["Lent", "Vif", "Prompt", "Agile"], "answer": 0 },
-    { "id": "francais_11", "question": "Quel est le contraire de 'commencer' ?", "options": ["Débuter", "Terminer", "Continuer", "Entamer"], "answer": 1 },
-    { "id": "francais_12", "question": "Comment appelle-t-on deux mots qui se prononcent pareil mais s'écrivent différemment ?", "options": ["Des synonymes", "Des antonymes", "Des homophones", "Des paronymes"], "answer": 2 },
-    { "id": "francais_13", "question": "Qui a écrit 'Le Rouge et le Noir' ?", "options": ["Stendhal", "Balzac", "Flaubert", "Zola"], "answer": 0 },
-    { "id": "francais_14", "question": "Quelle expression signifie 'être très content' ?", "options": ["Avoir le cafard", "Être aux anges", "Filer un mauvais coton", "Avoir le trac"], "answer": 1 },
-    { "id": "francais_15", "question": "Quel signe de ponctuation introduit généralement une énumération ?", "options": ["Le point-virgule", "Les deux-points", "Les points de suspension", "Le tiret"], "answer": 1 }
+    {
+      "id": "francais_1",
+      "question": "Quel est le pluriel de 'cheval' ?",
+      "options": ["Chevals", "Chevaux", "Chevales", "Chevaus"],
+      "answer": 1,
+      "explanation": "Le pluriel de « cheval » est « chevaux ». Les mots terminés en « -al » prennent souvent « -aux » au pluriel."
+    },
+    {
+      "id": "francais_2",
+      "question": "Quelle est la nature grammaticale du mot 'rapidement' ?",
+      "options": ["Un adjectif", "Un adverbe", "Un nom", "Un verbe"],
+      "answer": 1,
+      "explanation": "« Rapidement » est un adverbe, car il précise la manière dont une action est réalisée. Beaucoup d'adverbes de manière se terminent par « -ment »."
+    },
+    {
+      "id": "francais_3",
+      "question": "Qui est l'auteur des 'Misérables' ?",
+      "options": ["Émile Zola", "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac"],
+      "answer": 1,
+      "explanation": "Victor Hugo a publié Les Misérables en 1862. Ce roman raconte notamment le destin de Jean Valjean dans la France du XIXe siècle."
+    },
+    {
+      "id": "francais_4",
+      "question": "Comment appelle-t-on une figure de style qui exagère volontairement ?",
+      "options": ["Une litote", "Une métaphore", "Une hyperbole", "Une antithèse"],
+      "answer": 2,
+      "explanation": "L'hyperbole consiste à exagérer volontairement une idée pour la rendre plus forte. Par exemple : « Je te l'ai dit mille fois ! »"
+    },
+    {
+      "id": "francais_5",
+      "question": "Quel est le féminin de 'acteur' ?",
+      "options": ["Actrice", "Acteure", "Actoresse", "Actrise"],
+      "answer": 0,
+      "explanation": "Le féminin de « acteur » est « actrice ». Il s'agit d'un exemple où la terminaison du mot change lors du passage au féminin."
+    },
+    {
+      "id": "francais_6",
+      "question": "Quel auteur a écrit 'Le Petit Prince' ?",
+      "options": ["Albert Camus", "Antoine de Saint-Exupéry", "Marcel Proust", "Jean-Paul Sartre"],
+      "answer": 1,
+      "explanation": "Antoine de Saint-Exupéry a écrit Le Petit Prince, publié en 1943. Ce conte philosophique est devenu l'un des livres français les plus traduits au monde."
+    },
+    {
+      "id": "francais_7",
+      "question": "Quel temps exprime une action passée dans 'il mangea' ?",
+      "options": ["Imparfait", "Passé simple", "Passé composé", "Plus-que-parfait"],
+      "answer": 1,
+      "explanation": "« Il mangea » est conjugué au passé simple. Ce temps est particulièrement utilisé dans les récits et les textes littéraires pour raconter des actions passées."
+    },
+    {
+      "id": "francais_8",
+      "question": "Quel est le synonyme de 'joyeux' ?",
+      "options": ["Triste", "Content", "Fatigué", "Fâché"],
+      "answer": 1,
+      "explanation": "« Content » est un synonyme de « joyeux », car les deux mots expriment une idée de bonheur ou de satisfaction. Le contexte peut toutefois influencer le choix du mot."
+    },
+    {
+      "id": "francais_9",
+      "question": "Combien de personnes (grammaticales) compte la conjugaison française ?",
+      "options": ["4", "5", "6", "7"],
+      "answer": 2,
+      "explanation": "La conjugaison française compte six personnes : je, tu, il/elle/on, nous, vous et ils/elles. Elles permettent d'identifier qui réalise l'action."
+    },
+    {
+      "id": "francais_10",
+      "question": "Quel mot est un antonyme de 'rapide' ?",
+      "options": ["Lent", "Vif", "Prompt", "Agile"],
+      "answer": 0,
+      "explanation": "« Lent » est l'antonyme de « rapide », car ces deux mots expriment des idées opposées. Un antonyme est justement un mot dont le sens est contraire à celui d'un autre."
+    },
+    {
+      "id": "francais_11",
+      "question": "Quel est le contraire de 'commencer' ?",
+      "options": ["Débuter", "Terminer", "Continuer", "Entamer"],
+      "answer": 1,
+      "explanation": "« Terminer » est le contraire de « commencer ». Ces deux verbes décrivent respectivement la fin et le début d'une action."
+    },
+    {
+      "id": "francais_12",
+      "question": "Comment appelle-t-on deux mots qui se prononcent pareil mais s'écrivent différemment ?",
+      "options": ["Des synonymes", "Des antonymes", "Des homophones", "Des paronymes"],
+      "answer": 2,
+      "explanation": "Les homophones sont des mots qui se prononcent de la même manière mais qui peuvent avoir une orthographe et un sens différents, comme « verre », « vers » et « vert »."
+    },
+    {
+      "id": "francais_13",
+      "question": "Qui a écrit 'Le Rouge et le Noir' ?",
+      "options": ["Stendhal", "Balzac", "Flaubert", "Zola"],
+      "answer": 0,
+      "explanation": "Stendhal a publié Le Rouge et le Noir en 1830. Le roman raconte l'ascension sociale de Julien Sorel dans la France du XIXe siècle."
+    },
+    {
+      "id": "francais_14",
+      "question": "Quelle expression signifie 'être très content' ?",
+      "options": ["Avoir le cafard", "Être aux anges", "Filer un mauvais coton", "Avoir le trac"],
+      "answer": 1,
+      "explanation": "« Être aux anges » signifie être très heureux ou très content. Cette expression évoque l'idée d'être dans un état de bonheur exceptionnel."
+    },
+    {
+      "id": "francais_15",
+      "question": "Quel signe de ponctuation introduit généralement une énumération ?",
+      "options": ["Le point-virgule", "Les deux-points", "Les points de suspension", "Le tiret"],
+      "answer": 1,
+      "explanation": "Les deux-points servent notamment à introduire une énumération, une explication ou une citation. Exemple : « J'ai acheté trois fruits : une pomme, une poire et une orange. »"
+    }
   ]
 }
