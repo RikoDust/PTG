@@ -578,18 +578,19 @@ function buildSquaresListElement(zone) {
 
     const percent = getSquareBestPercent(square.id);
     const unlocked = isSquareUnlocked(zone, i);
-    let stateClass = "";
-    if (percent >= ADVENTURE_COMPLETE_THRESHOLD) stateClass = "is-complete";
-    else if (percent >= ADVENTURE_UNLOCK_THRESHOLD) stateClass = "is-validated";
+
+    let percentClass = "square-percent--low"; // < 60%
+    if (percent >= ADVENTURE_COMPLETE_THRESHOLD) percentClass = "square-percent--complete"; // 100%
+    else if (percent >= ADVENTURE_UNLOCK_THRESHOLD) percentClass = "square-percent--validated"; // >= 60%
 
     const row = document.createElement("button");
     row.type = "button";
-    row.className = `square-row ${stateClass}`;
+    row.className = "square-row";
     row.disabled = !unlocked;
     row.innerHTML = `
       <span class="square-box"><i class="fa-solid ${icon}"></i></span>
       <span class="square-title">${title}</span>
-      ${percent > 0 ? `<span class="square-percent">${percent}%</span>` : ""}
+      ${percent > 0 ? `<span class="square-percent ${percentClass}">${percent}%</span>` : ""}
     `;
     if (unlocked) {
       row.addEventListener("click", () => startAdventureSquare(zone.id, square.id));
@@ -834,7 +835,7 @@ function handleAnswer(selectedIdx, selectedBtn) {
 
   // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
   // sinon un texte par défaut (pratique pour repérer les questions à compléter)
-  const explanationText = (q.explanation || "").trim();
+  const explanationText = (q.explication || "").trim();
   els.infoText.textContent = explanationText || "Explication bientôt disponible.";
   els.infoText.classList.toggle("is-empty", !explanationText);
   els.infoAccordion.classList.remove("hidden");
@@ -1152,3 +1153,4 @@ async function init() {
 }
 
 init();
+

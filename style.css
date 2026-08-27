@@ -807,11 +807,11 @@ button { font-family: inherit; }
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
-.square-row.is-validated { border-color: #ffc43d; }
-.square-row.is-validated .square-box { border-color: #ffc43d; color: #ffc43d; }
-
-.square-row.is-complete { border-color: var(--success); }
-.square-row.is-complete .square-box { border-color: var(--success); color: var(--success); }
+/* Carré accessible (non verrouillé) : icône violette, contour bleu */
+.square-row:not(:disabled) .square-box {
+  border-color: #4e7cff;
+  color: #9b5de5;
+}
 
 .square-title {
   flex: 1;
@@ -830,8 +830,13 @@ button { font-family: inherit; }
   border-radius: 20px;
   background: var(--surface);
 }
+/* Couleur du pourcentage selon le palier atteint */
+.square-percent--complete { color: var(--success); }   /* 100% */
+.square-percent--validated { color: #ffc43d; }          /* >= 60% */
+.square-percent--low { color: var(--danger); }           /* < 60% */
 
 /* ---------- RESPONSIVE ---------- */
 @media (min-width: 540px) {
   .result-actions { flex-direction: row; }
 }
+
