@@ -615,7 +615,7 @@ function handleAnswer(selectedIdx, selectedBtn) {
 
   // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
   // sinon un texte par défaut (pratique pour repérer les questions à compléter)
-  const explanationText = (q.explication || "").trim();
+  const explanationText = (q.explanation || "").trim();
   els.infoText.textContent = explanationText || "Explication bientôt disponible.";
   els.infoText.classList.toggle("is-empty", !explanationText);
   els.infoAccordion.classList.remove("hidden");

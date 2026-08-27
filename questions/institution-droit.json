@@ -1,17 +1,90 @@
 {
   "category": "institution-droit",
   "questions": [
-    { "id": "institution-droit_1", "question": "En quelle année la Constitution de la Ve République a-t-elle été adoptée ?", "options": ["1946", "1958", "1962", "1981"], "answer": 1 },
-    { "id": "institution-droit_2", "question": "Combien d'articles compte la Déclaration des droits de l'homme et du citoyen de 1789 ?", "options": ["10", "17", "25", "33"], "answer": 1 },
-    { "id": "institution-droit_3", "question": "Qui est le chef de l'État en France ?", "options": ["Le Premier ministre", "Le président de l'Assemblée nationale", "Le président de la République", "Le président du Sénat"], "answer": 2 },
-    { "id": "institution-droit_4", "question": "Combien de chambres compose le Parlement français ?", "options": ["1", "2", "3", "4"], "answer": 1 },
-    { "id": "institution-droit_5", "question": "Quelle institution vérifie la conformité des lois à la Constitution en France ?", "options": ["Le Conseil d'État", "La Cour de cassation", "Le Conseil constitutionnel", "La Cour des comptes"], "answer": 2 },
-    { "id": "institution-droit_6", "question": "Combien de pays compte l'Union européenne depuis le retrait du Royaume-Uni ?", "options": ["25", "27", "28", "30"], "answer": 1 },
-    { "id": "institution-droit_7", "question": "À partir de quel âge peut-on voter en France ?", "options": ["16 ans", "18 ans", "21 ans", "25 ans"], "answer": 1 },
-    { "id": "institution-droit_8", "question": "Quelle est la devise de la République française ?", "options": ["Paix, Travail, Patrie", "Liberté, Égalité, Fraternité", "Unité, Justice, Progrès", "Ordre et Progrès"], "answer": 1 },
-    { "id": "institution-droit_9", "question": "Combien de pouvoirs distincts compose la séparation des pouvoirs théorisée par Montesquieu ?", "options": ["2", "3", "4", "5"], "answer": 1 },
-    { "id": "institution-droit_10", "question": "Quel traité fondateur de la construction européenne a été signé en 1957 ?", "options": ["Le traité de Maastricht", "Le traité de Rome", "Le traité de Lisbonne", "Le traité de Nice"], "answer": 1 },
-    { "id": "institution-droit_11", "question": "Quelle assemblée vote les lois en France, aux côtés du Sénat ?", "options": ["Le Conseil économique et social", "L'Assemblée nationale", "Le Conseil d'État", "La Cour de justice"], "answer": 1 },
-    { "id": "institution-droit_12", "question": "Comment appelle-t-on le fait de posséder la nationalité et les droits civiques d'un pays ?", "options": ["La souveraineté", "La citoyenneté", "La suzeraineté", "La légitimité"], "answer": 1 }
+    {
+      "id": "institution-droit_1",
+      "question": "En quelle année la Constitution de la Ve République a-t-elle été adoptée ?",
+      "options": ["1946", "1958", "1962", "1981"],
+      "answer": 1,
+      "explanation": "La Constitution de la Ve République a été adoptée en 1958, sous la présidence de René Coty et avec le général de Gaulle comme principal artisan du nouveau régime."
+    },
+    {
+      "id": "institution-droit_2",
+      "question": "Combien d'articles compte la Déclaration des droits de l'homme et du citoyen de 1789 ?",
+      "options": ["10", "17", "25", "33"],
+      "answer": 1,
+      "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 comporte 17 articles. Elle affirme notamment les principes de liberté et d'égalité des citoyens."
+    },
+    {
+      "id": "institution-droit_3",
+      "question": "Qui est le chef de l'État en France ?",
+      "options": ["Le Premier ministre", "Le président de l'Assemblée nationale", "Le président de la République", "Le président du Sénat"],
+      "answer": 2,
+      "explanation": "Le président de la République est le chef de l'État français. Il veille notamment au respect de la Constitution et représente la France dans les relations internationales."
+    },
+    {
+      "id": "institution-droit_4",
+      "question": "Combien de chambres compose le Parlement français ?",
+      "options": ["1", "2", "3", "4"],
+      "answer": 1,
+      "explanation": "Le Parlement français est composé de deux chambres : l'Assemblée nationale et le Sénat. On parle alors d'un système parlementaire bicaméral."
+    },
+    {
+      "id": "institution-droit_5",
+      "question": "Quelle institution vérifie la conformité des lois à la Constitution en France ?",
+      "options": ["Le Conseil d'État", "La Cour de cassation", "Le Conseil constitutionnel", "La Cour des comptes"],
+      "answer": 2,
+      "explanation": "Le Conseil constitutionnel contrôle la conformité des lois à la Constitution. Il peut notamment être saisi avant la promulgation d'une loi ou dans le cadre d'une question prioritaire de constitutionnalité."
+    },
+    {
+      "id": "institution-droit_6",
+      "question": "Combien de pays compte l'Union européenne depuis le retrait du Royaume-Uni ?",
+      "options": ["25", "27", "28", "30"],
+      "answer": 1,
+      "explanation": "L'Union européenne compte actuellement 27 États membres depuis le retrait du Royaume-Uni en 2020. Le Royaume-Uni était auparavant le 28e membre."
+    },
+    {
+      "id": "institution-droit_7",
+      "question": "À partir de quel âge peut-on voter en France ?",
+      "options": ["16 ans", "18 ans", "21 ans", "25 ans"],
+      "answer": 1,
+      "explanation": "En France, le droit de vote est accordé à partir de 18 ans, sous réserve de remplir les conditions prévues par la loi. L'âge légal est passé de 21 à 18 ans en 1974."
+    },
+    {
+      "id": "institution-droit_8",
+      "question": "Quelle est la devise de la République française ?",
+      "options": ["Paix, Travail, Patrie", "Liberté, Égalité, Fraternité", "Unité, Justice, Progrès", "Ordre et Progrès"],
+      "answer": 1,
+      "explanation": "La devise de la République française est « Liberté, Égalité, Fraternité ». Elle est notamment inscrite dans l'article 2 de la Constitution."
+    },
+    {
+      "id": "institution-droit_9",
+      "question": "Combien de pouvoirs distincts compose la séparation des pouvoirs théorisée par Montesquieu ?",
+      "options": ["2", "3", "4", "5"],
+      "answer": 1,
+      "explanation": "Montesquieu distingue trois pouvoirs : le pouvoir législatif, le pouvoir exécutif et le pouvoir judiciaire. Cette séparation vise notamment à éviter la concentration du pouvoir."
+    },
+    {
+      "id": "institution-droit_10",
+      "question": "Quel traité fondateur de la construction européenne a été signé en 1957 ?",
+      "options": ["Le traité de Maastricht", "Le traité de Rome", "Le traité de Lisbonne", "Le traité de Nice"],
+      "answer": 1,
+      "explanation": "Les traités de Rome ont été signés en 1957 et ont notamment créé la Communauté économique européenne. Ils constituent une étape majeure de la construction européenne."
+    },
+    {
+      "id": "institution-droit_11",
+      "question": "Quelle assemblée vote les lois en France, aux côtés du Sénat ?",
+      "options": ["Le Conseil économique et social", "L'Assemblée nationale", "Le Conseil d'État", "La Cour de justice"],
+      "answer": 1,
+      "explanation": "L'Assemblée nationale et le Sénat constituent les deux chambres du Parlement français. Ils participent tous les deux à l'examen et au vote des lois."
+    },
+    {
+      "id": "institution-droit_12",
+      "question": "Comment appelle-t-on le fait de posséder la nationalité et les droits civiques d'un pays ?",
+      "options": ["La souveraineté", "La citoyenneté", "La suzeraineté", "La légitimité"],
+      "answer": 1,
+      "explanation": "La citoyenneté désigne notamment le fait de bénéficier de droits et de devoirs civiques au sein d'un État. Elle permet par exemple, sous certaines conditions, de participer aux élections."
+    }
   ]
 }
+

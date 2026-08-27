@@ -1,15 +1,76 @@
 {
   "category": "nature-environnement",
   "questions": [
-    { "id": "nature-environnement_1", "question": "Quel est le plus grand mammifère du monde ?", "options": ["L'éléphant d'Afrique", "La baleine bleue", "Le requin baleine", "Le rhinocéros blanc"], "answer": 1 },
-    { "id": "nature-environnement_2", "question": "Comment appelle-t-on l'augmentation des températures moyennes de la planète ?", "options": ["L'effet papillon", "Le réchauffement climatique", "L'érosion", "La désertification"], "answer": 1 },
-    { "id": "nature-environnement_3", "question": "Quel gaz est le principal responsable de l'effet de serre d'origine humaine ?", "options": ["L'oxygène", "Le dioxyde de carbone", "L'azote", "L'hélium"], "answer": 1 },
-    { "id": "nature-environnement_4", "question": "Quel est le plus grand désert froid du monde ?", "options": ["Le Sahara", "Le désert de Gobi", "L'Antarctique", "L'Arctique"], "answer": 2 },
-    { "id": "nature-environnement_5", "question": "Quelle forêt tropicale est surnommée le 'poumon de la planète' ?", "options": ["La forêt amazonienne", "La forêt du Congo", "La forêt boréale", "La forêt de Bornéo"], "answer": 0 },
-    { "id": "nature-environnement_6", "question": "Quel animal est le symbole du WWF, l'organisation de protection de la nature ?", "options": ["Le tigre", "Le panda géant", "L'ours polaire", "Le dauphin"], "answer": 1 },
-    { "id": "nature-environnement_7", "question": "Comment appelle-t-on la variété des espèces vivantes présentes sur Terre ?", "options": ["L'écosystème", "La biodiversité", "La biomasse", "La photosynthèse"], "answer": 1 },
-    { "id": "nature-environnement_8", "question": "Quelle source d'énergie renouvelable exploite la force du vent ?", "options": ["L'énergie solaire", "L'énergie éolienne", "L'énergie géothermique", "L'énergie marémotrice"], "answer": 1 },
-    { "id": "nature-environnement_9", "question": "Comment appelle-t-on une secousse brutale du sol due à un mouvement des plaques tectoniques ?", "options": ["Un tsunami", "Une éruption volcanique", "Un séisme", "Un glissement de terrain"], "answer": 2 },
-    { "id": "nature-environnement_10", "question": "Quel insecte joue un rôle essentiel dans la pollinisation des fleurs ?", "options": ["La fourmi", "L'abeille", "Le moustique", "Le scarabée"], "answer": 1 }
+    {
+      "id": "nature-environnement_1",
+      "question": "Quel est le plus grand mammifère du monde ?",
+      "options": ["L'éléphant d'Afrique", "La baleine bleue", "Le requin baleine", "Le rhinocéros blanc"],
+      "answer": 1,
+      "explanation": "La baleine bleue est le plus grand animal connu ayant vécu sur Terre. Elle peut dépasser 25 mètres de long et peser plus de 100 tonnes."
+    },
+    {
+      "id": "nature-environnement_2",
+      "question": "Comment appelle-t-on l'augmentation des températures moyennes de la planète ?",
+      "options": ["L'effet papillon", "Le réchauffement climatique", "L'érosion", "La désertification"],
+      "answer": 1,
+      "explanation": "Le réchauffement climatique désigne l'augmentation durable de la température moyenne de la Terre. Les activités humaines, notamment la combustion des énergies fossiles, y contribuent fortement."
+    },
+    {
+      "id": "nature-environnement_3",
+      "question": "Quel gaz est le principal responsable de l'effet de serre d'origine humaine ?",
+      "options": ["L'oxygène", "Le dioxyde de carbone", "L'azote", "L'hélium"],
+      "answer": 1,
+      "explanation": "Le dioxyde de carbone, ou CO₂, est le principal gaz à effet de serre émis par les activités humaines. Il provient notamment de la combustion du charbon, du pétrole et du gaz."
+    },
+    {
+      "id": "nature-environnement_4",
+      "question": "Quel est le plus grand désert froid du monde ?",
+      "options": ["Le Sahara", "Le désert de Gobi", "L'Antarctique", "L'Arctique"],
+      "answer": 2,
+      "explanation": "L'Antarctique est considéré comme le plus grand désert du monde, malgré sa couverture de glace. Il reçoit très peu de précipitations au cours de l'année."
+    },
+    {
+      "id": "nature-environnement_5",
+      "question": "Quelle forêt tropicale est surnommée le 'poumon de la planète' ?",
+      "options": ["La forêt amazonienne", "La forêt du Congo", "La forêt boréale", "La forêt de Bornéo"],
+      "answer": 0,
+      "explanation": "La forêt amazonienne est la plus grande forêt tropicale du monde et abrite une biodiversité exceptionnelle. L'expression 'poumon de la planète' est toutefois une simplification souvent utilisée pour parler de son importance écologique."
+    },
+    {
+      "id": "nature-environnement_6",
+      "question": "Quel animal est le symbole du WWF, l'organisation de protection de la nature ?",
+      "options": ["Le tigre", "Le panda géant", "L'ours polaire", "Le dauphin"],
+      "answer": 1,
+      "explanation": "Le panda géant est le célèbre symbole du WWF depuis sa création. Il représente notamment les efforts de protection des espèces menacées et de leurs habitats."
+    },
+    {
+      "id": "nature-environnement_7",
+      "question": "Comment appelle-t-on la variété des espèces vivantes présentes sur Terre ?",
+      "options": ["L'écosystème", "La biodiversité", "La biomasse", "La photosynthèse"],
+      "answer": 1,
+      "explanation": "La biodiversité désigne la diversité des êtres vivants, des espèces et des écosystèmes. Elle est essentielle au bon fonctionnement des milieux naturels."
+    },
+    {
+      "id": "nature-environnement_8",
+      "question": "Quelle source d'énergie renouvelable exploite la force du vent ?",
+      "options": ["L'énergie solaire", "L'énergie éolienne", "L'énergie géothermique", "L'énergie marémotrice"],
+      "answer": 1,
+      "explanation": "L'énergie éolienne utilise la force du vent pour faire tourner les pales d'une éolienne. Ce mouvement permet ensuite de produire de l'électricité."
+    },
+    {
+      "id": "nature-environnement_9",
+      "question": "Comment appelle-t-on une secousse brutale du sol due à un mouvement des plaques tectoniques ?",
+      "options": ["Un tsunami", "Une éruption volcanique", "Un séisme", "Un glissement de terrain"],
+      "answer": 2,
+      "explanation": "Un séisme est une secousse du sol provoquée par la libération brutale d'énergie dans la croûte terrestre. Les séismes les plus puissants peuvent provoquer d'importants dégâts et parfois des tsunamis."
+    },
+    {
+      "id": "nature-environnement_10",
+      "question": "Quel insecte joue un rôle essentiel dans la pollinisation des fleurs ?",
+      "options": ["La fourmi", "L'abeille", "Le moustique", "Le scarabée"],
+      "answer": 1,
+      "explanation": "Les abeilles transportent le pollen d'une fleur à l'autre lorsqu'elles se nourrissent de nectar. Elles jouent ainsi un rôle majeur dans la reproduction de nombreuses plantes."
+    }
   ]
 }
+
