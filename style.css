@@ -743,12 +743,35 @@ button { font-family: inherit; }
   color: var(--text-muted);
 }
 
-.zone-accordion__label {
+.zone-accordion__label-wrap {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+.zone-accordion__label {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.02rem;
   color: var(--text);
+}
+
+.zone-accordion__progress-track {
+  display: block;
+  width: 100%;
+  height: 6px;
+  border-radius: 20px;
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.zone-accordion__progress-fill {
+  display: block;
+  height: 100%;
+  border-radius: 20px;
+  background: var(--gradient);
+  transition: width 0.3s ease;
 }
 
 .zone-accordion__chevron {
@@ -813,12 +836,26 @@ button { font-family: inherit; }
   color: #9b5de5;
 }
 
-.square-title {
+.square-text {
   flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.square-text__title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
   color: var(--text);
+}
+.square-text__subtitle {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.square-text__subtitle.is-empty {
+  font-style: italic;
+  opacity: 0.7;
 }
 
 .square-percent {

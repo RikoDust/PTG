@@ -563,17 +563,32 @@ function showScreen(name) {
 
 /* ---------- RENDU DE L'ÉCRAN AVENTURE (zones + carrés) ---------- */
 
-/* Construit la liste des carrés d'une zone (état verrouillé/validé/complet + titre calculé) */
+/*
+  Progression d'une zone en % : proportion de bonnes réponses obtenues
+  (meilleur score par carré) sur le total de questions de la zone.
+  Chaque carré fait 5 questions, et les paliers stockés (0/20/40/60/80/100)
+  sont toujours des multiples exacts de 20, donc percent/20 redonne le
+  nombre de bonnes réponses sans arrondi approximatif.
+*/
+function computeZoneProgressPercent(zone) {
+  const totalQuestions = zone.squares.length * 5;
+  if (totalQuestions === 0) return 0;
+  const totalCorrect = zone.squares.reduce((sum, sq) => {
+    const percent = getSquareBestPercent(sq.id);
+    return sum + Math.round((percent / 100) * 5);
+  }, 0);
+  return Math.round((totalCorrect / totalQuestions) * 100);
+}
+
+/* Construit la liste des carrés d'une zone (état verrouillé/validé/complet + titre/sous-titre) */
 function buildSquaresListElement(zone) {
   const list = document.createElement("div");
   list.className = "zone-accordion__body-inner";
 
-  const themeOccurrence = {}; // pour numéroter "Histoire 1", "Histoire 2"... dans l'ordre de la zone
-
   zone.squares.forEach((square, i) => {
     const theme = themesConfig.find(t => t.id === square.theme);
-    themeOccurrence[square.theme] = (themeOccurrence[square.theme] || 0) + 1;
-    const title = `${theme ? theme.label : square.theme} ${themeOccurrence[square.theme]}`;
+    const title = theme ? theme.label : square.theme;
+    const subtitle = (square.subtitle || "").trim() || "Sous-titre à ajouter";
     const icon = theme ? theme.icon : "fa-circle-question";
 
     const percent = getSquareBestPercent(square.id);
@@ -589,7 +604,10 @@ function buildSquaresListElement(zone) {
     row.disabled = !unlocked;
     row.innerHTML = `
       <span class="square-box"><i class="fa-solid ${icon}"></i></span>
-      <span class="square-title">${title}</span>
+      <span class="square-text">
+        <strong class="square-text__title">${title}</strong>
+        <small class="square-text__subtitle${square.subtitle ? "" : " is-empty"}">${subtitle}</small>
+      </span>
       ${percent > 0 ? `<span class="square-percent ${percentClass}">${percent}%</span>` : ""}
     `;
     if (unlocked) {
@@ -613,6 +631,7 @@ function renderAdventureScreen() {
     const unlocked = isZoneUnlocked(zoneIndex);
     const complete = unlocked && isZoneComplete(zone);
     const isOpen = unlocked && adventureOpenZoneId === zone.id;
+    const progressPercent = unlocked ? computeZoneProgressPercent(zone) : 0;
 
     const zoneEl = document.createElement("div");
     zoneEl.className = "zone-accordion" + (unlocked ? "" : " is-locked") + (isOpen ? " is-open" : "");
@@ -632,7 +651,12 @@ function renderAdventureScreen() {
     zoneEl.innerHTML = `
       <button type="button" class="zone-accordion__header" ${unlocked ? "" : "disabled"}>
         <span class="zone-accordion__number"><i class="fa-solid ${numberIconClass}"></i></span>
-        <span class="zone-accordion__label">${zoneConfig.label}</span>
+        <span class="zone-accordion__label-wrap">
+          <span class="zone-accordion__label">${zoneConfig.label}</span>
+          <span class="zone-accordion__progress-track">
+            <span class="zone-accordion__progress-fill" style="width: ${progressPercent}%;"></span>
+          </span>
+        </span>
         ${rightIconHtml}
       </button>
       <div class="zone-accordion__body"></div>
@@ -835,7 +859,7 @@ function handleAnswer(selectedIdx, selectedBtn) {
 
   // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
   // sinon un texte par défaut (pratique pour repérer les questions à compléter)
-  const explanationText = (q.explication || "").trim();
+  const explanationText = (q.explanation || "").trim();
   els.infoText.textContent = explanationText || "Explication bientôt disponible.";
   els.infoText.classList.toggle("is-empty", !explanationText);
   els.infoAccordion.classList.remove("hidden");
