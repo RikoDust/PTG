@@ -1,20 +1,110 @@
 {
   "category": "histoire",
   "questions": [
-    { "id": "histoire_1", "question": "En quelle année a eu lieu la prise de la Bastille ?", "options": ["1789", "1799", "1804", "1815"], "answer": 0, "explication": "La prise de la Bastille, le 14 juillet 1789, est devenue le symbole du soulèvement populaire contre la monarchie absolue et marque traditionnellement le début de la Révolution française." },
-    { "id": "histoire_2", "question": "Qui était empereur des Français en 1810 ?", "options": ["Louis XVI", "Napoléon Bonaparte", "Charlemagne", "Louis XIV"], "answer": 1 },
-    { "id": "histoire_3", "question": "En quelle année s'est terminée la Seconde Guerre mondiale ?", "options": ["1943", "1944", "1945", "1946"], "answer": 2 },
-    { "id": "histoire_4", "question": "Quel mur est tombé en 1989 ?", "options": ["Le mur de Berlin", "Le mur d'Hadrien", "La Grande Muraille", "Le mur des Lamentations"], "answer": 0 },
-    { "id": "histoire_5", "question": "Qui a été le premier président de la Ve République française ?", "options": ["Georges Pompidou", "Charles de Gaulle", "François Mitterrand", "Vincent Auriol"], "answer": 1 },
-    { "id": "histoire_6", "question": "Quelle civilisation a construit les pyramides de Gizeh ?", "options": ["Les Romains", "Les Grecs", "Les Égyptiens", "Les Mayas"], "answer": 2 },
-    { "id": "histoire_7", "question": "En quelle année a débuté la Première Guerre mondiale ?", "options": ["1912", "1914", "1916", "1918"], "answer": 1 },
-    { "id": "histoire_8", "question": "Quel roi de France est surnommé le Roi Soleil ?", "options": ["Louis XIII", "Louis XIV", "Louis XV", "Louis XVI"], "answer": 1 },
-    { "id": "histoire_9", "question": "Quel événement a marqué le début de la Révolution française ?", "options": ["Le sacre de Napoléon", "La prise de la Bastille", "La bataille de Waterloo", "L'édit de Nantes"], "answer": 1 },
-    { "id": "histoire_10", "question": "Qui a découvert l'Amérique en 1492 ?", "options": ["Vasco de Gama", "Christophe Colomb", "Fernand de Magellan", "Marco Polo"], "answer": 1 },
-    { "id": "histoire_11", "question": "Quelle civilisation précolombienne a construit le Machu Picchu ?", "options": ["Les Aztèques", "Les Incas", "Les Mayas", "Les Olmèques"], "answer": 1 },
-    { "id": "histoire_12", "question": "Quelle reine d'Égypte est célèbre pour ses liaisons avec Jules César puis Marc Antoine ?", "options": ["Néfertiti", "Hatchepsout", "Cléopâtre", "Nefertari"], "answer": 2 },
-    { "id": "histoire_13", "question": "Quel empereur chinois est à l'origine de la construction de la Grande Muraille de Chine ?", "options": ["Qin Shi Huang", "Kublai Khan", "Sun Tzu", "Confucius"], "answer": 0 },
-    { "id": "histoire_14", "question": "Quelle guerre antique a opposé Athènes et Sparte ?", "options": ["La guerre des Gaules", "La guerre du Péloponnèse", "Les guerres puniques", "La guerre de Troie"], "answer": 1 },
-    { "id": "histoire_15", "question": "Qui a été le premier empereur romain ?", "options": ["Jules César", "Néron", "Auguste", "Trajan"], "answer": 2 }
+    {
+      "id": "histoire_1",
+      "question": "En quelle année a eu lieu la prise de la Bastille ?",
+      "options": ["1789", "1799", "1804", "1815"],
+      "answer": 0,
+      "explanation": "La prise de la Bastille a eu lieu le 14 juillet 1789. Cet événement est devenu l'un des symboles majeurs de la Révolution française."
+    },
+    {
+      "id": "histoire_2",
+      "question": "Qui était empereur des Français en 1810 ?",
+      "options": ["Louis XVI", "Napoléon Bonaparte", "Charlemagne", "Louis XIV"],
+      "answer": 1,
+      "explanation": "Napoléon Bonaparte était empereur des Français en 1810. Il a dirigé la France pendant une grande partie du début du XIXe siècle et mené de nombreuses campagnes militaires en Europe."
+    },
+    {
+      "id": "histoire_3",
+      "question": "En quelle année s'est terminée la Seconde Guerre mondiale ?",
+      "options": ["1943", "1944", "1945", "1946"],
+      "answer": 2,
+      "explanation": "La Seconde Guerre mondiale s'est terminée en 1945. En Europe, la capitulation de l'Allemagne est intervenue en mai, tandis que la guerre contre le Japon s'est achevée en septembre."
+    },
+    {
+      "id": "histoire_4",
+      "question": "Quel mur est tombé en 1989 ?",
+      "options": ["Le mur de Berlin", "Le mur d'Hadrien", "La Grande Muraille", "Le mur des Lamentations"],
+      "answer": 0,
+      "explanation": "Le mur de Berlin est tombé le 9 novembre 1989. Sa chute est devenue le symbole de la fin progressive de la division entre l'Europe de l'Est et l'Europe de l'Ouest."
+    },
+    {
+      "id": "histoire_5",
+      "question": "Qui a été le premier président de la Ve République française ?",
+      "options": ["Georges Pompidou", "Charles de Gaulle", "François Mitterrand", "Vincent Auriol"],
+      "answer": 1,
+      "explanation": "Charles de Gaulle a été le premier président de la Ve République, élu en 1958. Il a joué un rôle central dans la création des institutions de ce nouveau régime."
+    },
+    {
+      "id": "histoire_6",
+      "question": "Quelle civilisation a construit les pyramides de Gizeh ?",
+      "options": ["Les Romains", "Les Grecs", "Les Égyptiens", "Les Mayas"],
+      "answer": 2,
+      "explanation": "Les pyramides de Gizeh ont été construites par les anciens Égyptiens il y a plus de 4 500 ans. La pyramide de Khéops est la plus grande des trois."
+    },
+    {
+      "id": "histoire_7",
+      "question": "En quelle année a débuté la Première Guerre mondiale ?",
+      "options": ["1912", "1914", "1916", "1918"],
+      "answer": 1,
+      "explanation": "La Première Guerre mondiale a commencé en 1914 après l'assassinat de l'archiduc François-Ferdinand d'Autriche. Le conflit s'est terminé en 1918."
+    },
+    {
+      "id": "histoire_8",
+      "question": "Quel roi de France est surnommé le Roi Soleil ?",
+      "options": ["Louis XIII", "Louis XIV", "Louis XV", "Louis XVI"],
+      "answer": 1,
+      "explanation": "Louis XIV est surnommé le Roi Soleil et a régné pendant plus de 72 ans. Il est notamment associé au château de Versailles, devenu un symbole de la monarchie française."
+    },
+    {
+      "id": "histoire_9",
+      "question": "Quel événement a marqué le début de la Révolution française ?",
+      "options": ["Le sacre de Napoléon", "La prise de la Bastille", "La bataille de Waterloo", "L'édit de Nantes"],
+      "answer": 1,
+      "explanation": "La prise de la Bastille, le 14 juillet 1789, est traditionnellement considérée comme un événement majeur marquant le début de la Révolution française. La Bastille était alors une prison royale."
+    },
+    {
+      "id": "histoire_10",
+      "question": "Qui a découvert l'Amérique en 1492 ?",
+      "options": ["Vasco de Gama", "Christophe Colomb", "Fernand de Magellan", "Marco Polo"],
+      "answer": 1,
+      "explanation": "Christophe Colomb a atteint les Caraïbes en 1492 lors d'une expédition financée par les souverains espagnols. Il pensait alors avoir atteint une région proche de l'Asie."
+    },
+    {
+      "id": "histoire_11",
+      "question": "Quelle civilisation précolombienne a construit le Machu Picchu ?",
+      "options": ["Les Aztèques", "Les Incas", "Les Mayas", "Les Olmèques"],
+      "answer": 1,
+      "explanation": "Le Machu Picchu a été construit par les Incas au XVe siècle dans les Andes, sur le territoire de l'actuel Pérou. Le site est aujourd'hui l'un des monuments les plus célèbres d'Amérique du Sud."
+    },
+    {
+      "id": "histoire_12",
+      "question": "Quelle reine d'Égypte est célèbre pour ses liaisons avec Jules César puis Marc Antoine ?",
+      "options": ["Néfertiti", "Hatchepsout", "Cléopâtre", "Nefertari"],
+      "answer": 2,
+      "explanation": "Cléopâtre VII était la dernière grande souveraine de l'Égypte ptolémaïque. Elle a entretenu des relations politiques et personnelles célèbres avec Jules César puis Marc Antoine."
+    },
+    {
+      "id": "histoire_13",
+      "question": "Quel empereur chinois est à l'origine de la construction de la Grande Muraille de Chine ?",
+      "options": ["Qin Shi Huang", "Kublai Khan", "Sun Tzu", "Confucius"],
+      "answer": 0,
+      "explanation": "Qin Shi Huang, premier empereur de Chine, a fait relier et renforcer plusieurs fortifications existantes au IIIe siècle avant J.-C. La Grande Muraille actuelle est cependant le résultat de constructions réalisées sur plusieurs siècles."
+    },
+    {
+      "id": "histoire_14",
+      "question": "Quelle guerre antique a opposé Athènes et Sparte ?",
+      "options": ["La guerre des Gaules", "La guerre du Péloponnèse", "Les guerres puniques", "La guerre de Troie"],
+      "answer": 1,
+      "explanation": "La guerre du Péloponnèse a opposé principalement Athènes et Sparte ainsi que leurs alliés entre 431 et 404 avant J.-C. Sparte et ses alliés ont finalement remporté le conflit."
+    },
+    {
+      "id": "histoire_15",
+      "question": "Qui a été le premier empereur romain ?",
+      "options": ["Jules César", "Néron", "Auguste", "Trajan"],
+      "answer": 2,
+      "explanation": "Auguste est considéré comme le premier empereur romain. Il a pris le pouvoir après les guerres civiles et a régné de 27 avant J.-C. à 14 après J.-C."
+    }
   ]
 }

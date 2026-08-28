@@ -1,23 +1,136 @@
 {
   "category": "geographie",
   "questions": [
-    { "id": "geographie_1", "question": "Quelle est la capitale de l'Australie ?", "options": ["Sydney", "Melbourne", "Canberra", "Perth"], "answer": 2 },
-    { "id": "geographie_2", "question": "Quel est le plus long fleuve du monde ?", "options": ["Le Nil", "L'Amazone", "Le Mississippi", "Le Yangtsé"], "answer": 1 },
-    { "id": "geographie_3", "question": "Combien de continents compte-t-on généralement ?", "options": ["5", "6", "7", "8"], "answer": 2 },
-    { "id": "geographie_4", "question": "Quelle chaîne de montagnes sépare l'Europe de l'Asie ?", "options": ["Les Alpes", "Les Andes", "L'Oural", "L'Himalaya"], "answer": 2 },
-    { "id": "geographie_5", "question": "Quel pays a la plus grande superficie au monde ?", "options": ["Chine", "Canada", "États-Unis", "Russie"], "answer": 3 },
-    { "id": "geographie_6", "question": "Quel désert est le plus grand du monde ?", "options": ["Le Sahara", "Le désert de Gobi", "L'Antarctique", "Le Kalahari"], "answer": 2 },
-    { "id": "geographie_7", "question": "Quelle est la capitale du Canada ?", "options": ["Toronto", "Vancouver", "Ottawa", "Montréal"], "answer": 2 },
-    { "id": "geographie_8", "question": "Quel océan borde la côte ouest des États-Unis ?", "options": ["Atlantique", "Pacifique", "Indien", "Arctique"], "answer": 1 },
-    { "id": "geographie_9", "question": "Dans quel pays se trouve le Machu Picchu ?", "options": ["Mexique", "Chili", "Pérou", "Bolivie"], "answer": 2 },
-    { "id": "geographie_10", "question": "Quelle mer borde l'Égypte à l'est ?", "options": ["Mer Noire", "Mer Rouge", "Mer Morte", "Mer Méditerranée"], "answer": 1 },
-    { "id": "geographie_11", "question": "Quel est le point culminant du continent africain ?", "options": ["Le mont Kenya", "Le Kilimandjaro", "Le mont Cameroun", "Le Toubkal"], "answer": 1 },
-    { "id": "geographie_12", "question": "Quel type de climat caractérise la forêt amazonienne ?", "options": ["Climat désertique", "Climat polaire", "Climat équatorial", "Climat méditerranéen"], "answer": 2 },
-    { "id": "geographie_13", "question": "Quelle organisation internationale regroupe la quasi-totalité des pays du monde pour favoriser la coopération ?", "options": ["L'OTAN", "L'ONU", "L'OMC", "Le FMI"], "answer": 1 },
-    { "id": "geographie_14", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_14.png", "options": ["Portugal", "Brésil", "Angola", "Mexique"], "answer": 1 },
-    { "id": "geographie_15", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_15.png", "options": ["Chine", "Corée du Sud", "Japon", "Vietnam"], "answer": 2 },
-    { "id": "geographie_16", "question": "Quel est le pays de ce drapeau ?", "image": "questions/img/geographie_16.png", "options": ["Kenya", "Afrique du Sud", "Nigéria", "Ghana"], "answer": 1 },
-    { "id": "geographie_17", "question": "Dans quel pays se trouve ce monument ?", "image": "questions/img/geographie_17.png", "options": ["Pakistan", "Inde", "Népal", "Bangladesh"], "answer": 1 },
-    { "id": "geographie_18", "question": "Dans quel pays se trouve ce monument ?", "image": "questions/img/geographie_18.png", "options": ["Grèce", "Espagne", "Italie", "Turquie"], "answer": 2 }
+    {
+      "id": "geographie_1",
+      "question": "Quelle est la capitale de l'Australie ?",
+      "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+      "answer": 2,
+      "explanation": "Canberra est la capitale de l'Australie depuis 1913. Sydney et Melbourne sont plus connues et plus peuplées, mais elles ne sont pas la capitale."
+    },
+    {
+      "id": "geographie_2",
+      "question": "Quel est le plus long fleuve du monde ?",
+      "options": ["Le Nil", "L'Amazone", "Le Mississippi", "Le Yangtsé"],
+      "answer": 1,
+      "explanation": "L'Amazone est généralement considéré comme le fleuve ayant le plus grand débit au monde. Sa longueur exacte fait toutefois l'objet de débats avec le Nil selon les méthodes de mesure."
+    },
+    {
+      "id": "geographie_3",
+      "question": "Combien de continents compte-t-on généralement ?",
+      "options": ["5", "6", "7", "8"],
+      "answer": 2,
+      "explanation": "On compte généralement sept continents : Afrique, Amérique du Nord, Amérique du Sud, Antarctique, Asie, Europe et Océanie."
+    },
+    {
+      "id": "geographie_4",
+      "question": "Quelle chaîne de montagnes sépare l'Europe de l'Asie ?",
+      "options": ["Les Alpes", "Les Andes", "L'Oural", "L'Himalaya"],
+      "answer": 2,
+      "explanation": "La chaîne de l'Oural est traditionnellement considérée comme l'une des limites géographiques entre l'Europe et l'Asie. Elle s'étend sur environ 2 500 kilomètres du nord au sud."
+    },
+    {
+      "id": "geographie_5",
+      "question": "Quel pays a la plus grande superficie au monde ?",
+      "options": ["Chine", "Canada", "États-Unis", "Russie"],
+      "answer": 3,
+      "explanation": "La Russie est le plus grand pays du monde avec une superficie d'environ 17 millions de kilomètres carrés. Son territoire s'étend sur deux continents, l'Europe et l'Asie."
+    },
+    {
+      "id": "geographie_6",
+      "question": "Quel désert est le plus grand du monde ?",
+      "options": ["Le Sahara", "Le désert de Gobi", "L'Antarctique", "Le Kalahari"],
+      "answer": 2,
+      "explanation": "L'Antarctique est le plus grand désert du monde en raison de ses très faibles précipitations. Le Sahara est en revanche le plus grand désert chaud."
+    },
+    {
+      "id": "geographie_7",
+      "question": "Quelle est la capitale du Canada ?",
+      "options": ["Toronto", "Vancouver", "Ottawa", "Montréal"],
+      "answer": 2,
+      "explanation": "Ottawa est devenue la capitale du Canada en 1857. Toronto et Montréal sont plus peuplées, mais Ottawa accueille notamment le Parlement canadien."
+    },
+    {
+      "id": "geographie_8",
+      "question": "Quel océan borde la côte ouest des États-Unis ?",
+      "options": ["Atlantique", "Pacifique", "Indien", "Arctique"],
+      "answer": 1,
+      "explanation": "L'océan Pacifique borde toute la côte ouest des États-Unis. Il s'agit du plus grand océan de la planète."
+    },
+    {
+      "id": "geographie_9",
+      "question": "Dans quel pays se trouve le Machu Picchu ?",
+      "options": ["Mexique", "Chili", "Pérou", "Bolivie"],
+      "answer": 2,
+      "explanation": "Le Machu Picchu se trouve au Pérou, dans la cordillère des Andes. Cette ancienne cité inca est située à plus de 2 000 mètres d'altitude."
+    },
+    {
+      "id": "geographie_10",
+      "question": "Quelle mer borde l'Égypte à l'est ?",
+      "options": ["Mer Noire", "Mer Rouge", "Mer Morte", "Mer Méditerranée"],
+      "answer": 1,
+      "explanation": "La mer Rouge borde l'Égypte à l'est et sépare l'Afrique de la péninsule Arabique. Elle est reliée à la mer Méditerranée par le canal de Suez."
+    },
+    {
+      "id": "geographie_11",
+      "question": "Quel est le point culminant du continent africain ?",
+      "options": ["Le mont Kenya", "Le Kilimandjaro", "Le mont Cameroun", "Le Toubkal"],
+      "answer": 1,
+      "explanation": "Le Kilimandjaro, situé en Tanzanie, est le point culminant de l'Afrique avec environ 5 895 mètres d'altitude. Il est célèbre pour ses neiges et ses glaciers au sommet."
+    },
+    {
+      "id": "geographie_12",
+      "question": "Quel type de climat caractérise la forêt amazonienne ?",
+      "options": ["Climat désertique", "Climat polaire", "Climat équatorial", "Climat méditerranéen"],
+      "answer": 2,
+      "explanation": "La forêt amazonienne possède un climat équatorial, chaud et humide toute l'année. Les précipitations y sont particulièrement importantes."
+    },
+    {
+      "id": "geographie_13",
+      "question": "Quelle organisation internationale regroupe la quasi-totalité des pays du monde pour favoriser la coopération ?",
+      "options": ["L'OTAN", "L'ONU", "L'OMC", "Le FMI"],
+      "answer": 1,
+      "explanation": "L'Organisation des Nations unies, ou ONU, a été créée en 1945 pour favoriser notamment la paix, la coopération internationale et le dialogue entre les États."
+    },
+    {
+      "id": "geographie_14",
+      "question": "Quel est le pays de ce drapeau ?",
+      "image": "questions/img/geographie_14.png",
+      "options": ["Portugal", "Brésil", "Angola", "Mexique"],
+      "answer": 1,
+      "explanation": "Ce drapeau est celui du Brésil. Il est reconnaissable à son losange jaune, son globe bleu et sa devise « Ordem e Progresso »."
+    },
+    {
+      "id": "geographie_15",
+      "question": "Quel est le pays de ce drapeau ?",
+      "image": "questions/img/geographie_15.png",
+      "options": ["Chine", "Corée du Sud", "Japon", "Vietnam"],
+      "answer": 2,
+      "explanation": "Ce drapeau est celui du Japon. Son disque rouge représente le soleil, un symbole particulièrement important dans la culture japonaise."
+    },
+    {
+      "id": "geographie_16",
+      "question": "Quel est le pays de ce drapeau ?",
+      "image": "questions/img/geographie_16.png",
+      "options": ["Kenya", "Afrique du Sud", "Nigéria", "Ghana"],
+      "answer": 1,
+      "explanation": "Ce drapeau est celui de l'Afrique du Sud. Il possède une combinaison de couleurs et une forme en Y qui symbolisent notamment la convergence des différentes populations du pays."
+    },
+    {
+      "id": "geographie_17",
+      "question": "Dans quel pays se trouve ce monument ?",
+      "image": "questions/img/geographie_17.png",
+      "options": ["Pakistan", "Inde", "Népal", "Bangladesh"],
+      "answer": 1,
+      "explanation": "Ce monument se trouve en Inde. Le pays possède un patrimoine architectural particulièrement riche, influencé par de nombreuses civilisations et périodes historiques."
+    },
+    {
+      "id": "geographie_18",
+      "question": "Dans quel pays se trouve ce monument ?",
+      "image": "questions/img/geographie_18.png",
+      "options": ["Grèce", "Espagne", "Italie", "Turquie"],
+      "answer": 2,
+      "explanation": "Ce monument se trouve en Italie. Le pays possède l'un des patrimoines historiques et artistiques les plus importants au monde, avec de nombreux monuments datant de l'Antiquité."
+    }
   ]
 }
