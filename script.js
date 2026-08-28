@@ -20,6 +20,7 @@ let questionsByTheme = {}; // { themeId: [questions...] } après chargement de t
 let questionsById = {};    // { questionId: question } pour une résolution rapide (mode Aventure)
 let quizLength = 0;        // = somme des quotas (généralement 20)
 let currentQuiz = [];      // les questions de la session en cours
+let currentQuizThemeTally = {}; // { [themeId]: {correct,total} } accumulé pendant la session en cours
 let currentIndex = 0;      // index de la question affichée
 let currentCorrectCount = 0;
 let hasAnsweredCurrent = false;
@@ -43,36 +44,37 @@ let currentAdventureSquareId = null; // carré en cours de jeu
    1. STATISTIQUES (localStorage)
    ========================================================= */
 
+function emptyStats() {
+  return {
+    streakCount: 0, lastPlayedDate: null,
+    xp: 0,
+    perfectClassicCount: 0, perfectFlashCount: 0,
+    scoreableCorrect: 0, scoreableTotal: 0, // Classique + Flash + Survie (PAS Aventure) -> % / jauge
+    survivalBest: 0,
+    themeStats: {} // { [themeId]: { correct, total } } — Classique + Flash + Survie (Aventure calculé à part)
+  };
+}
+
 function loadStats() {
   const raw = localStorage.getItem(STORAGE_KEY);
-  if (!raw) {
-    return {
-      totalCorrect: 0, totalQuestions: 0,
-      streakCount: 0, lastPlayedDate: null,
-      perfectClassicCount: 0, perfectFlashCount: 0,
-      survivalBest: 0
-    };
-  }
+  if (!raw) return emptyStats();
   try {
     const parsed = JSON.parse(raw);
     return {
-      totalCorrect: parsed.totalCorrect || 0,
-      totalQuestions: parsed.totalQuestions || 0,
       streakCount: parsed.streakCount || 0,
       lastPlayedDate: parsed.lastPlayedDate || null,
-      // migration douce : l'ancien champ "perfectCount" (avant l'ajout du Flash)
-      // devient perfectClassicCount s'il existe encore
+      xp: parsed.xp || 0,
+      // migration douce depuis l'ancien nom "perfectCount" (avant l'ajout du Flash)
       perfectClassicCount: parsed.perfectClassicCount ?? parsed.perfectCount ?? 0,
       perfectFlashCount: parsed.perfectFlashCount || 0,
-      survivalBest: parsed.survivalBest || 0
+      // migration douce depuis les anciens noms totalCorrect/totalQuestions
+      scoreableCorrect: parsed.scoreableCorrect ?? parsed.totalCorrect ?? 0,
+      scoreableTotal: parsed.scoreableTotal ?? parsed.totalQuestions ?? 0,
+      survivalBest: parsed.survivalBest || 0,
+      themeStats: (parsed.themeStats && typeof parsed.themeStats === "object") ? parsed.themeStats : {}
     };
   } catch (e) {
-    return {
-      totalCorrect: 0, totalQuestions: 0,
-      streakCount: 0, lastPlayedDate: null,
-      perfectClassicCount: 0, perfectFlashCount: 0,
-      survivalBest: 0
-    };
+    return emptyStats();
   }
 }
 
@@ -80,9 +82,25 @@ function saveStats(stats) {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stats));
 }
 
-function getGlobalScoreOn100(stats) {
-  if (stats.totalQuestions === 0) return null;
-  return Math.round((stats.totalCorrect / stats.totalQuestions) * 100);
+/* Fusionne le tally de thèmes { [themeId]: {correct,total} } d'une session dans les stats persistées */
+function mergeThemeTally(stats, tally) {
+  Object.entries(tally || {}).forEach(([themeId, val]) => {
+    if (!stats.themeStats[themeId]) stats.themeStats[themeId] = { correct: 0, total: 0 };
+    stats.themeStats[themeId].correct += val.correct;
+    stats.themeStats[themeId].total += val.total;
+  });
+}
+
+/* % de bonnes réponses "scoreable" (Classique + Flash + Survie, PAS Aventure) */
+function computeScoreablePercent(stats) {
+  if (stats.scoreableTotal === 0) return null;
+  return Math.round((stats.scoreableCorrect / stats.scoreableTotal) * 100);
+}
+
+/* Bonus XP du QCM Survie : +5xp au palier de 10 bonnes réponses, +10xp à 20, +15xp à 30, etc. */
+function computeSurvivalXpBonus(correctCount) {
+  const milestones = Math.floor(correctCount / 10);
+  return 5 * (milestones * (milestones + 1)) / 2;
 }
 
 /* ---------- Utilitaires de date (série de jours consécutifs) ---------- */
@@ -121,7 +139,7 @@ function getDisplayStreak(stats) {
   return 0;
 }
 
-/* Met à jour la série de jours consécutifs après un QCM joué aujourd'hui */
+/* Met à jour la série de jours consécutifs après un QCM joué aujourd'hui (tous modes confondus) */
 function updateStreak(stats) {
   const today = todayISO();
   if (!stats.lastPlayedDate) {
@@ -141,38 +159,47 @@ function updateStreak(stats) {
 }
 
 /* Met à jour les stats globales à la fin d'un QCM Classique ou Flash */
-function registerQuizResult(correctCount, totalQuestionsInQuiz, quizType) {
+function registerQuizResult(correctCount, totalQuestionsInQuiz, quizType, themeTally) {
   const stats = loadStats();
-  stats.totalCorrect += correctCount;
-  stats.totalQuestions += totalQuestionsInQuiz;
+  stats.scoreableCorrect += correctCount;
+  stats.scoreableTotal += totalQuestionsInQuiz;
 
   updateStreak(stats);
+  mergeThemeTally(stats, themeTally);
 
   const isPerfect = correctCount === totalQuestionsInQuiz;
-  if (quizType === "classic" && isPerfect) {
-    stats.perfectClassicCount += 1;
-  } else if (quizType === "flash" && isPerfect) {
-    stats.perfectFlashCount += 1;
+  let xpGained = correctCount * 2;
+  if (quizType === "classic") {
+    if (isPerfect) { stats.perfectClassicCount += 1; xpGained += 20; }
+  } else if (quizType === "flash") {
+    if (isPerfect) { stats.perfectFlashCount += 1; xpGained += 10; }
   }
+  stats.xp += xpGained;
 
   saveStats(stats);
   return stats;
 }
 
 /*
-  Met à jour les stats après un QCM Survie. Conformément à la
-  consigne, ce mode n'a AUCUNE incidence sur le score global
-  (totalCorrect / totalQuestions / perfects) : on met seulement à
-  jour la série de jours consécutifs (jouer un QCM Survie compte
-  comme "avoir joué aujourd'hui") et le record personnel du nombre
-  de bonnes réponses enchaînées.
+  Met à jour les stats après un QCM Survie. Compte pour la série de
+  jours ET pour le score "scoreable" (% / jauge) — seule l'Aventure
+  en est exclue. totalAnswered = nombre de questions effectivement
+  posées durant la partie (bonnes + mauvaises).
 */
-function registerSurvivalResult(correctCount) {
+function registerSurvivalResult(correctCount, totalAnswered, themeTally) {
   const stats = loadStats();
+  stats.scoreableCorrect += correctCount;
+  stats.scoreableTotal += totalAnswered;
+
   updateStreak(stats);
+  mergeThemeTally(stats, themeTally);
+
   if (correctCount > stats.survivalBest) {
     stats.survivalBest = correctCount;
   }
+
+  stats.xp += correctCount * 2 + computeSurvivalXpBonus(correctCount);
+
   saveStats(stats);
   return stats;
 }
@@ -181,15 +208,28 @@ function registerSurvivalResult(correctCount) {
    2. PROGRESSION DU MODE AVENTURE (localStorage dédié)
    ========================================================= */
 
-/* { [squareId]: meilleurPourcentageObtenu } */
+/*
+  { scores: { [squareId]: meilleurPourcentage },
+    xpGrantedSquares: [squareId...],  // carrés ayant déjà rapporté leurs +10xp (100%, une seule fois)
+    xpGrantedZones: [zoneId...] }     // zones ayant déjà rapporté leurs +40xp (100%, une seule fois)
+*/
+function emptyAdventureProgress() {
+  return { scores: {}, xpGrantedSquares: [], xpGrantedZones: [] };
+}
+
 function loadAdventureProgress() {
   const raw = localStorage.getItem(ADVENTURE_STORAGE_KEY);
-  if (!raw) return {};
+  if (!raw) return emptyAdventureProgress();
   try {
     const parsed = JSON.parse(raw);
-    return (parsed && typeof parsed === "object") ? parsed : {};
+    if (!parsed || typeof parsed !== "object") return emptyAdventureProgress();
+    return {
+      scores: (parsed.scores && typeof parsed.scores === "object") ? parsed.scores : {},
+      xpGrantedSquares: Array.isArray(parsed.xpGrantedSquares) ? parsed.xpGrantedSquares : [],
+      xpGrantedZones: Array.isArray(parsed.xpGrantedZones) ? parsed.xpGrantedZones : []
+    };
   } catch (e) {
-    return {};
+    return emptyAdventureProgress();
   }
 }
 
@@ -199,26 +239,41 @@ function saveAdventureProgress(progress) {
 
 function getSquareBestPercent(squareId) {
   const progress = loadAdventureProgress();
-  return progress[squareId] || 0;
+  return progress.scores[squareId] || 0;
 }
 
 /*
-  Enregistre le résultat d'un carré Aventure : ne touche à AUCUNE
-  statistique globale (score/100, perfects) — seul le meilleur
-  pourcentage obtenu sur ce carré est conservé. Jouer un carré
-  compte tout de même pour la série de jours consécutifs.
+  Enregistre le résultat d'un carré Aventure : le score/100 global et
+  les stats par thème ne sont JAMAIS impactés (seule la "phrase de
+  positionnement" et l'indicateur Aventure les prennent en compte, en
+  les recalculant dynamiquement à partir des meilleurs scores). Jouer
+  un carré compte pour la série de jours. Les XP de complétion (carré
+  à 100% = +10xp, zone à 100% = +40xp) ne sont accordés qu'une seule
+  fois, jamais à nouveau lors d'une rejouabilité.
 */
-function registerAdventureResult(squareId, percent) {
+function registerAdventureResult(zoneId, squareId, percent) {
   const stats = loadStats();
   updateStreak(stats);
-  saveStats(stats);
 
   const progress = loadAdventureProgress();
-  const previousBest = progress[squareId] || 0;
+  const previousBest = progress.scores[squareId] || 0;
   if (percent > previousBest) {
-    progress[squareId] = percent;
-    saveAdventureProgress(progress);
+    progress.scores[squareId] = percent;
   }
+
+  if (percent >= ADVENTURE_COMPLETE_THRESHOLD && !progress.xpGrantedSquares.includes(squareId)) {
+    stats.xp += 10;
+    progress.xpGrantedSquares.push(squareId);
+  }
+
+  const zone = adventureZonesData[zoneId];
+  if (zone && isZoneComplete(zone) && !progress.xpGrantedZones.includes(zoneId)) {
+    stats.xp += 40;
+    progress.xpGrantedZones.push(zoneId);
+  }
+
+  saveStats(stats);
+  saveAdventureProgress(progress);
 }
 
 /* Un carré est débloqué si c'est le premier de la zone, ou si le précédent atteint >= 60% */
@@ -239,6 +294,115 @@ function isZoneUnlocked(zoneIndex) {
   const previousZoneConfig = adventureZonesConfig[zoneIndex - 1];
   const previousZone = adventureZonesData[previousZoneConfig.id];
   return previousZone ? isZoneComplete(previousZone) : false;
+}
+
+/* Tous les carrés (toutes zones confondues) ayant déjà été joués au moins une fois */
+function getAllAttemptedAdventureSquares() {
+  const results = [];
+  adventureZonesConfig.forEach(zc => {
+    const zone = adventureZonesData[zc.id];
+    if (!zone) return;
+    zone.squares.forEach(sq => {
+      const percent = getSquareBestPercent(sq.id);
+      if (percent > 0) results.push({ square: sq, percent });
+    });
+  });
+  return results;
+}
+
+/* Total de bonnes réponses / questions "comptabilisées" côté Aventure (meilleur score par carré, une fois) */
+function computeAdventureCorrectTotal() {
+  const attempted = getAllAttemptedAdventureSquares();
+  let correct = 0, total = 0;
+  attempted.forEach(({ percent }) => {
+    correct += Math.round((percent / 100) * 5);
+    total += 5;
+  });
+  return { correct, total };
+}
+
+/* Contribution de l'Aventure aux stats par thème : { [themeId]: {correct,total} } */
+function computeAdventureThemeContribution() {
+  const themeAdd = {};
+  getAllAttemptedAdventureSquares().forEach(({ square, percent }) => {
+    if (!themeAdd[square.theme]) themeAdd[square.theme] = { correct: 0, total: 0 };
+    themeAdd[square.theme].correct += Math.round((percent / 100) * 5);
+    themeAdd[square.theme].total += 5;
+  });
+  return themeAdd;
+}
+
+/* Fusionne stats.themeStats (Classique/Flash/Survie) + contribution Aventure calculée dynamiquement */
+function computeCombinedThemeStats(stats) {
+  const combined = {};
+  themesConfig.forEach(t => { combined[t.id] = { correct: 0, total: 0 }; });
+  Object.entries(stats.themeStats || {}).forEach(([themeId, val]) => {
+    if (!combined[themeId]) combined[themeId] = { correct: 0, total: 0 };
+    combined[themeId].correct += val.correct || 0;
+    combined[themeId].total += val.total || 0;
+  });
+  Object.entries(computeAdventureThemeContribution()).forEach(([themeId, val]) => {
+    if (!combined[themeId]) combined[themeId] = { correct: 0, total: 0 };
+    combined[themeId].correct += val.correct;
+    combined[themeId].total += val.total;
+  });
+  return combined;
+}
+
+/* Thème le plus et le moins maîtrisé (null si aucune donnée encore) */
+function getMostAndLeastMasteredThemes(stats) {
+  const combined = computeCombinedThemeStats(stats);
+  const withData = Object.entries(combined)
+    .filter(([, v]) => v.total > 0)
+    .map(([themeId, v]) => ({ themeId, percent: Math.round((v.correct / v.total) * 100) }));
+  if (withData.length === 0) return { best: null, worst: null };
+  withData.sort((a, b) => b.percent - a.percent);
+  return { best: withData[0], worst: withData[withData.length - 1] };
+}
+
+/* "Phrase de positionnement" : bonnes réponses "scoreable" + contribution Aventure (comptée une fois par carré) */
+function computePositionSentence(stats) {
+  const adv = computeAdventureCorrectTotal();
+  return {
+    correct: stats.scoreableCorrect + adv.correct,
+    total: stats.scoreableTotal + adv.total
+  };
+}
+
+/* Nombre total de questions dans toute la base de données (tous thèmes confondus) */
+function getTotalDatabaseQuestionCount() {
+  return Object.values(questionsByTheme).reduce((sum, arr) => sum + arr.length, 0);
+}
+
+/* Niveau du QCM Survie, basé sur le record personnel rapporté au volume total de la base */
+function getSurvivalLevel(survivalBest) {
+  const totalDb = getTotalDatabaseQuestionCount();
+  const percent = totalDb === 0 ? 0 : Math.min(100, Math.round((survivalBest / totalDb) * 100));
+  let label;
+  if (percent >= 100) label = "Maître ultime";
+  else if (percent >= 90) label = "Maître";
+  else if (percent >= 70) label = "Expert";
+  else if (percent >= 50) label = "Connaisseur";
+  else if (percent >= 25) label = "Curieux";
+  else if (percent >= 10) label = "Apprenti";
+  else label = "Débutant";
+  return { percent, label };
+}
+
+/* Libellé de la dernière zone débloquée (la plus avancée accessible) */
+function getLastUnlockedZoneLabel() {
+  let lastUnlockedIndex = -1;
+  adventureZonesConfig.forEach((zc, i) => { if (isZoneUnlocked(i)) lastUnlockedIndex = i; });
+  if (lastUnlockedIndex === -1) return null;
+  return adventureZonesConfig[lastUnlockedIndex].label;
+}
+
+/* % d'accomplissement global de l'Aventure = bonnes réponses Aventure / total de questions de la base */
+function computeAdventureOverallPercent() {
+  const totalDb = getTotalDatabaseQuestionCount();
+  if (totalDb === 0) return 0;
+  const adv = computeAdventureCorrectTotal();
+  return Math.round((adv.correct / totalDb) * 100);
 }
 
 /* =========================================================
@@ -460,12 +624,22 @@ const els = {
 
   scoreRingValue: document.getElementById("scoreRingValue"),
   globalScore: document.getElementById("globalScore"),
-  totalCorrect: document.getElementById("totalCorrect"),
-  totalAnswered: document.getElementById("totalAnswered"),
   streakCount: document.getElementById("streakCount"),
+  xpCount: document.getElementById("xpCount"),
+  positionCorrect: document.getElementById("positionCorrect"),
+  positionTotal: document.getElementById("positionTotal"),
+  masteryBestRow: document.getElementById("masteryBestRow"),
+  masteryBestIcon: document.getElementById("masteryBestIcon"),
+  masteryBestLabel: document.getElementById("masteryBestLabel"),
+  masteryWorstRow: document.getElementById("masteryWorstRow"),
+  masteryWorstIcon: document.getElementById("masteryWorstIcon"),
+  masteryWorstLabel: document.getElementById("masteryWorstLabel"),
   perfectFlashCount: document.getElementById("perfectFlashCount"),
   perfectClassicCount: document.getElementById("perfectClassicCount"),
-  survivalBestCount: document.getElementById("survivalBestCount"),
+  survivalBestLabel: document.getElementById("survivalBestLabel"),
+  survivalLevelLabel: document.getElementById("survivalLevelLabel"),
+  adventureZoneLabel: document.getElementById("adventureZoneLabel"),
+  adventurePercentLabel: document.getElementById("adventurePercentLabel"),
   startQuizBtn: document.getElementById("startQuizBtn"),
 
   selectBackBtn: document.getElementById("selectBackBtn"),
@@ -527,24 +701,71 @@ const CIRCUMFERENCE = 2 * Math.PI * 60; // r=60, cf. SVG
 
 function renderHomeScreen() {
   const stats = loadStats();
-  const score = getGlobalScoreOn100(stats);
 
-  if (score === null) {
+  // ---- Série (streak) + XP ----
+  els.streakCount.textContent = getDisplayStreak(stats);
+  els.xpCount.textContent = stats.xp;
+
+  // ---- Phrase de positionnement (toutes les données de jeu, Aventure comptée une fois) ----
+  const position = computePositionSentence(stats);
+  els.positionCorrect.textContent = position.correct;
+  els.positionTotal.textContent = position.total;
+
+  // ---- Indicateur de bonnes réponses (jauge dégradée) : PAS l'Aventure ----
+  const accuracy = computeScoreablePercent(stats);
+  if (accuracy === null) {
     els.globalScore.textContent = "--";
     els.scoreRingValue.style.strokeDashoffset = CIRCUMFERENCE;
   } else {
-    els.globalScore.textContent = score;
-    const offset = CIRCUMFERENCE - (score / 100) * CIRCUMFERENCE;
+    els.globalScore.textContent = accuracy;
+    const offset = CIRCUMFERENCE - (accuracy / 100) * CIRCUMFERENCE;
     els.scoreRingValue.style.strokeDasharray = CIRCUMFERENCE;
     els.scoreRingValue.style.strokeDashoffset = offset;
   }
 
-  els.totalCorrect.textContent = stats.totalCorrect;
-  els.totalAnswered.textContent = stats.totalQuestions;
-  els.streakCount.textContent = getDisplayStreak(stats);
+  // ---- Thème le plus / le moins maîtrisé ----
+  const mastery = getMostAndLeastMasteredThemes(stats);
+  const themeLabel = (themeId) => {
+    const t = themesConfig.find(t => t.id === themeId);
+    return t ? t.label : themeId;
+  };
+  const themeIcon = (themeId) => {
+    const t = themesConfig.find(t => t.id === themeId);
+    return t ? t.icon : "fa-circle-question";
+  };
+
+  if (mastery.best) {
+    els.masteryBestRow.classList.remove("is-empty");
+    els.masteryBestIcon.className = `fa-solid ${themeIcon(mastery.best.themeId)}`;
+    els.masteryBestLabel.textContent = themeLabel(mastery.best.themeId);
+  } else {
+    els.masteryBestRow.classList.add("is-empty");
+    els.masteryBestIcon.className = "fa-solid fa-circle-question";
+    els.masteryBestLabel.textContent = "À découvrir";
+  }
+  if (mastery.worst) {
+    els.masteryWorstRow.classList.remove("is-empty");
+    els.masteryWorstIcon.className = `fa-solid ${themeIcon(mastery.worst.themeId)}`;
+    els.masteryWorstLabel.textContent = themeLabel(mastery.worst.themeId);
+  } else {
+    els.masteryWorstRow.classList.add("is-empty");
+    els.masteryWorstIcon.className = "fa-solid fa-circle-question";
+    els.masteryWorstLabel.textContent = "À découvrir";
+  }
+
+  // ---- Perfects ----
   els.perfectFlashCount.textContent = stats.perfectFlashCount;
   els.perfectClassicCount.textContent = stats.perfectClassicCount;
-  els.survivalBestCount.textContent = stats.survivalBest;
+
+  // ---- Niveau QCM Survie ----
+  const survivalLevel = getSurvivalLevel(stats.survivalBest);
+  els.survivalBestLabel.textContent = `${stats.survivalBest} question${stats.survivalBest > 1 ? "s" : ""}`;
+  els.survivalLevelLabel.textContent = survivalLevel.label;
+
+  // ---- QCM Aventure ----
+  const lastZoneLabel = getLastUnlockedZoneLabel();
+  els.adventureZoneLabel.textContent = lastZoneLabel || "Aucune zone";
+  els.adventurePercentLabel.textContent = `${computeAdventureOverallPercent()}% de la base explorée`;
 }
 
 function showScreen(name) {
@@ -705,6 +926,7 @@ function startQuiz(quizType = "classic") {
 
   currentIndex = 0;
   currentCorrectCount = 0;
+  currentQuizThemeTally = {};
 
   updateQuizTopBarForType(quizType);
   showScreen("quiz");
@@ -723,6 +945,7 @@ function startAdventureSquare(zoneId, squareId) {
   currentQuiz = square.questionIds.map(qid => questionsById[qid]).filter(Boolean);
   currentIndex = 0;
   currentCorrectCount = 0;
+  currentQuizThemeTally = {};
 
   updateQuizTopBarForType("adventure");
   showScreen("quiz");
@@ -842,6 +1065,13 @@ function handleAnswer(selectedIdx, selectedBtn) {
     selectedBtn.classList.add("is-wrong");
   }
 
+  // tally par thème de la session en cours (fusionné dans les stats à la fin du QCM)
+  if (!currentQuizThemeTally[q.category]) {
+    currentQuizThemeTally[q.category] = { correct: 0, total: 0 };
+  }
+  currentQuizThemeTally[q.category].total++;
+  if (isCorrect) currentQuizThemeTally[q.category].correct++;
+
   allBtns.forEach(btn => {
     if (btn !== selectedBtn) btn.classList.add("is-faded");
   });
@@ -859,7 +1089,7 @@ function handleAnswer(selectedIdx, selectedBtn) {
 
   // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
   // sinon un texte par défaut (pratique pour repérer les questions à compléter)
-  const explanationText = (q.explanation || "").trim();
+  const explanationText = (q.explication || "").trim();
   els.infoText.textContent = explanationText || "Explication bientôt disponible.";
   els.infoText.classList.toggle("is-empty", !explanationText);
   els.infoAccordion.classList.remove("hidden");
@@ -922,7 +1152,7 @@ function finishQuiz() {
   els.resultTotal.textContent = currentQuiz.length;
 
   // Sauvegarde des stats globales (uniquement ici, quand on voit le score)
-  registerQuizResult(currentCorrectCount, currentQuiz.length, currentQuizType);
+  registerQuizResult(currentCorrectCount, currentQuiz.length, currentQuizType, currentQuizThemeTally);
 
   showScreen("result");
 }
@@ -946,7 +1176,7 @@ function finishSurvivalQuiz(completedFullPool = false) {
     els.resultSurvivalSubtitle.classList.remove("is-mastery");
   }
 
-  registerSurvivalResult(currentCorrectCount);
+  registerSurvivalResult(currentCorrectCount, currentIndex + 1, currentQuizThemeTally);
 
   showScreen("result");
 }
@@ -955,8 +1185,9 @@ function finishSurvivalQuiz(completedFullPool = false) {
   Fin d'un carré du mode Aventure (5 questions). Réutilise l'affichage
   "score /100" comme le Classique/Flash (3/5 = 60, 4/5 = 80, 5/5 = 100 :
   ces paliers correspondent exactement aux seuils de déverrouillage).
-  N'a AUCUNE incidence sur le score global (cf. consigne du mode Survie,
-  appliquée ici aussi) : seule la progression du carré est sauvegardée.
+  N'a AUCUNE incidence sur le score "scoreable" ni sur les stats par
+  thème (recalculées dynamiquement ailleurs) : seule la progression du
+  carré/de la zone est sauvegardée, avec les XP de complétion associés.
 */
 function finishAdventureQuiz() {
   els.progressFill.style.width = "100%";
@@ -971,7 +1202,7 @@ function finishAdventureQuiz() {
   els.resultCorrect.textContent = currentCorrectCount;
   els.resultTotal.textContent = currentQuiz.length;
 
-  registerAdventureResult(currentAdventureSquareId, percent);
+  registerAdventureResult(currentAdventureZoneId, currentAdventureSquareId, percent);
 
   showScreen("result");
 }
@@ -1078,8 +1309,10 @@ function closeResetModal() {
 }
 function confirmReset() {
   localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(ADVENTURE_STORAGE_KEY);
   closeResetModal();
   toggleBurgerMenu(); // referme aussi le menu burger
+  adventureOpenZoneId = null;
   renderHomeScreen();
 }
 
@@ -1177,4 +1410,3 @@ async function init() {
 }
 
 init();
-

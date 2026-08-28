@@ -33,50 +33,88 @@
 
   <!-- ÉCRAN ACCUEIL -->
   <section id="home-screen" class="screen home-screen">
-    <div class="score-ring-wrap">
-      <svg class="score-ring" viewBox="0 0 140 140">
-        <defs>
-          <linearGradient id="scoreRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#4e7cff" />
-            <stop offset="100%" stop-color="#9b5de5" />
-          </linearGradient>
-        </defs>
-        <circle class="score-ring__bg" cx="70" cy="70" r="60"></circle>
-        <circle class="score-ring__value" id="scoreRingValue" cx="70" cy="70" r="60"></circle>
-      </svg>
-      <div class="score-ring__label">
-        <span id="globalScore">--</span>
-        <small>/ 100</small>
+
+    <div class="home-topline">
+      <div class="home-streak">
+        <i class="fa-solid fa-fire"></i>
+        <span id="streakCount">0</span>
+      </div>
+      <div class="home-xp">
+        <span id="xpCount">0</span><small>XP</small>
       </div>
     </div>
 
     <p class="answers-ratio">
-      <strong id="totalCorrect">0</strong> bonnes réponses sur <strong id="totalAnswered">0</strong>
+      <strong id="positionCorrect">0</strong> bonnes réponses sur <strong id="positionTotal">0</strong>
     </p>
 
-    <div class="stats-lines">
-      <p class="stat-line stat-line--streak">
-        <i class="fa-solid fa-fire"></i>
-        <strong id="streakCount">0</strong> jour(s) de suite
-      </p>
-      <p class="stat-line stat-line--perfect">
+    <div class="home-card home-card--accuracy">
+      <div class="mastery-col">
+        <div class="mastery-row mastery-row--best" id="masteryBestRow">
+          <span class="mastery-box"><i class="fa-solid fa-circle-question" id="masteryBestIcon"></i></span>
+          <i class="fa-solid fa-arrow-up mastery-arrow"></i>
+          <span class="mastery-label" id="masteryBestLabel">--</span>
+        </div>
+        <div class="mastery-row mastery-row--worst" id="masteryWorstRow">
+          <span class="mastery-box"><i class="fa-solid fa-circle-question" id="masteryWorstIcon"></i></span>
+          <i class="fa-solid fa-arrow-down mastery-arrow"></i>
+          <span class="mastery-label" id="masteryWorstLabel">--</span>
+        </div>
+      </div>
+
+      <div class="score-ring-wrap score-ring-wrap--small">
+        <svg class="score-ring" viewBox="0 0 140 140">
+          <defs>
+            <linearGradient id="scoreRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#4e7cff" />
+              <stop offset="100%" stop-color="#9b5de5" />
+            </linearGradient>
+          </defs>
+          <circle class="score-ring__bg" cx="70" cy="70" r="60"></circle>
+          <circle class="score-ring__value" id="scoreRingValue" cx="70" cy="70" r="60"></circle>
+        </svg>
+        <div class="score-ring__label">
+          <span id="globalScore">--</span>
+          <small>%</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="home-card home-card--perfects">
+      <div class="perfect-block">
         <i class="fa-solid fa-bolt"></i>
-        <strong id="perfectFlashCount">0</strong> perfect flash (10/10)
-      </p>
-      <p class="stat-line stat-line--perfect">
+        <strong id="perfectFlashCount">0</strong>
+        <small>Perfect Flash</small>
+      </div>
+      <div class="perfect-block-divider"></div>
+      <div class="perfect-block">
         <i class="fa-solid fa-bullseye"></i>
-        <strong id="perfectClassicCount">0</strong> perfect classique (20/20)
-      </p>
-      <p class="stat-line stat-line--survival">
-        <i class="fa-solid fa-heart"></i>
-        <strong id="survivalBestCount">0</strong> questions max survie
-      </p>
+        <strong id="perfectClassicCount">0</strong>
+        <small>Perfect Classique</small>
+      </div>
+    </div>
+
+    <div class="home-card home-card--mode">
+      <span class="home-card__icon home-card__icon--survival"><i class="fa-solid fa-heart"></i></span>
+      <span class="home-card__text">
+        <strong id="survivalBestLabel">0 question</strong>
+        <small id="survivalLevelLabel">Débutant</small>
+      </span>
+    </div>
+
+    <div class="home-card home-card--mode">
+      <span class="home-card__icon home-card__icon--adventure"><i class="fa-solid fa-map-location-dot"></i></span>
+      <span class="home-card__text">
+        <strong id="adventureZoneLabel">--</strong>
+        <small id="adventurePercentLabel">0% de la base explorée</small>
+      </span>
     </div>
 
     <div class="home-spacer"></div>
 
     <button id="startQuizBtn" class="btn btn--primary btn--large">Faire un QCM</button>
   </section>
+
 
   <!-- ÉCRAN CHOIX DU TYPE DE QCM -->
   <section id="select-screen" class="screen select-screen hidden">

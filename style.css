@@ -140,7 +140,7 @@ button { font-family: inherit; }
 .screen { display: flex; flex-direction: column; align-items: center; flex: 1; }
 
 /* ---------- HOME ---------- */
-.home-screen { justify-content: flex-start; padding-top: 20px; gap: 22px; }
+.home-screen { justify-content: flex-start; padding-top: 20px; gap: 16px; }
 
 /* ---------- SÉLECTION DU TYPE DE QCM ---------- */
 .select-screen {
@@ -238,6 +238,7 @@ button { font-family: inherit; }
 }
 
 .score-ring-wrap { position: relative; width: 160px; height: 160px; margin-top: 10px; }
+.score-ring-wrap--small { width: 108px; height: 108px; margin-top: 0; flex-shrink: 0; }
 .score-ring { width: 100%; height: 100%; transform: rotate(-90deg); }
 .score-ring__bg, .score-ring__value {
   fill: none;
@@ -262,6 +263,8 @@ button { font-family: inherit; }
 }
 .score-ring__label span { font-size: 2.4rem; font-weight: 800; }
 .score-ring__label small { color: var(--text-muted); font-size: 0.85rem; }
+.score-ring-wrap--small .score-ring__label span { font-size: 1.6rem; }
+.score-ring-wrap--small .score-ring__label small { font-size: 0.7rem; }
 
 .answers-ratio {
   color: var(--text-muted);
@@ -271,27 +274,149 @@ button { font-family: inherit; }
 }
 .answers-ratio strong { color: var(--text); }
 
-.stats-lines {
+/* ---------- LIGNE DU HAUT : SÉRIE + XP ---------- */
+.home-topline {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.home-streak {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  color: #ffc43d;
+}
+.home-streak i { color: #ff9d2f; font-size: 1.15rem; }
+
+.home-xp {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.15rem;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.home-xp small {
+  margin-left: 4px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  -webkit-text-fill-color: initial;
+  color: var(--text-muted);
+  background: none;
+}
+
+/* ---------- CARTES DE L'ACCUEIL (même esprit que les cartes de choix de QCM) ---------- */
+.home-card {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.home-card--accuracy {
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.mastery-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+.mastery-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mastery-row.is-empty { opacity: 0.5; }
+.mastery-box {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+}
+.mastery-row--best .mastery-box { background: rgba(61, 220, 132, 0.15); color: var(--success); }
+.mastery-row--worst .mastery-box { background: rgba(255, 84, 112, 0.15); color: var(--danger); }
+.mastery-arrow { font-size: 0.85rem; flex-shrink: 0; }
+.mastery-row--best .mastery-arrow { color: var(--success); }
+.mastery-row--worst .mastery-arrow { color: var(--danger); }
+.mastery-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.88rem;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ---------- CARTE PERFECTS ---------- */
+.home-card--perfects { padding: 16px 8px; gap: 0; }
+.perfect-block {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
-  margin: -6px 0 2px;
+  gap: 4px;
+  text-align: center;
 }
-.stat-line {
+.perfect-block i { font-size: 1.15rem; color: var(--purple); }
+.perfect-block strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.3rem;
+  color: var(--text);
+}
+.perfect-block small { color: var(--text-muted); font-size: 0.78rem; }
+.perfect-block-divider {
+  width: 1px;
+  align-self: stretch;
+  background: var(--border);
+  margin: 2px 4px;
+}
+
+/* ---------- CARTES SURVIE / AVENTURE ---------- */
+.home-card--mode { gap: 14px; }
+.home-card__icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 12px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9rem;
+  justify-content: center;
+  font-size: 1.15rem;
 }
-.stat-line i { font-size: 0.95rem; }
-.stat-line strong { font-weight: 800; }
-.stat-line--streak { color: var(--blue); }
-.stat-line--perfect { color: var(--purple); }
-.stat-line--survival { color: var(--danger); }
+.home-card__icon--survival { background: rgba(255, 84, 112, 0.15); color: var(--danger); }
+.home-card__icon--adventure { background: rgba(155, 93, 229, 0.15); color: var(--purple); }
+.home-card__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.home-card__text strong {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--text);
+}
+.home-card__text small { color: var(--text-muted); font-size: 0.82rem; }
 
 .home-spacer {
   flex: 1 1 auto;
@@ -876,4 +1001,3 @@ button { font-family: inherit; }
 @media (min-width: 540px) {
   .result-actions { flex-direction: row; }
 }
-
