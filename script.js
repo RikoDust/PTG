@@ -168,16 +168,17 @@ function registerQuizResult(correctCount, totalQuestionsInQuiz, quizType, themeT
   mergeThemeTally(stats, themeTally);
 
   const isPerfect = correctCount === totalQuestionsInQuiz;
-  let xpGained = correctCount * 2;
+  const baseXp = correctCount * 2;
+  let bonusXp = 0;
   if (quizType === "classic") {
-    if (isPerfect) { stats.perfectClassicCount += 1; xpGained += 20; }
+    if (isPerfect) { stats.perfectClassicCount += 1; bonusXp = 20; }
   } else if (quizType === "flash") {
-    if (isPerfect) { stats.perfectFlashCount += 1; xpGained += 10; }
+    if (isPerfect) { stats.perfectFlashCount += 1; bonusXp = 10; }
   }
-  stats.xp += xpGained;
+  stats.xp += baseXp + bonusXp;
 
   saveStats(stats);
-  return stats;
+  return { baseXp, bonusXp, isPerfect };
 }
 
 /*
@@ -198,10 +199,12 @@ function registerSurvivalResult(correctCount, totalAnswered, themeTally) {
     stats.survivalBest = correctCount;
   }
 
-  stats.xp += correctCount * 2 + computeSurvivalXpBonus(correctCount);
+  const baseXp = correctCount * 2;
+  const bonusXp = computeSurvivalXpBonus(correctCount);
+  stats.xp += baseXp + bonusXp;
 
   saveStats(stats);
-  return stats;
+  return { baseXp, bonusXp };
 }
 
 /* =========================================================
@@ -274,6 +277,8 @@ function registerAdventureResult(zoneId, squareId, percent) {
 
   saveStats(stats);
   saveAdventureProgress(progress);
+
+  return { previousBest };
 }
 
 /* Un carré est débloqué si c'est le premier de la zone, ou si le précédent atteint >= 60% */
@@ -672,13 +677,7 @@ const els = {
   infoText: document.getElementById("infoText"),
   continueBtn: document.getElementById("continueBtn"),
 
-  resultBlockScore: document.getElementById("resultBlockScore"),
-  resultScore: document.getElementById("resultScore"),
-  resultCorrect: document.getElementById("resultCorrect"),
-  resultTotal: document.getElementById("resultTotal"),
-  resultBlockSurvival: document.getElementById("resultBlockSurvival"),
-  resultSurvivalScore: document.getElementById("resultSurvivalScore"),
-  resultSurvivalSubtitle: document.getElementById("resultSurvivalSubtitle"),
+  resultBlock: document.getElementById("resultBlock"),
   shareScoreBtn: document.getElementById("shareScoreBtn"),
   retryQuizBtn: document.getElementById("retryQuizBtn"),
   backHomeBtn: document.getElementById("backHomeBtn"),
@@ -1089,7 +1088,7 @@ function handleAnswer(selectedIdx, selectedBtn) {
 
   // accordéon "Plus d'infos" : affiche l'explication si elle existe dans le JSON,
   // sinon un texte par défaut (pratique pour repérer les questions à compléter)
-  const explanationText = (q.explanation || "").trim();
+  const explanationText = (q.explication || "").trim();
   els.infoText.textContent = explanationText || "Explication bientôt disponible.";
   els.infoText.classList.toggle("is-empty", !explanationText);
   els.infoAccordion.classList.remove("hidden");
@@ -1137,57 +1136,63 @@ function handleContinue() {
   }
 }
 
+/* Construit la ligne HTML d'un gain XP de base ("X xp gagné de bonnes réponses") */
+function xpBaseLineHtml(baseXp) {
+  return `<p class="result-detail">${baseXp} xp gagné de bonnes réponses</p>`;
+}
+
+/* Construit la ligne HTML d'un bonus XP, mise en évidence (couleur accent) */
+function xpBonusLineHtml(text) {
+  return `<p class="result-detail result-detail--bonus">${text}</p>`;
+}
+
 function finishQuiz() {
   // jauge complète et verte
   els.progressFill.style.width = "100%";
   els.progressFill.classList.add("progress-fill--done");
 
-  const scoreOn100 = Math.round((currentCorrectCount / currentQuiz.length) * 100);
-  lastQuizScoreOn100 = scoreOn100;
+  const xpResult = registerQuizResult(currentCorrectCount, currentQuiz.length, currentQuizType, currentQuizThemeTally);
 
-  els.resultBlockSurvival.classList.add("hidden");
-  els.resultBlockScore.classList.remove("hidden");
-  els.resultScore.innerHTML = `${scoreOn100}<small>/100</small>`;
-  els.resultCorrect.textContent = currentCorrectCount;
-  els.resultTotal.textContent = currentQuiz.length;
+  const perfectLabel = currentQuizType === "classic" ? "perfect classique" : "perfect flash";
+  els.resultBlock.innerHTML = `
+    ${xpBaseLineHtml(xpResult.baseXp)}
+    ${xpResult.isPerfect ? xpBonusLineHtml(`+${xpResult.bonusXp} xp bonus ${perfectLabel}`) : ""}
+    <p class="result-detail result-detail--count"><strong>${currentCorrectCount}</strong> bonnes réponses sur <strong>${currentQuiz.length}</strong></p>
+  `;
 
-  // Sauvegarde des stats globales (uniquement ici, quand on voit le score)
-  registerQuizResult(currentCorrectCount, currentQuiz.length, currentQuizType, currentQuizThemeTally);
+  els.backHomeBtn.textContent = "Revenir à l'accueil";
 
   showScreen("result");
 }
 
-/* Fin d'un QCM Survie : n'a AUCUNE incidence sur le score global (cf. consigne) */
+/* Fin d'un QCM Survie : n'a AUCUNE incidence sur le score "scoreable" par thème/global (cf. consigne) */
 function finishSurvivalQuiz(completedFullPool = false) {
   lastSurvivalCorrectCount = currentCorrectCount;
   lastSurvivalCompletedFullPool = completedFullPool;
 
-  els.resultBlockScore.classList.add("hidden");
-  els.resultBlockSurvival.classList.remove("hidden");
-  els.resultSurvivalScore.textContent = currentCorrectCount;
+  const xpResult = registerSurvivalResult(currentCorrectCount, currentIndex + 1, currentQuizThemeTally);
 
-  if (completedFullPool) {
-    // le joueur a répondu à toutes les questions disponibles dans la base de données
-    els.resultSurvivalSubtitle.textContent =
-      "Vous avez répondu à toutes les questions de la base de données. Félicitations, vous êtes un maître du QCM !";
-    els.resultSurvivalSubtitle.classList.add("is-mastery");
-  } else {
-    els.resultSurvivalSubtitle.textContent = "bonne(s) réponse(s) enchaînée(s)";
-    els.resultSurvivalSubtitle.classList.remove("is-mastery");
-  }
+  const masteryLine = completedFullPool
+    ? `<p class="result-detail is-mastery">Vous avez répondu à toutes les questions de la base de données. Félicitations, vous êtes un maître du QCM !</p>`
+    : "";
 
-  registerSurvivalResult(currentCorrectCount, currentIndex + 1, currentQuizThemeTally);
+  els.resultBlock.innerHTML = `
+    <p class="result-detail result-detail--count"><strong>${currentCorrectCount}</strong> bonne(s) réponse(s) enchaînée(s)</p>
+    ${xpBaseLineHtml(xpResult.baseXp)}
+    ${xpResult.bonusXp > 0 ? xpBonusLineHtml(`+${xpResult.bonusXp} xp bonus cumulés`) : ""}
+    ${masteryLine}
+  `;
+
+  els.backHomeBtn.textContent = "Revenir à l'accueil";
 
   showScreen("result");
 }
 
 /*
-  Fin d'un carré du mode Aventure (5 questions). Réutilise l'affichage
-  "score /100" comme le Classique/Flash (3/5 = 60, 4/5 = 80, 5/5 = 100 :
-  ces paliers correspondent exactement aux seuils de déverrouillage).
-  N'a AUCUNE incidence sur le score "scoreable" ni sur les stats par
-  thème (recalculées dynamiquement ailleurs) : seule la progression du
-  carré/de la zone est sauvegardée, avec les XP de complétion associés.
+  Fin d'un carré du mode Aventure (5 questions). N'a AUCUNE incidence
+  sur le score "scoreable" ni sur les stats par thème (recalculées
+  dynamiquement ailleurs) : seule la progression du carré/de la zone
+  est sauvegardée, avec les XP de complétion associés.
 */
 function finishAdventureQuiz() {
   els.progressFill.style.width = "100%";
@@ -1196,13 +1201,35 @@ function finishAdventureQuiz() {
   const percent = Math.round((currentCorrectCount / currentQuiz.length) * 100);
   lastQuizScoreOn100 = percent;
 
-  els.resultBlockSurvival.classList.add("hidden");
-  els.resultBlockScore.classList.remove("hidden");
-  els.resultScore.innerHTML = `${percent}<small>/100</small>`;
-  els.resultCorrect.textContent = currentCorrectCount;
-  els.resultTotal.textContent = currentQuiz.length;
+  const { previousBest } = registerAdventureResult(currentAdventureZoneId, currentAdventureSquareId, percent);
+  // le carré suivant était-il déjà débloqué AVANT cette tentative ?
+  const nextSquareWasAlreadyUnlocked = previousBest >= ADVENTURE_UNLOCK_THRESHOLD;
 
-  registerAdventureResult(currentAdventureZoneId, currentAdventureSquareId, percent);
+  let icon, message;
+  if (percent < ADVENTURE_UNLOCK_THRESHOLD) {
+    icon = "fa-lock";
+    message = "Obtenez au moins 60% pour débloquer le carré suivant.";
+  } else if (percent < ADVENTURE_COMPLETE_THRESHOLD) {
+    icon = "fa-unlock";
+    const lines = [];
+    if (!nextSquareWasAlreadyUnlocked) lines.push("Carré suivant débloqué.");
+    lines.push("Faites 100% pour obtenir des xp.");
+    message = lines.join("<br>");
+  } else {
+    icon = "fa-star";
+    const lines = [];
+    if (!nextSquareWasAlreadyUnlocked) lines.push("Carré suivant débloqué.");
+    lines.push("10 xp pour 100% du carré.");
+    message = lines.join("<br>");
+  }
+
+  els.resultBlock.innerHTML = `
+    <div class="result-adventure-icon"><i class="fa-solid ${icon}"></i></div>
+    <p class="result-detail result-detail--count">${message}</p>
+  `;
+
+  // sur l'écran résultat spécifiquement, ce bouton ramène en réalité à la zone, pas à l'accueil
+  els.backHomeBtn.textContent = "Retour à QCM aventure";
 
   showScreen("result");
 }
@@ -1347,6 +1374,7 @@ function bindEvents() {
 
   els.selectBackBtn.addEventListener("click", () => {
     showScreen("home");
+    renderHomeScreen();
   });
 
   els.classicQuizBtn.addEventListener("click", () => {

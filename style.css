@@ -704,24 +704,42 @@ button { font-family: inherit; }
   color: var(--text-muted);
   margin: 0 0 10px;
 }
-.result-score {
+.result-detail { color: var(--text-muted); margin: 6px 0 0; }
+.result-detail strong { color: var(--text); }
+
+.result-detail--count {
   font-family: var(--font-display);
-  font-size: 3.2rem;
   font-weight: 800;
+  font-size: 1.15rem;
+  color: var(--text);
+  margin-top: 4px;
+}
+.result-detail--count strong {
+  font-size: 1.3rem;
   background: var(--gradient);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
-.result-score small {
-  font-size: 1.2rem;
-  color: var(--text-muted);
-  -webkit-background-clip: initial;
-  background-clip: initial;
-  -webkit-text-fill-color: initial;
+
+.result-detail--bonus {
+  color: #ffc43d;
+  font-weight: 700;
 }
-.result-detail { color: var(--text-muted); margin: 6px 0 0; }
-.result-detail strong { color: var(--text); }
+
+.result-adventure-icon {
+  width: 62px;
+  height: 62px;
+  margin: 4px auto 6px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.7rem;
+  background: var(--gradient);
+  color: #fff;
+}
+
 .result-detail.is-mastery {
   font-weight: 700;
   line-height: 1.4;
