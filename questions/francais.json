@@ -70,6 +70,44 @@
       "answer": 2,
       "explanation": "Après « il faut que », on utilise ici le subjonctif : « que tu viennes ». Le subjonctif est utilisé après certaines expressions comme « il faut que », « bien que » ou « pour que »."
     },
+    {
+      "id": "francais_11",
+      "question": "Que signifie « donner sa langue au chat » ?",
+      "options": ["Parler très vite", "Abandonner une recherche de réponse", "Raconter un secret", "Mentir"],
+      "answer": 1,
+      "explanation": "Donner sa langue au chat signifie abandonner lorsqu'on ne trouve pas une réponse. L'expression est souvent utilisée lors d'une devinette ou d'une question difficile."
+    },
+    {
+      "id": "francais_12",
+      "question": "Que signifie « avoir le cœur sur la main » ?",
+      "options": ["Être généreux", "Être triste", "Être malade", "Être impatient"],
+      "answer": 0,
+      "explanation": "Avoir le cœur sur la main signifie être généreux et aimer aider les autres. L'image évoque une personne qui donnerait volontiers ce qu'elle possède."
+    },
+    {
+      "id": "francais_13",
+      "question": "Que signifie « coûter les yeux de la tête » ?",
+      "options": ["Être difficile à comprendre", "Coûter très cher", "Être dangereux", "Être rare"],
+      "answer": 1,
+      "explanation": "« Coûter les yeux de la tête » signifie coûter extrêmement cher. Cette expression imagée existe en français depuis plusieurs siècles."
+    },
+    {
+      "id": "francais_14",
+      "question": "Que signifie « tomber dans les pommes » ?",
+      "options": ["Faire une chute", "S'endormir", "S'évanouir", "Se tromper"],
+      "answer": 2,
+      "explanation": "« Tomber dans les pommes » signifie s'évanouir ou perdre connaissance. "
+    },
+    {
+      "id": "francais_15",
+      "question": "Que signifie « mettre les pieds dans le plat » ?",
+      "options": ["Faire une erreur en parlant d'un sujet délicat", "Faire la cuisine", "Partir précipitamment", "Refuser une invitation"],
+      "answer": 0,
+      "explanation": "« Mettre les pieds dans le plat signifie aborder maladroitement un sujet délicat. L'expression évoque l'idée de provoquer une gêne sans le vouloir. "
+    },
+
+
+
 
 
 
