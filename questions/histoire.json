@@ -71,7 +71,43 @@
       "answer": 2,
       "explanation": "Louis XVI est guillotiné le 21 janvier 1793, pendant la Révolution française. Son exécution marque un tournant majeur dans l'histoire de la monarchie française."
     }, 
-    
+    {
+      "id": "histoire_11",
+      "question": "Quel événement a lieu le 14 juillet 1789 ?",
+      "options": ["Le sacre de Napoléon", "La prise de la Bastille", "La fuite de Louis XVI", "La bataille de Waterloo"],
+      "answer": 1,
+      "explanation": "Le 14 juillet 1789, les Parisiens prennent la Bastille, une forteresse devenue symbole de l'autorité royale. L'événement est aujourd'hui commémoré lors de la fête nationale française."
+    }, 
+    {
+      "id": "histoire_12",
+      "question": "Quel texte proclame les libertés fondamentales en 1789 ?",
+      "options": ["La Constitution européenne", "Le Code civil", "La Déclaration des droits de l'homme et du citoyen", "Le traité de Versailles"],
+      "answer": 2,
+      "explanation": "La Déclaration des droits de l'homme et du citoyen est adoptée en août 1789. Elle affirme notamment des principes fondamentaux comme la liberté et l'égalité devant la loi."
+    }, 
+    {
+      "id": "histoire_13",
+      "question": "Quel symbole représente souvent la République française ?",
+      "options": ["Marianne", "Jeanne", "Cléopâtre", "Vénus"],
+      "answer": 0,
+      "explanation": "Marianne représente la République française et apparaît notamment sur les mairies, les timbres et certaines pièces. Son bonnet phrygien rappelle les idéaux révolutionnaires."
+    }, 
+    {
+      "id": "histoire_14",
+      "question": "Quel roi est renversé pendant la Révolution française ?",
+      "options": ["Louis XIII", "Louis XIV", "Louis XVI", "Louis XVIII"],
+      "answer": 2,
+      "explanation": "Louis XVI est renversé en 1792 lorsque la monarchie est abolie et que la République est proclamée. Il est ensuite jugé puis exécuté en 1793."
+    },    
+    {
+      "id": "histoire_15",
+      "question": "Quel événement marque traditionnellement la fin de la monarchie en 1792 ?",
+      "options": ["La prise de la Bastille", "La bataille de Waterloo", "La proclamation de la République", "Le sacre de Napoléon"],
+      "answer": 2,
+      "explanation": "La proclamation de la République, le 22 septembre 1792, met officiellement fin à la monarchie constitutionnelle. La France entre alors dans une nouvelle période politique."
+    },    
+
+
 
 
 
