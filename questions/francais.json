@@ -3,108 +3,81 @@
   "questions": [
     {
       "id": "francais_1",
-      "question": "Quel est le pluriel de 'cheval' ?",
-      "options": ["Chevals", "Chevaux", "Chevales", "Chevaus"],
+      "question": "Quelle phrase est correctement écrite ?",
+      "options": ["Ils son partis", "Ils sont partis", "Ils sont partie", "Ils son partie"],
       "answer": 1,
-      "explanation": "Le pluriel de « cheval » est « chevaux ». Les mots terminés en « -al » prennent souvent « -aux » au pluriel."
+      "explanation": "« Sont » est une forme du verbe être, tandis que « son » est un déterminant possessif. Un bon moyen de vérifier est de remplacer « sont » par « étaient »"
     },
-    {
-      "id": "francais_2",
-      "question": "Quelle est la nature grammaticale du mot 'rapidement' ?",
-      "options": ["Un adjectif", "Un adverbe", "Un nom", "Un verbe"],
+    {"id": "francais_2",
+      "question": "Quelle phrase est correcte ?",
+      "options": ["J'ai manger une pomme", "J'ai mangé une pomme", "J'ai mangée une pomme", "J'ai mangés une pomme"],
       "answer": 1,
-      "explanation": "« Rapidement » est un adverbe, car il précise la manière dont une action est réalisée. Beaucoup d'adverbes de manière se terminent par « -ment »."
+      "explanation": "Après l'auxiliaire « avoir », on utilise ici le participe passé « mangé ». La phrase correcte est donc « J'ai mangé une pomme »."
     },
     {
       "id": "francais_3",
-      "question": "Qui est l'auteur des 'Misérables' ?",
-      "options": ["Émile Zola", "Victor Hugo", "Gustave Flaubert", "Honoré de Balzac"],
+      "question": "Quel mot est correctement écrit ?",
+      "options": ["Acceuil", "Accueil", "Acueil", "Accueuil"],
       "answer": 1,
-      "explanation": "Victor Hugo a publié Les Misérables en 1862. Ce roman raconte notamment le destin de Jean Valjean dans la France du XIXe siècle."
+      "explanation": "Le mot « accueil » comporte deux « c » et un seul « u » après le « e ». Une astuce consiste à penser à la famille de mots « accueillir » et « accueillant »."
     },
     {
       "id": "francais_4",
-      "question": "Comment appelle-t-on une figure de style qui exagère volontairement ?",
-      "options": ["Une litote", "Une métaphore", "Une hyperbole", "Une antithèse"],
-      "answer": 2,
-      "explanation": "L'hyperbole consiste à exagérer volontairement une idée pour la rendre plus forte. Par exemple : « Je te l'ai dit mille fois ! »"
+      "question": "Quel mot est correctement écrit ?",
+      "options": ["Chevals", "Chevaux", "Chevaus", "Chevalx"],
+      "answer": 1,
+      "explanation": "Le pluriel de « cheval » est « chevaux » : certains noms en -al prennent -aux au pluriel. Il existe cependant des exceptions, comme « bal » qui donne « bals »."
     },
     {
       "id": "francais_5",
-      "question": "Quel est le féminin de 'acteur' ?",
-      "options": ["Actrice", "Acteure", "Actoresse", "Actrise"],
-      "answer": 0,
-      "explanation": "Le féminin de « acteur » est « actrice ». Il s'agit d'un exemple où la terminaison du mot change lors du passage au féminin."
+      "question": "Quelle phrase est correctement écrite ?",
+      "options": ["Il fait très froid aujourd'hui", "Il fais très froid aujourd'hui", "Il font très froid aujourd'hui", "Il faire très froid aujourd'hui"],
+      "answer": 1,
+      "explanation": "On écrit « il fait » avec la forme du verbe faire à la troisième personne du singulier."
     },
     {
       "id": "francais_6",
-      "question": "Quel auteur a écrit 'Le Petit Prince' ?",
-      "options": ["Albert Camus", "Antoine de Saint-Exupéry", "Marcel Proust", "Jean-Paul Sartre"],
-      "answer": 1,
-      "explanation": "Antoine de Saint-Exupéry a écrit Le Petit Prince, publié en 1943. Ce conte philosophique est devenu l'un des livres français les plus traduits au monde."
+      "question": "Complète la phrase avec la bonne forme : « Nous ___ au cinéma samedi soir. »",
+      "options": ["irons", "iront", "ira", "aller"],
+      "answer": 0,
+      "explanation": "« Nous » se conjugue à la première personne du pluriel : « nous irons »."
     },
     {
       "id": "francais_7",
-      "question": "Quel temps exprime une action passée dans 'il mangea' ?",
-      "options": ["Imparfait", "Passé simple", "Passé composé", "Plus-que-parfait"],
-      "answer": 1,
-      "explanation": "« Il mangea » est conjugué au passé simple. Ce temps est particulièrement utilisé dans les récits et les textes littéraires pour raconter des actions passées."
+      "question": "Quelle est la bonne terminaison ? « Les enfants jou___ dans le jardin. »",
+      "options": ["-e", "-es", "-ent", "er"],
+      "answer": 2,
+      "explanation": "Avec « les enfants », le verbe est à la troisième personne du pluriel : « jouent ». À la troisième personne du pluriel, les verbes en -er se terminent généralement par -ent."
     },
     {
       "id": "francais_8",
-      "question": "Quel est le synonyme de 'joyeux' ?",
-      "options": ["Triste", "Content", "Fatigué", "Fâché"],
+      "question": "Que faut-il écrire dans cette phrase ? « Elle ___ préparée pour son examen. »",
+      "options": ["c'est", "s'est", "sait", "ses"],
       "answer": 1,
-      "explanation": "« Content » est un synonyme de « joyeux », car les deux mots expriment une idée de bonheur ou de satisfaction. Le contexte peut toutefois influencer le choix du mot."
+      "explanation": "On écrit « elle s'est préparée ». « S'est » correspond à la combinaison du pronom se et de l'auxiliaire être. « C'est » signifie généralement « cela est »."
     },
     {
       "id": "francais_9",
-      "question": "Combien de personnes (grammaticales) compte la conjugaison française ?",
-      "options": ["4", "5", "6", "7"],
-      "answer": 2,
-      "explanation": "La conjugaison française compte six personnes : je, tu, il/elle/on, nous, vous et ils/elles. Elles permettent d'identifier qui réalise l'action."
+      "question": "Quel est le bon pluriel de « journal » ?",
+      "options": ["Journals", "Journaux", "Journau", "Journales"],
+      "answer": 1,
+      "explanation": "Le pluriel de « journal » est « journaux ». De nombreux noms terminés en -al forment leur pluriel en -aux : journal → journaux, cheval → chevaux, animal → animaux."
     },
     {
       "id": "francais_10",
-      "question": "Quel mot est un antonyme de 'rapide' ?",
-      "options": ["Lent", "Vif", "Prompt", "Agile"],
-      "answer": 0,
-      "explanation": "« Lent » est l'antonyme de « rapide », car ces deux mots expriment des idées opposées. Un antonyme est justement un mot dont le sens est contraire à celui d'un autre."
-    },
-    {
-      "id": "francais_11",
-      "question": "Quel est le contraire de 'commencer' ?",
-      "options": ["Débuter", "Terminer", "Continuer", "Entamer"],
-      "answer": 1,
-      "explanation": "« Terminer » est le contraire de « commencer ». Ces deux verbes décrivent respectivement la fin et le début d'une action."
-    },
-    {
-      "id": "francais_12",
-      "question": "Comment appelle-t-on deux mots qui se prononcent pareil mais s'écrivent différemment ?",
-      "options": ["Des synonymes", "Des antonymes", "Des homophones", "Des paronymes"],
+      "question": "Repère la forme correcte :",
+      "options": ["Il faut que tu viens demain", "Il faut que tu vienne demain", "Il faut que tu viennes demain", "Il faut que tu venir demain"],
       "answer": 2,
-      "explanation": "Les homophones sont des mots qui se prononcent de la même manière mais qui peuvent avoir une orthographe et un sens différents, comme « verre », « vers » et « vert »."
+      "explanation": "Après « il faut que », on utilise ici le subjonctif : « que tu viennes ». Le subjonctif est utilisé après certaines expressions comme « il faut que », « bien que » ou « pour que »."
     },
+
+
+
+
+
     {
-      "id": "francais_13",
-      "question": "Qui a écrit 'Le Rouge et le Noir' ?",
-      "options": ["Stendhal", "Balzac", "Flaubert", "Zola"],
-      "answer": 0,
-      "explanation": "Stendhal a publié Le Rouge et le Noir en 1830. Le roman raconte l'ascension sociale de Julien Sorel dans la France du XIXe siècle."
-    },
-    {
-      "id": "francais_14",
-      "question": "Quelle expression signifie 'être très content' ?",
-      "options": ["Avoir le cafard", "Être aux anges", "Filer un mauvais coton", "Avoir le trac"],
-      "answer": 1,
-      "explanation": "« Être aux anges » signifie être très heureux ou très content. Cette expression évoque l'idée d'être dans un état de bonheur exceptionnel."
-    },
-    {
-      "id": "francais_15",
-      "question": "Quel signe de ponctuation introduit généralement une énumération ?",
-      "options": ["Le point-virgule", "Les deux-points", "Les points de suspension", "Le tiret"],
-      "answer": 1,
-      "explanation": "Les deux-points servent notamment à introduire une énumération, une explication ou une citation. Exemple : « J'ai acheté trois fruits : une pomme, une poire et une orange. »"
+
+
     }
   ]
 }
