@@ -18,7 +18,7 @@
     {
       "id": "histoire_3",
       "question": "En quelle année se termine la Seconde Guerre mondiale en Europe ?",
-      "options": ["1943", "1944", "1845", "1946"],
+      "options": ["1943", "1944", "1945", "1946"],
       "answer": 2,
       "explanation": "En Europe, la Seconde Guerre mondiale se termine en mai 1945 avec la capitulation de l'Allemagne. Le conflit mondial se poursuit toutefois en Asie jusqu'à la capitulation du Japon en septembre."
     },
@@ -36,9 +36,45 @@
       "answer": 2,
       "explanation": "Les pièces et billets en euros arrivent dans les portefeuilles en 2002, même si l'euro existe déjà comme monnaie scripturale depuis 1999. La France fait partie des premiers pays à l'adopter."
     },
-
-
+    {
+      "id": "histoire_6",
+      "question": "Quel roi est surnommé le Roi-Soleil ?",
+      "options": ["Louis XIII", "Louis XIV", "Louis XV", "Louis XVI"],
+      "answer": 1,
+      "explanation": "Louis XIV est surnommé le Roi-Soleil et règne pendant plus de 72 ans, l'un des plus longs règnes de l'histoire européenne. Il fait de Versailles un centre majeur du pouvoir royal."
+    },  
+    {
+      "id": "histoire_7",
+      "question": "Quel roi était l'époux de Marie-Antoinette ?",
+      "options": ["Louis XIV", "Louis XV", "Louis XVI", "Charles X"],
+      "answer": 2,
+      "explanation": "Louis XVI épouse Marie-Antoinette en 1770, alors qu'ils sont encore très jeunes. Leur mariage vise notamment à renforcer l'alliance entre la France et l'Autriche."
+    },        
+    {
+      "id": "histoire_8",
+      "question": "Quel roi est associé à la phrase « Paris vaut bien une messe » ?",
+      "options": ["Henri IV", "François Ier", "Louis XIII", "Charles IX"],
+      "answer": 0,
+      "explanation": "La phrase « Paris vaut bien une messe » est traditionnellement attribuée à Henri IV lors de sa conversion au catholicisme. Elle symbolise l'importance politique qu'il accordait à l'unité du royaume."
+    },     
+    {
+      "id": "histoire_9",
+      "question": "Quel château est particulièrement associé au règne de Louis XIV ?",
+      "options": ["Chambord", "Versailles", "Fontainebleau", "Chenonceau"],
+      "answer": 1,
+      "explanation": "Versailles devient progressivement le cœur du pouvoir royal sous Louis XIV. Le château est agrandi pour accueillir la cour et impressionner les visiteurs européens."
+    }, 
+    {
+      "id": "histoire_10",
+      "question": "Quel roi de France a été guillotiné pendant la Révolution française ?",
+      "options": ["Louis XIV", "Louis XV", "Louis XVI", "Charles X"],
+      "answer": 2,
+      "explanation": "Louis XVI est guillotiné le 21 janvier 1793, pendant la Révolution française. Son exécution marque un tournant majeur dans l'histoire de la monarchie française."
+    }, 
     
+
+
+
 
     {
 

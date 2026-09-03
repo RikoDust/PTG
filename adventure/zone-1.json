@@ -24,7 +24,7 @@
         "francais_4",
         "francais_5"
       ],
-      "subtitle": "Grammaire et littérature française"
+      "subtitle": ""
     },
     {
       "id": "zone-1_3",
@@ -36,7 +36,7 @@
         "geographie_14",
         "geographie_15"
       ],
-      "subtitle": "Capitales, fleuves et drapeaux"
+      "subtitle": ""
     },
     {
       "id": "zone-1_4",
@@ -48,7 +48,7 @@
         "sciences-maths_4",
         "sciences-maths_5"
       ],
-      "subtitle": "Calcul et géométrie de base"
+      "subtitle": ""
     },
     {
       "id": "zone-1_5",
@@ -60,7 +60,7 @@
         "histoire_9",
         "histoire_10"
       ],
-      "subtitle": "Civilisations et grandes dates"
+      "subtitle": "Les rois et reines de France"
     },
     {
       "id": "zone-1_6",
@@ -72,7 +72,7 @@
         "institution-droit_4",
         "institution-droit_5"
       ],
-      "subtitle": "Les fondements de la Ve République"
+      "subtitle": ""
     },
     {
       "id": "zone-1_7",
@@ -84,7 +84,7 @@
         "francais_9",
         "francais_10"
       ],
-      "subtitle": "Vocabulaire et conjugaison"
+      "subtitle": ""
     },
     {
       "id": "zone-1_8",
@@ -96,7 +96,7 @@
         "art-litterature_17",
         "art-litterature_18"
       ],
-      "subtitle": "Peintures et grands courants artistiques"
+      "subtitle": ""
     },
     {
       "id": "zone-1_9",
@@ -108,7 +108,7 @@
         "geographie_17",
         "geographie_18"
       ],
-      "subtitle": "Reliefs et monuments du monde"
+      "subtitle": ""
     },
     {
       "id": "zone-1_10",
@@ -120,7 +120,7 @@
         "cinema-musique-medias_4",
         "cinema-musique-medias_5"
       ],
-      "subtitle": "Cinéma et musique incontournables"
+      "subtitle": ""
     },
     {
       "id": "zone-1_11",
@@ -132,7 +132,7 @@
         "histoire_14",
         "histoire_15"
       ],
-      "subtitle": "Empires et civilisations antiques"
+      "subtitle": ""
     },
     {
       "id": "zone-1_12",
@@ -144,7 +144,7 @@
         "sciences-maths_9",
         "sciences-maths_10"
       ],
-      "subtitle": "Nombres et fractions"
+      "subtitle": ""
     },
     {
       "id": "zone-1_13",
@@ -156,7 +156,7 @@
         "francais_14",
         "francais_15"
       ],
-      "subtitle": "Expressions et auteurs classiques"
+      "subtitle": ""
     },
     {
       "id": "zone-1_14",
@@ -168,7 +168,7 @@
         "institution-droit_9",
         "institution-droit_10"
       ],
-      "subtitle": "Citoyenneté et Europe"
+      "subtitle": ""
     },
     {
       "id": "zone-1_15",
@@ -180,7 +180,7 @@
         "nature-environnement_4",
         "nature-environnement_5"
       ],
-      "subtitle": "Climat et biodiversité"
+      "subtitle": ""
     },
     {
       "id": "zone-1_16",
@@ -192,7 +192,7 @@
         "art-litterature_7",
         "art-litterature_8"
       ],
-      "subtitle": "Sculpture et grands maîtres"
+      "subtitle": ""
     },
     {
       "id": "zone-1_17",
@@ -204,7 +204,7 @@
         "sport_4",
         "sport_5"
       ],
-      "subtitle": "Sports et compétitions"
+      "subtitle": ""
     },
     {
       "id": "zone-1_18",
@@ -216,7 +216,7 @@
         "cinema-musique-medias_9",
         "cinema-musique-medias_10"
       ],
-      "subtitle": "Stars et récompenses"
+      "subtitle": ""
     },
     {
       "id": "zone-1_19",
@@ -228,7 +228,7 @@
         "economie_4",
         "economie_5"
       ],
-      "subtitle": "Notions d'économie de base"
+      "subtitle": ""
     },
     {
       "id": "zone-1_20",
@@ -240,7 +240,7 @@
         "technologie-numerique_4",
         "technologie-numerique_5"
       ],
-      "subtitle": "Numérique et grandes entreprises tech"
+      "subtitle": ""
     }
   ]
 }
