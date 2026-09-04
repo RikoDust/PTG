@@ -3,73 +3,40 @@
   "questions": [
   {
     "id": "technologie-numerique_1",
-    "question": "Que signifie le sigle 'IA', couramment utilisé en technologie ?",
-    "options": ["Interface Automatisée", "Intelligence Artificielle", "Information Analytique", "Internet Avancé"],
-    "answer": 1,
-    "explanation": "L’Intelligence Artificielle permet à des machines d’effectuer des tâches qui nécessitent habituellement l’intelligence humaine, comme comprendre un texte ou reconnaître une image."
+    "question": "Qui est généralement considéré comme l'inventeur du World Wide Web ?",
+    "options": ["Bill Gates", "Steve Jobs", "Tim Berners-Lee", "Mark Zuckerberg"],
+    "answer": 2,
+    "explanation": "Tim Berners-Lee invente le World Wide Web au CERN à la fin des années 1980. Il met également au point les premières bases du HTML, du HTTP et des URL."
   },
   {
     "id": "technologie-numerique_2",
-    "question": "Quelle entreprise a créé le système d'exploitation Windows ?",
-    "options": ["Apple", "Google", "Microsoft", "IBM"],
-    "answer": 2,
-    "explanation": "Windows a été développé par Microsoft et sa première version est sortie en 1985. Depuis, il est devenu l’un des systèmes d’exploitation les plus utilisés sur ordinateur."
+    "question": "Que signifie « Wi-Fi » dans l'usage courant ?",
+    "options": ["Un type de batterie", "Un système d'exploitation", "Un format vidéo", "Une technologie permettant une connexion réseau sans fil"],
+    "answer": 3,
+    "explanation": "Le Wi-Fi permet de relier des appareils à un réseau sans utiliser de câble. Il est notamment utilisé pour accéder à Internet via une box ou un point d'accès."
   },
   {
     "id": "technologie-numerique_3",
-    "question": "Que signifie l'acronyme 'URL' ?",
-    "options": ["Uniform Resource Locator", "Universal Router Link", "User Reference Layer", "Unified Resource Language"],
-    "answer": 0,
-    "explanation": "Une URL est l’adresse qui permet de localiser une ressource sur Internet, comme une page web, une image ou un fichier."
+    "question": "Quel système d'exploitation équipe les iPhone ?",
+    "options": ["Android", "Windows", "iOS", "Linux"],
+    "answer": 2,
+    "explanation": "Les iPhone utilisent le système d'exploitation iOS, développé par Apple. La première version a été présentée avec le premier iPhone en 2007."
   },
   {
     "id": "technologie-numerique_4",
-    "question": "Quel réseau social a été fondé par Mark Zuckerberg en 2004 ?",
-    "options": ["Twitter", "Facebook", "Instagram", "LinkedIn"],
+    "question": "Quel appareil permet principalement de transformer la lumière en photographie numérique ?",
+    "options": ["Un modem", "Un capteur photo", "Un processeur", "Un routeur"],
     "answer": 1,
-    "explanation": "Facebook a été lancé en 2004 depuis l’université Harvard. Le réseau s’est ensuite rapidement étendu au reste du monde."
+    "explanation": "Un capteur photo transforme la lumière reçue par l'objectif en signaux permettant de créer une image numérique. Les smartphones modernes utilisent généralement des capteurs électroniques."
   },
   {
     "id": "technologie-numerique_5",
-    "question": "Quelle entreprise est à l'origine de l'iPhone ?",
-    "options": ["Samsung", "Google", "Apple", "Huawei"],
-    "answer": 2,
-    "explanation": "Apple a présenté le premier iPhone en 2007, combinant notamment téléphone, lecteur multimédia et navigateur Internet dans un même appareil."
-  },
-  {
-    "id": "technologie-numerique_6",
-    "question": "Que permet la technologie 'Wi-Fi' dans son usage courant ?",
-    "options": ["Recharger un appareil sans fil", "Se connecter à Internet sans fil", "Stocker des données en ligne", "Compresser des fichiers"],
+    "question": "Que signifie « IA » ?",
+    "options": ["Interface automatique", "Intelligence artificielle", "Information avancée", "Internet automatisé"],
     "answer": 1,
-    "explanation": "Le Wi-Fi permet de connecter des appareils à un réseau sans utiliser de câble. Il est notamment très utilisé pour accéder à Internet depuis un ordinateur ou un smartphone."
-  },
-  {
-    "id": "technologie-numerique_7",
-    "question": "Quel langage sert principalement à structurer le contenu des pages web ?",
-    "options": ["Le HTML", "Le SQL", "Le Python", "Le C++"],
-    "answer": 0,
-    "explanation": "Le HTML sert à organiser la structure d’une page web, par exemple ses titres, paragraphes, images et liens. Il est généralement associé au CSS et au JavaScript."
-  },
-  {
-    "id": "technologie-numerique_8",
-    "question": "Quel est le moteur de recherche le plus utilisé au monde ?",
-    "options": ["Bing", "Yahoo", "Google", "DuckDuckGo"],
-    "answer": 2,
-    "explanation": "Google domine depuis de nombreuses années le marché mondial des moteurs de recherche. Son nom est même devenu courant pour désigner le fait de rechercher quelque chose sur Internet."
-  },
-  {
-    "id": "technologie-numerique_9",
-    "question": "Comment appelle-t-on un logiciel malveillant conçu pour endommager un système informatique ?",
-    "options": ["Un firewall", "Un virus", "Un cookie", "Un plug-in"],
-    "answer": 1,
-    "explanation": "Un virus informatique est un type de logiciel malveillant capable de se reproduire et de perturber ou endommager un système. Il peut notamment se propager via des fichiers infectés."
-  },
-  {
-    "id": "technologie-numerique_10",
-    "question": "Quelle entreprise a développé la console de jeux vidéo PlayStation ?",
-    "options": ["Nintendo", "Microsoft", "Sega", "Sony"],
-    "answer": 3,
-    "explanation": "Sony a lancé la première PlayStation en 1994 au Japon. La console a connu un immense succès et a donné naissance à une importante famille de consoles."
+    "explanation": "IA signifie « Intelligence artificielle ». Elle regroupe des techniques permettant à des systèmes informatiques d'effectuer des tâches qui nécessitent habituellement certaines capacités humaines."
   }
+ 
+
 ]
 }
