@@ -36,46 +36,46 @@
       "answer": 1,
       "explanation": "Les reins filtrent continuellement le sang et participent à l'élimination de certains déchets par l'urine. Ils jouent aussi un rôle important dans l'équilibre de l'eau et des sels minéraux."
     },
-
-
-
-
-
     {
       "id": "sciences-maths_6",
-      "question": "Quel est le nombre pi arrondi à deux décimales ?",
-      "options": ["3,12", "3,14", "3,16", "3,18"],
-      "answer": 1,
-      "explanation": "Le nombre π vaut environ 3,14159, ce qui donne 3,14 lorsqu'il est arrondi à deux décimales. Il est notamment utilisé pour calculer le périmètre et l'aire d'un cercle."
+      "question": "Combien font 7 × 8 ?",
+      "options": ["48", "54", "56", "58"],
+      "answer": 2,
+      "explanation": "7 × 8 = 56 : multiplier revient ici à additionner huit fois le nombre 7. Les tables de multiplication servent notamment à effectuer rapidement ce type de calcul."
     },
     {
       "id": "sciences-maths_7",
-      "question": "Combien font 9² ?",
-      "options": ["18", "72", "81", "99"],
-      "answer": 2,
-      "explanation": "9² signifie 9 × 9, ce qui donne 81. Le petit 2 indique que le nombre est élevé au carré."
+      "question": "Combien font 100 ÷ 4 ?",
+      "options": ["20", "25", "30", "40"],
+      "answer": 1,
+      "explanation": "100 ÷ 4 = 25, car 25 × 4 = 100. Diviser consiste à répartir une quantité en parts égales."
     },
     {
       "id": "sciences-maths_8",
-      "question": "Quel est le plus petit nombre premier ?",
-      "options": ["0", "1", "2", "3"],
+      "question": "Combien font 15 + 27 ?",
+      "options": ["32", "40", "42", "45"],
       "answer": 2,
-      "explanation": "2 est le plus petit nombre premier et le seul nombre premier qui soit pair. Un nombre premier possède exactement deux diviseurs : 1 et lui-même."
+      "explanation": "15 + 27 = 42. Pour faciliter le calcul mental, on peut additionner séparément les dizaines et les unités."
     },
     {
       "id": "sciences-maths_9",
-      "question": "Combien font 1/4 + 1/2 ?",
-      "options": ["1/6", "2/6", "3/4", "1"],
-      "answer": 2,
-      "explanation": "Pour additionner les fractions, on utilise le même dénominateur : 1/2 devient 2/4. On obtient donc 1/4 + 2/4 = 3/4."
+      "question": "Quel nombre est pair ?",
+      "options": ["17", "23", "35", "42"],
+      "answer": 3,
+      "explanation": "42 est un nombre pair car il est divisible exactement par 2. Tous les nombres pairs se terminent par 0, 2, 4, 6 ou 8."
     },
     {
       "id": "sciences-maths_10",
-      "question": "Combien de minutes y a-t-il dans 2 heures ?",
-      "options": ["100", "110", "120", "140"],
+      "question": "Combien font 10 % de 100 ?",
+      "options": ["1", "5", "10", "20"],
       "answer": 2,
-      "explanation": "Une heure contient 60 minutes, donc deux heures contiennent 2 × 60 = 120 minutes. Cette conversion est basée sur le système sexagésimal utilisé pour mesurer le temps."
+      "explanation": "10 % de 100 correspond à 10 pour 100, soit 10. Un pourcentage exprime toujours une proportion rapportée à 100."
     },
+
+
+
+
+
     {
       "id": "sciences-maths_11",
       "question": "Quel est le symbole chimique de l'or ?",
