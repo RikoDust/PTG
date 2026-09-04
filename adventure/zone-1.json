@@ -93,10 +93,10 @@
         "art-litterature_1",
         "art-litterature_2",
         "art-litterature_3",
-        "art-litterature_17",
-        "art-litterature_18"
+        "art-litterature_4",
+        "art-litterature_5"
       ],
-      "subtitle": ""
+      "subtitle": "Les grands écrivains français"
     },
     {
       "id": "zone-1_9",
@@ -186,13 +186,13 @@
       "id": "zone-1_16",
       "theme": "art-litterature",
       "questionIds": [
-        "art-litterature_4",
-        "art-litterature_5",
         "art-litterature_6",
         "art-litterature_7",
-        "art-litterature_8"
+        "art-litterature_8",
+        "art-litterature_9",
+        "art-litterature_10"
       ],
-      "subtitle": ""
+      "subtitle": "Les œuvres incontournables"
     },
     {
       "id": "zone-1_17",

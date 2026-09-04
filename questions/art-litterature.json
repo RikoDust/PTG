@@ -3,131 +3,84 @@
   "questions": [
     {
       "id": "art-litterature_1",
-      "question": "Qui a peint 'La Nuit étoilée' ?",
-      "options": ["Claude Monet", "Vincent van Gogh", "Pablo Picasso", "Paul Cézanne"],
+      "question": "Qui a écrit « Les Misérables » ?",
+      "options": ["Émile Zola", "Victor Hugo", "Alexandre Dumas", "Gustave Flaubert"],
       "answer": 1,
-      "explanation": "Vincent van Gogh a peint La Nuit étoilée en 1889 alors qu'il séjournait à l'asile de Saint-Rémy-de-Provence. Le tableau est aujourd'hui exposé au Museum of Modern Art de New York."
+      "explanation": "Victor Hugo publie Les Misérables en 1862. Le roman raconte notamment le parcours de Jean Valjean et dénonce plusieurs injustices sociales de son époque."
     },
     {
       "id": "art-litterature_2",
-      "question": "Dans quel musée se trouve la Joconde ?",
-      "options": ["Le Louvre", "Le Prado", "Le British Museum", "Les Offices"],
-      "answer": 0,
-      "explanation": "La Joconde, peinte par Léonard de Vinci, est conservée au musée du Louvre à Paris. Elle est également connue sous le nom de Mona Lisa."
+      "question": "Qui a écrit « Le Petit Prince » ?",
+      "options": ["Jules Verne", "Marcel Proust", "Antoine de Saint-Exupéry", "Albert Camus"],
+      "answer": 2,
+      "explanation": "Le Petit Prince paraît en 1943 et est écrit et illustré par Antoine de Saint-Exupéry. Il est devenu l'un des livres français les plus traduits au monde."
     },
     {
       "id": "art-litterature_3",
-      "question": "Quel mouvement artistique est associé à Salvador Dalí ?",
-      "options": ["Le cubisme", "Le surréalisme", "L'impressionnisme", "Le pop art"],
-      "answer": 1,
-      "explanation": "Salvador Dalí est l'une des figures majeures du surréalisme. Ses œuvres sont souvent caractérisées par des paysages étranges et des images inspirées des rêves."
+      "question": "Qui a écrit « Madame Bovary » ?",
+      "options": ["Gustave Flaubert", "Victor Hugo", "Guy de Maupassant", "Honoré de Balzac"],
+      "answer": 0,
+      "explanation": "Madame Bovary paraît en 1857 et raconte la vie d'Emma Bovary, insatisfaite de son existence. Le roman est devenu un classique du réalisme français."
     },
     {
       "id": "art-litterature_4",
-      "question": "Qui a sculpté 'Le Penseur' ?",
-      "options": ["Auguste Rodin", "Michel-Ange", "Camille Claudel", "Constantin Brancusi"],
-      "answer": 0,
-      "explanation": "Le Penseur est une sculpture célèbre d'Auguste Rodin. L'œuvre représente un homme assis dans une attitude méditative et est devenue l'un des symboles de la sculpture moderne."
+      "question": "Qui a créé le personnage de d'Artagnan ?",
+      "options": ["Stendhal", "Voltaire", "Molière", "Alexandre Dumas"],
+      "answer": 3,
+      "explanation": "D'Artagnan est le héros inspiré d'un personnage historique dans Les Trois Mousquetaires d'Alexandre Dumas. Le roman est publié en 1844."
     },
     {
       "id": "art-litterature_5",
-      "question": "Quel peintre est célèbre pour ses œuvres cubistes comme 'Guernica' ?",
-      "options": ["Henri Matisse", "Georges Braque", "Pablo Picasso", "Joan Miró"],
+      "question": "Qui a écrit « Le Rouge et le Noir » ?",
+      "options": ["Zola", "Camus", "Stendhal", "Racine"],
       "answer": 2,
-      "explanation": "Pablo Picasso est l'un des fondateurs du cubisme avec Georges Braque. Guernica, peint en 1937, dénonce les horreurs de la guerre et est devenu une œuvre emblématique du XXe siècle."
+      "explanation": "Le Rouge et le Noir paraît en 1830 et suit l'ambition sociale de Julien Sorel. Stendhal y décrit notamment les tensions entre ambition personnelle et société."
     },
     {
       "id": "art-litterature_6",
-      "question": "Qui a peint le plafond de la chapelle Sixtine ?",
-      "options": ["Raphaël", "Michel-Ange", "Léonard de Vinci", "Le Titien"],
-      "answer": 1,
-      "explanation": "Michel-Ange a peint le célèbre plafond de la chapelle Sixtine au début du XVIe siècle. La fresque comprend notamment la célèbre scène de La Création d'Adam."
+      "question": "Qui a peint la Joconde ?",
+      "options": ["Michel-Ange", "Raphaël", "Léonard de Vinci", "Botticelli"],
+      "answer": 2,
+      "explanation": "La Joconde, également appelée Mona Lisa, est une œuvre de Léonard de Vinci peinte au début du XVIe siècle. Son sourire et son regard ont contribué à sa célébrité mondiale."
     },
     {
       "id": "art-litterature_7",
-      "question": "Quel courant artistique est représenté par Claude Monet ?",
-      "options": ["L'impressionnisme", "Le baroque", "Le romantisme", "Le fauvisme"],
-      "answer": 0,
-      "explanation": "Claude Monet est l'une des grandes figures de l'impressionnisme. Il cherchait notamment à représenter les effets de la lumière et les variations de couleurs selon les moments de la journée."
+      "question": "Dans quel musée se trouve la Joconde ?",
+      "options": ["Le musée d'Orsay", "Le British Museum", "Le Prado", "Le Louvre"],
+      "answer": 3,
+      "explanation": "La Joconde est exposée au musée du Louvre à Paris. Elle est devenue l'une des œuvres les plus célèbres et les plus visitées du musée."
     },
     {
       "id": "art-litterature_8",
-      "question": "Quel artiste a créé la série des 'Nymphéas' ?",
-      "options": ["Edgar Degas", "Claude Monet", "Pierre-Auguste Renoir", "Édouard Manet"],
+      "question": "Qui a peint « La Nuit étoilée » ?",
+      "options": ["Claude Monet", "Vincent van Gogh", "Pablo Picasso", "Salvador Dalí"],
       "answer": 1,
-      "explanation": "Claude Monet a consacré de nombreuses peintures aux Nymphéas, inspirées de son jardin à Giverny. Certaines de ces œuvres sont aujourd'hui exposées au musée de l'Orangerie à Paris."
+      "explanation": "Vincent van Gogh peint La Nuit étoilée en 1889 alors qu'il séjourne à Saint-Rémy-de-Provence. Le tableau est aujourd'hui conservé au Museum of Modern Art de New York."
     },
     {
       "id": "art-litterature_9",
-      "question": "Qui a écrit 'Roméo et Juliette' ?",
-      "options": ["Molière", "William Shakespeare", "Christopher Marlowe", "Oscar Wilde"],
-      "answer": 1,
-      "explanation": "William Shakespeare a écrit Roméo et Juliette, l'une des histoires d'amour les plus célèbres de la littérature. La pièce raconte l'amour tragique de deux jeunes issus de familles ennemies."
+      "question": "Quel artiste est associé au plafond de la chapelle Sixtine ?",
+      "options": ["Michel-Ange", "Rembrandt", "Monet", "Goya"],
+      "answer": 0,
+      "explanation": "Michel-Ange réalise les fresques du plafond de la chapelle Sixtine au début du XVIe siècle. L'œuvre comprend notamment la célèbre scène de La Création d'Adam."
     },
     {
       "id": "art-litterature_10",
-      "question": "Quel auteur russe a écrit 'Guerre et Paix' ?",
-      "options": ["Fiodor Dostoïevski", "Anton Tchekhov", "Léon Tolstoï", "Alexandre Pouchkine"],
+      "question": "Quel courant artistique est associé à Claude Monet ?",
+      "options": ["Cubisme", "Surréalisme", "Impressionnisme", "Pop art"],
       "answer": 2,
-      "explanation": "Léon Tolstoï est l'auteur de Guerre et Paix, publié au XIXe siècle. Ce vaste roman mêle l'histoire de plusieurs familles à celle de la Russie pendant les guerres napoléoniennes."
-    },
-    {
-      "id": "art-litterature_11",
-      "question": "Qui est le créateur du manga 'One Piece' ?",
-      "options": ["Akira Toriyama", "Eiichiro Oda", "Masashi Kishimoto", "Naoko Takeuchi"],
-      "answer": 1,
-      "explanation": "Eiichiro Oda est le créateur de One Piece, publié pour la première fois en 1997. Le manga suit les aventures de Monkey D. Luffy et de son équipage à la recherche du légendaire trésor One Piece."
-    },
-    {
-      "id": "art-litterature_12",
-      "question": "Quelle bande dessinée franco-belge met en scène un village gaulois résistant aux Romains ?",
-      "options": ["Tintin", "Lucky Luke", "Astérix", "Les Schtroumpfs"],
-      "answer": 2,
-      "explanation": "Astérix raconte les aventures d'un petit village gaulois qui résiste à l'Empire romain. La série a été créée par René Goscinny et Albert Uderzo."
-    },
-    {
-      "id": "art-litterature_13",
-      "question": "Quel dramaturge français a écrit 'Le Malade imaginaire' ?",
-      "options": ["Racine", "Corneille", "Molière", "Beaumarchais"],
-      "answer": 2,
-      "explanation": "Molière a écrit Le Malade imaginaire, une comédie créée en 1673. La pièce se moque notamment de l'hypocondrie et de certaines pratiques médicales de son époque."
-    },
-    {
-      "id": "art-litterature_14",
-      "question": "Quel style architectural, typique des cathédrales médiévales, se caractérise par des arcs en ogive ?",
-      "options": ["Le roman", "Le gothique", "Le baroque", "Le classique"],
-      "answer": 1,
-      "explanation": "L'architecture gothique se caractérise notamment par les arcs en ogive, les grandes fenêtres et les vitraux. Elle a permis de construire des édifices médiévaux très hauts et lumineux."
-    },
-    {
-      "id": "art-litterature_15",
-      "question": "Quel auteur britannique a écrit le roman '1984' ?",
-      "options": ["George Orwell", "Aldous Huxley", "H.G. Wells", "Ray Bradbury"],
-      "answer": 0,
-      "explanation": "George Orwell a publié 1984 en 1949. Ce roman dystopique imagine une société contrôlée par un régime totalitaire et a donné naissance à de nombreuses expressions devenues célèbres."
-    },
-    {
-      "id": "art-litterature_16",
-      "question": "Quel manga met en scène des ninjas dans le village de Konoha ?",
-      "options": ["Bleach", "Naruto", "Dragon Ball", "Death Note"],
-      "answer": 1,
-      "explanation": "Naruto, créé par Masashi Kishimoto, raconte l'histoire d'un jeune ninja vivant dans le village de Konoha. Son objectif est notamment de devenir Hokage, le chef du village."
-    },
-    {
-      "id": "art-litterature_17",
-      "question": "De quel artiste est cette peinture ?",
-      "image": "questions/img/art-litterature_17.png",
-      "options": ["Raphaël", "Léonard de Vinci", "Sandro Botticelli", "Titien"],
-      "answer": 1,
-      "explanation": "Cette peinture est attribuée à Léonard de Vinci, l'un des grands maîtres de la Renaissance italienne. Il était également scientifique, ingénieur, inventeur et anatomiste."
-    },
-    {
-      "id": "art-litterature_18",
-      "question": "De quel artiste est cette peinture ?",
-      "image": "questions/img/art-litterature_18.png",
-      "options": ["Paul Gauguin", "Henri Matisse", "Vincent van Gogh", "Edvard Munch"],
-      "answer": 2,
-      "explanation": "Cette peinture est attribuée à Vincent van Gogh, célèbre pour son style expressif et ses coups de pinceau très reconnaissables. Ses œuvres ont fortement influencé l'art moderne."
+      "explanation": "Claude Monet est l'une des figures majeures de l'impressionnisme. Le mouvement cherche notamment à représenter les effets de la lumière et les impressions fugitives."
     }
+
+
+
+
+
+
+
+
+
+
+
   ]
 }
