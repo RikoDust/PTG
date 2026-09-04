@@ -24,10 +24,10 @@
     },
     {
       "id": "institution-droit_4",
-      "question": "Combien de chambres compose le Parlement français ?",
-      "options": ["1", "2", "3", "4"],
+      "question": "Quel texte constitue le sommet de la hiérarchie des normes en France avec les textes auxquels renvoie le bloc de constitutionnalité ?",
+      "options": ["Le Code civil", "La Constitution", "Le Code pénal", "Le Code du travail"],
       "answer": 1,
-      "explanation": "Le Parlement français est composé de deux chambres : l'Assemblée nationale et le Sénat. On parle alors d'un système parlementaire bicaméral."
+      "explanation": "La Constitution est au sommet de la hiérarchie des normes avec les textes et principes auxquels renvoie le bloc de constitutionnalité. Les autres règles de droit doivent lui être conformes."
     },
     {
       "id": "institution-droit_5",
@@ -36,61 +36,49 @@
       "answer": 3,
       "explanation": "Le drapeau français est composé de trois couleurs : bleu, blanc et rouge. Ces couleurs sont disposées en bandes verticales depuis 1794, avec le bleu près du mât."
     },
-
-
-
-
-
-
     {
       "id": "institution-droit_6",
-      "question": "Combien de pays compte l'Union européenne depuis le retrait du Royaume-Uni ?",
-      "options": ["25", "27", "28", "30"],
-      "answer": 1,
-      "explanation": "L'Union européenne compte actuellement 27 États membres depuis le retrait du Royaume-Uni en 2020. Le Royaume-Uni était auparavant le 28e membre."
+      "question": "Quel personnage féminin symbolise la République française ?",
+      "options": ["Marianne", "Jeanne", "Marianne II", "Clio"],
+      "answer": 0,
+      "explanation": "Marianne est une représentation allégorique de la République française. Son visage a été utilisé au fil du temps sur des pièces, des timbres et de nombreux symboles officiels."
     },
     {
       "id": "institution-droit_7",
-      "question": "À partir de quel âge peut-on voter en France ?",
-      "options": ["16 ans", "18 ans", "21 ans", "25 ans"],
-      "answer": 1,
-      "explanation": "En France, le droit de vote est accordé à partir de 18 ans, sous réserve de remplir les conditions prévues par la loi. L'âge légal est passé de 21 à 18 ans en 1974."
+      "question": "Quel animal est traditionnellement associé à la France dans de nombreuses représentations ?",
+      "options": ["L'aigle", "Le lion", "Le coq", "Le cheval"],
+      "answer": 2,
+      "explanation": "Le coq gaulois est un symbole traditionnel de la France, notamment dans le domaine sportif. Le mot latin « gallus » signifie à la fois « coq » et « Gaulois »."
     },
     {
       "id": "institution-droit_8",
-      "question": "Quelle est la devise de la République française ?",
-      "options": ["Paix, Travail, Patrie", "Liberté, Égalité, Fraternité", "Unité, Justice, Progrès", "Ordre et Progrès"],
+      "question": "Quelle œuvre est l'hymne national français ?",
+      "options": ["Le Chant du départ", "La Marseillaise", "Le Temps des cerises", "L'Internationale"],
       "answer": 1,
-      "explanation": "La devise de la République française est « Liberté, Égalité, Fraternité ». Elle est notamment inscrite dans l'article 2 de la Constitution."
+      "explanation": "La Marseillaise a été composée en 1792 par Claude Joseph Rouget de Lisle. Elle devient l'hymne national français en 1795, puis est définitivement rétablie comme hymne en 1879."
     },
     {
       "id": "institution-droit_9",
-      "question": "Combien de pouvoirs distincts compose la séparation des pouvoirs théorisée par Montesquieu ?",
-      "options": ["2", "3", "4", "5"],
+      "question": "Que représente principalement Marianne ?",
+      "options": ["La monarchie", "La République", "L'armée", "La justice"],
       "answer": 1,
-      "explanation": "Montesquieu distingue trois pouvoirs : le pouvoir législatif, le pouvoir exécutif et le pouvoir judiciaire. Cette séparation vise notamment à éviter la concentration du pouvoir."
+      "explanation": "Marianne incarne la République et ses valeurs, notamment la liberté et la démocratie. Elle est souvent représentée coiffée d'un bonnet phrygien."
     },
     {
       "id": "institution-droit_10",
-      "question": "Quel traité fondateur de la construction européenne a été signé en 1957 ?",
-      "options": ["Le traité de Maastricht", "Le traité de Rome", "Le traité de Lisbonne", "Le traité de Nice"],
-      "answer": 1,
-      "explanation": "Les traités de Rome ont été signés en 1957 et ont notamment créé la Communauté économique européenne. Ils constituent une étape majeure de la construction européenne."
-    },
-    {
-      "id": "institution-droit_11",
-      "question": "Quelle assemblée vote les lois en France, aux côtés du Sénat ?",
-      "options": ["Le Conseil économique et social", "L'Assemblée nationale", "Le Conseil d'État", "La Cour de justice"],
-      "answer": 1,
-      "explanation": "L'Assemblée nationale et le Sénat constituent les deux chambres du Parlement français. Ils participent tous les deux à l'examen et au vote des lois."
-    },
-    {
-      "id": "institution-droit_12",
-      "question": "Comment appelle-t-on le fait de posséder la nationalité et les droits civiques d'un pays ?",
-      "options": ["La souveraineté", "La citoyenneté", "La suzeraineté", "La légitimité"],
-      "answer": 1,
-      "explanation": "La citoyenneté désigne notamment le fait de bénéficier de droits et de devoirs civiques au sein d'un État. Elle permet par exemple, sous certaines conditions, de participer aux élections."
+      "question": "Quelle couleur est située près du mât sur le drapeau rançais ?",
+      "options": ["Rouge", "Blanc", "Bleu", "Vert"],
+      "answer": 2,
+      "explanation": "Le bleu est placé près du mât sur le drapeau français, suivi du blanc puis du rouge. Cette disposition est utilisée sur le drapeau officiel actuel."
     }
+
+
+
+
+
+
+
+
 
 
   ]
