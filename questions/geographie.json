@@ -3,39 +3,49 @@
   "questions": [
     {
       "id": "geographie_1",
-      "question": "Quelle est la capitale de l'Australie ?",
-      "options": ["Sydney", "Melbourne", "Canberra", "Perth"],
+      "question": "Quelle est la capitale de l'Espagne ?",
+      "options": ["Barcelone", "Melbourne", "Madrid", "Valence"],
       "answer": 2,
-      "explanation": "Canberra est la capitale de l'Australie depuis 1913. Sydney et Melbourne sont plus connues et plus peuplées, mais elles ne sont pas la capitale."
+      "explanation": "Madrid est la capitale de l'Espagne depuis le XVIe siècle. La ville se trouve au centre du pays, sur un vaste plateau de la péninsule Ibérique."
     },
     {
       "id": "geographie_2",
-      "question": "Quel est le plus long fleuve du monde ?",
-      "options": ["Le Nil", "L'Amazone", "Le Mississippi", "Le Yangtsé"],
+      "question": "Quelle est la capitale de l'Italie ?",
+      "options": ["Milan", "Rome", "Naples", "Turin"],
       "answer": 1,
-      "explanation": "L'Amazone est généralement considéré comme le fleuve ayant le plus grand débit au monde. Sa longueur exacte fait toutefois l'objet de débats avec le Nil selon les méthodes de mesure."
+      "explanation": "Rome est la capitale de l'Italie et possède un patrimoine exceptionnel datant notamment de l'Antiquité romaine. Le Vatican se trouve également à l'intérieur de la ville."
     },
     {
       "id": "geographie_3",
-      "question": "Combien de continents compte-t-on généralement ?",
-      "options": ["5", "6", "7", "8"],
-      "answer": 2,
-      "explanation": "On compte généralement sept continents : Afrique, Amérique du Nord, Amérique du Sud, Antarctique, Asie, Europe et Océanie."
+      "question": "Quelle est la capitale de l'Allemagne ?",
+      "options": ["Munich", "Francfort", "Hambourg", "Berlin"],
+      "answer": 3,
+      "explanation": "Berlin est devenue capitale de l'Allemagne réunifiée en 1990. La ville a longtemps été divisée par le mur de Berlin pendant la guerre froide."
     },
     {
       "id": "geographie_4",
-      "question": "Quelle chaîne de montagnes sépare l'Europe de l'Asie ?",
-      "options": ["Les Alpes", "Les Andes", "L'Oural", "L'Himalaya"],
-      "answer": 2,
-      "explanation": "La chaîne de l'Oural est traditionnellement considérée comme l'une des limites géographiques entre l'Europe et l'Asie. Elle s'étend sur environ 2 500 kilomètres du nord au sud."
+      "question": "Quelle est la capitale du Portugal ?",
+      "options": ["Porto", "Lisbonne", "Faro", "Braga"],
+      "answer": 1,
+      "explanation": "Lisbonne est la capitale du Portugal et se situe sur l'estuaire du Tage. C'est l'une des plus anciennes capitales d'Europe."
     },
     {
       "id": "geographie_5",
-      "question": "Quel pays a la plus grande superficie au monde ?",
-      "options": ["Chine", "Canada", "États-Unis", "Russie"],
-      "answer": 3,
-      "explanation": "La Russie est le plus grand pays du monde avec une superficie d'environ 17 millions de kilomètres carrés. Son territoire s'étend sur deux continents, l'Europe et l'Asie."
+      "question": "Quelle est la capitale de la Grèce ?",
+      "options": ["Athènes", "Sparte", "Thessalonique", "Corinthe"],
+      "answer": 0,
+      "explanation": "Athènes est la capitale de la Grèce et l'une des grandes villes historiques de l'Antiquité. L'Acropole et le Parthénon dominent notamment la ville."
     },
+
+
+
+
+
+
+
+
+
+
     {
       "id": "geographie_6",
       "question": "Quel désert est le plus grand du monde ?",
@@ -124,13 +134,11 @@
       "answer": 1,
       "explanation": "Ce monument se trouve en Inde. Le pays possède un patrimoine architectural particulièrement riche, influencé par de nombreuses civilisations et périodes historiques."
     },
+
+
+
     {
-      "id": "geographie_18",
-      "question": "Dans quel pays se trouve ce monument ?",
-      "image": "questions/img/geographie_18.png",
-      "options": ["Grèce", "Espagne", "Italie", "Turquie"],
-      "answer": 2,
-      "explanation": "Ce monument se trouve en Italie. Le pays possède l'un des patrimoines historiques et artistiques les plus importants au monde, avec de nombreux monuments datant de l'Antiquité."
+
     }
   ]
 }
