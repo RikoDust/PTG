@@ -3,39 +3,44 @@
   "questions": [
     {
       "id": "sciences-maths_1",
-      "question": "Combien font 7 x 8 ?",
-      "options": ["54", "56", "58", "64"],
+      "question": "Quel organe pompe le sang dans le corps ?",
+      "options": ["Le foie", "Le cœur", "Le poumon", "Le rein"],
       "answer": 1,
-      "explanation": "7 multiplié par 8 donne 56. C'est une multiplication courante de la table de 8."
+      "explanation": "Le cœur fonctionne comme une pompe qui propulse le sang dans les vaisseaux sanguins. Il se contracte des dizaines de milliers de fois chaque jour."
     },
     {
       "id": "sciences-maths_2",
-      "question": "Quelle est la racine carrée de 144 ?",
-      "options": ["10", "11", "12", "14"],
-      "answer": 2,
-      "explanation": "La racine carrée de 144 est 12, car 12 × 12 = 144. Le symbole √ est utilisé pour représenter une racine carrée."
+      "question": "Combien de poumons possède généralement un être humain ?",
+      "options": ["1", "2", "3", "4"],
+      "answer": 1,
+      "explanation": "L'être humain possède généralement deux poumons, situés dans la cage thoracique. Le poumon gauche est légèrement plus petit afin de laisser de la place au cœur."
     },
     {
       "id": "sciences-maths_3",
-      "question": "Combien y a-t-il de degrés dans un triangle ?",
-      "options": ["90°", "180°", "270°", "360°"],
-      "answer": 1,
-      "explanation": "La somme des trois angles d'un triangle est toujours égale à 180°. Cette règle s'applique à tous les triangles dans la géométrie plane."
+      "question": "Quel organe permet principalement de penser et de contrôler le système nerveux ?",
+      "options": ["Le cerveau", "Le cœur", "L'estomac", "Le foie"],
+      "answer": 0,
+      "explanation": "Le cerveau coordonne de nombreuses fonctions du corps et permet notamment la pensée, la mémoire et les mouvements volontaires. Il fait partie du système nerveux central avec la moelle épinière."
     },
     {
       "id": "sciences-maths_4",
-      "question": "Quel est le résultat de 15 % de 200 ?",
-      "options": ["15", "20", "30", "45"],
-      "answer": 2,
-      "explanation": "15 % de 200 correspond à 200 × 0,15, soit 30. Le symbole % signifie « pour cent », c'est-à-dire « sur 100 »."
+      "question": "Combien de dents possède généralement un adulte avec une dentition complète ?",
+      "options": ["24", "28", "30", "32"],
+      "answer": 3,
+      "explanation": "Une dentition adulte complète compte généralement 32 dents, dont quatre dents de sagesse. Certaines personnes n'ont toutefois pas ces dernières ou les font retirer."
     },
     {
       "id": "sciences-maths_5",
-      "question": "Combien de côtés possède un hexagone ?",
-      "options": ["5", "6", "7", "8"],
+      "question": "Quel organe est principalement responsable de la filtration du sang et de la production d'urine ?",
+      "options": ["Le rein", "Le poumon", "L'estomac", "La rate"],
       "answer": 1,
-      "explanation": "Un hexagone possède six côtés. Le préfixe « hexa- » vient du grec et signifie six."
+      "explanation": "Les reins filtrent continuellement le sang et participent à l'élimination de certains déchets par l'urine. Ils jouent aussi un rôle important dans l'équilibre de l'eau et des sels minéraux."
     },
+
+
+
+
+
     {
       "id": "sciences-maths_6",
       "question": "Quel est le nombre pi arrondi à deux décimales ?",
