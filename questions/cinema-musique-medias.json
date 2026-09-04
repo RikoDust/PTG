@@ -36,44 +36,40 @@
       "answer": 2,
       "explanation": "Tom Hanks interprète Forrest Gump dans le film réalisé par Robert Zemeckis en 1994. Le film suit plusieurs décennies de la vie du personnage à travers l'histoire américaine."
     },
-
-
-
-
     {
       "id": "cinema-musique-medias_6",
-      "question": "Quel acteur incarne Iron Man dans l'univers cinématographique Marvel ?",
-      "options": ["Chris Evans", "Chris Hemsworth", "Robert Downey Jr.", "Mark Ruffalo"],
-      "answer": 2,
-      "explanation": "Robert Downey Jr. interprète Tony Stark, alias Iron Man, dans l'univers cinématographique Marvel. Il apparaît pour la première fois dans le film Iron Man sorti en 2008."
+      "question": "Quel groupe a interprété « Bohemian Rhapsody » ?",
+      "options": ["The Beatles", "Queen", "ABBA", "U2"],
+      "answer": 1,
+      "explanation": "« Bohemian Rhapsody » est sortie en 1975 sur l'album A Night at the Opera de Queen. La chanson est célèbre pour mélanger plusieurs styles et structures musicales."
     },
     {
       "id": "cinema-musique-medias_7",
-      "question": "Quelle cérémonie récompense chaque année les meilleurs films à Hollywood ?",
-      "options": ["Les Golden Globes", "Les Oscars", "Les Emmy Awards", "Les Grammy Awards"],
+      "question": "Quel artiste est surnommé le « King of Pop » ?",
+      "options": ["Elvis Presley", "Michael Jackson", "Prince", "Elton John"],
       "answer": 1,
-      "explanation": "Les Oscars récompensent chaque année les principales réalisations du cinéma américain et international. La cérémonie est organisée par l'Academy of Motion Picture Arts and Sciences."
+      "explanation": "Michael Jackson est surnommé le « King of Pop » en raison de son immense influence sur la musique populaire. Ses clips et ses performances scéniques ont marqué plusieurs générations."
     },
     {
       "id": "cinema-musique-medias_8",
-      "question": "Comment s'appelle le célèbre festival de cinéma français organisé chaque année sur la Côte d'Azur ?",
-      "options": ["Le Festival de Deauville", "Le Festival de Cannes", "Le Festival de Venise", "Le Festival de Berlin"],
-      "answer": 1,
-      "explanation": "Le Festival de Cannes se déroule chaque année sur la Côte d'Azur et attire des réalisateurs, acteurs et professionnels du monde entier. Sa récompense principale est la Palme d'or."
+      "question": "Quel groupe a chanté « Dancing Queen » ?",
+      "options": ["ABBA", "Queen", "Bee Gees", "Roxette"],
+      "answer": 0,
+      "explanation": "« Dancing Queen » est un succès du groupe suédois ABBA sorti en 1976. Le titre est devenu l'un des morceaux les plus connus du groupe."
     },
     {
       "id": "cinema-musique-medias_9",
-      "question": "Quel chanteur américain est surnommé le 'Roi de la pop' ?",
-      "options": ["Prince", "Elvis Presley", "Michael Jackson", "Stevie Wonder"],
-      "answer": 2,
-      "explanation": "Michael Jackson est surnommé le 'Roi de la pop' en raison de son immense influence sur la musique et la culture populaire. Son album Thriller est l'un des plus célèbres de l'histoire de la musique."
+      "question": "Quel artiste a interprété « Imagine » ?",
+      "options": ["Paul McCartney", "John Lennon", "David Bowie", "Bob Dylan"],
+      "answer": 1,
+      "explanation": "« Imagine » sort en 1971 sur l'album du même nom de John Lennon. La chanson est devenue célèbre pour son message en faveur de la paix et de l'idéal humaniste."
     },
     {
       "id": "cinema-musique-medias_10",
-      "question": "Quelle série met en scène des familles nobles se disputant le Trône de Fer ?",
-      "options": ["The Witcher", "Vikings", "Game of Thrones", "The Crown"],
+      "question": "Quel chanteur français a interprété « Je te promets » ?",
+      "options": ["Michel Sardou", "Jean-Jacques Goldman", "Johnny Hallyday", "Francis Cabrel"],
       "answer": 2,
-      "explanation": "Game of Thrones est une série adaptée des romans de George R. R. Martin. L'histoire suit plusieurs familles qui s'affrontent pour contrôler le Trône de Fer et le royaume de Westeros."
+      "explanation": "« Je te promets » est un titre emblématique de Johnny Hallyday, écrit par Jean-Jacques Goldman. La chanson figure parmi les grands succès de la carrière du chanteur."
     }
 
 
