@@ -36,51 +36,51 @@
       "answer": 0,
       "explanation": "Athènes est la capitale de la Grèce et l'une des grandes villes historiques de l'Antiquité. L'Acropole et le Parthénon dominent notamment la ville."
     },
-
-
-
-
-
-
-
-
-
-
     {
       "id": "geographie_6",
-      "question": "Quel désert est le plus grand du monde ?",
-      "options": ["Le Sahara", "Le désert de Gobi", "L'Antarctique", "Le Kalahari"],
-      "answer": 2,
-      "explanation": "L'Antarctique est le plus grand désert du monde en raison de ses très faibles précipitations. Le Sahara est en revanche le plus grand désert chaud."
+      "question": "Sur quel continent se trouve l'Égypte ?",
+      "options": ["Asie", "Afrique", "Europe", "Amérique"],
+      "answer": 1,
+      "explanation": "L'Égypte se trouve principalement en Afrique, même si la péninsule du Sinaï est située en Asie. Le canal de Suez marque une partie de cette séparation géographique."
     },
     {
       "id": "geographie_7",
-      "question": "Quelle est la capitale du Canada ?",
-      "options": ["Toronto", "Vancouver", "Ottawa", "Montréal"],
-      "answer": 2,
-      "explanation": "Ottawa est devenue la capitale du Canada en 1857. Toronto et Montréal sont plus peuplées, mais Ottawa accueille notamment le Parlement canadien."
+      "question": "Quel est le plus grand océan du monde ?",
+      "options": ["Atlantique", "Indien", "Arctique", "Pacifique"],
+      "answer": 3,
+      "explanation": "L'océan Pacifique est le plus vaste et le plus profond des océans de la planète. Il couvre une superficie supérieure à celle de toutes les terres émergées réunies."
     },
     {
       "id": "geographie_8",
-      "question": "Quel océan borde la côte ouest des États-Unis ?",
-      "options": ["Atlantique", "Pacifique", "Indien", "Arctique"],
-      "answer": 1,
-      "explanation": "L'océan Pacifique borde toute la côte ouest des États-Unis. Il s'agit du plus grand océan de la planète."
+      "question": "Sur quel continent se trouve le Brésil ?",
+      "options": ["Afrique", "Asie", "Amérique du Sud", "Amérique du Nord"],
+      "answer": 2,
+      "explanation": "Le Brésil est le plus grand pays d'Amérique du Sud. Il abrite une grande partie de la forêt amazonienne et possède une frontière avec presque tous les pays du continent."
     },
     {
       "id": "geographie_9",
-      "question": "Dans quel pays se trouve le Machu Picchu ?",
-      "options": ["Mexique", "Chili", "Pérou", "Bolivie"],
-      "answer": 2,
-      "explanation": "Le Machu Picchu se trouve au Pérou, dans la cordillère des Andes. Cette ancienne cité inca est située à plus de 2 000 mètres d'altitude."
+      "question": "Quel océan sépare notamment l'Europe et l'Amérique ?",
+      "options": ["Indien", "Atlantique", "Pacifique", "Arctique"],
+      "answer": 1,
+      "explanation": "L'océan Atlantique sépare notamment l'Europe et les Amériques. Il joue depuis des siècles un rôle majeur dans les échanges maritimes entre les continents."
     },
     {
       "id": "geographie_10",
-      "question": "Quelle mer borde l'Égypte à l'est ?",
-      "options": ["Mer Noire", "Mer Rouge", "Mer Morte", "Mer Méditerranée"],
-      "answer": 1,
-      "explanation": "La mer Rouge borde l'Égypte à l'est et sépare l'Afrique de la péninsule Arabique. Elle est reliée à la mer Méditerranée par le canal de Suez."
+      "question": "Quel continent est le plus vaste ?",
+      "options": ["Afrique", "Europe", "Asie", "Amérique du Nord"],
+      "answer": 2,
+      "explanation": "L'Asie est le continent le plus vaste et le plus peuplé de la planète. Elle abrite notamment les deux pays les plus peuplés du monde, la Chine et l'Inde."
     },
+
+
+
+
+
+    
+
+
+
+
     {
       "id": "geographie_11",
       "question": "Quel est le point culminant du continent africain ?",
