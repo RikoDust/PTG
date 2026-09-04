@@ -3,73 +3,40 @@
   "questions": [
     {
       "id": "economie_1",
-      "question": "Quelle est la monnaie officielle utilisée par la majorité des pays de l'Union européenne ?",
-      "options": ["Le franc", "L'euro", "Le dollar", "La livre"],
+      "question": "Quelle monnaie utilise-t-on en France ?",
+      "options": ["Le dollar", "L'euro", "Le franc", "La livre"],
       "answer": 1,
-      "explanation": "L'euro est la monnaie officielle de 20 des 27 pays de l'Union européenne. Ces pays forment ce que l'on appelle la zone euro."
+      "explanation": "a France utilise l'euro depuis 1999 pour les transactions scripturales et depuis 2002 pour les pièces et billets. L'euro est la monnaie commune de nombreux pays de l'Union européenne."
     },
     {
       "id": "economie_2",
-      "question": "Que signifie le sigle PIB ?",
-      "options": ["Produit Intérieur Brut", "Prix Industriel de Base", "Plan d'Investissement Budgétaire", "Produit Interne Bancaire"],
+      "question": "Que signifie « TVA » ?",
+      "options": ["Taxe sur la valeur ajoutée", "Taxe variable annuelle", "Taux de valeur administrative", "Tarif de vente autorisé"],
       "answer": 0,
-      "explanation": "Le Produit Intérieur Brut mesure la valeur des biens et services produits dans un pays sur une période donnée. Il est souvent utilisé pour évaluer la taille et l'évolution d'une économie."
+      "explanation": "La TVA signifie « Taxe sur la valeur ajoutée ». Il s'agit d'un impôt indirect intégré au prix de nombreux biens et services."
     },
     {
       "id": "economie_3",
-      "question": "Quelle institution est responsable de la politique monétaire de la zone euro ?",
-      "options": ["Le FMI", "La Banque centrale européenne", "La Banque mondiale", "L'OCDE"],
+      "question": "Que se passe-t-il généralement lorsque le prix d'un produit augmente fortement ?",
+      "options": ["La demande augmente toujours", "La demande tend à diminuer", "Le produit devient gratuit", "L'offre disparaît forcément"],
       "answer": 1,
-      "explanation": "La Banque centrale européenne, ou BCE, est chargée de définir la politique monétaire de la zone euro. Elle joue notamment un rôle important dans la gestion des taux d'intérêt."
+      "explanation": "Lorsque le prix augmente, la quantité demandée tend généralement à diminuer, toutes choses égales par ailleurs. C'est l'un des principes fondamentaux de la loi de la demande."
     },
     {
       "id": "economie_4",
-      "question": "Comment appelle-t-on la hausse générale et durable des prix ?",
-      "options": ["La déflation", "La récession", "L'inflation", "La stagnation"],
-      "answer": 2,
-      "explanation": "L'inflation correspond à une hausse générale et durable des prix des biens et services. Elle réduit progressivement le pouvoir d'achat de la monnaie."
+      "question": "Quel organisme est chargé de conduire la politique monétaire de la zone euro ?",
+      "options": ["L'ONU", "La BCE", "L'OMC", "La Banque mondiale"],
+      "answer": 1,
+      "explanation": "a Banque centrale européenne, ou BCE, conduit la politique monétaire de la zone euro. Elle cherche notamment à maintenir la stabilité des prix."
     },
     {
       "id": "economie_5",
-      "question": "Comment appelle-t-on une jeune entreprise innovante à fort potentiel de croissance ?",
-      "options": ["Une PME", "Une start-up", "Une multinationale", "Une coopérative"],
+      "question": "Que mesure principalement le PIB ?",
+      "options": ["La richesse totale possédée par les habitants", "La production de biens et services d'un territoire sur une période donnée", "Le nombre d'entreprises d'un pays", "Le montant des impôts"],
       "answer": 1,
-      "explanation": "Une start-up est une jeune entreprise qui cherche généralement à développer rapidement un modèle économique innovant. Les technologies numériques jouent souvent un rôle important dans son développement."
-    },
-    {
-      "id": "economie_6",
-      "question": "Quel indicateur mesure la part de la population active sans emploi dans un pays ?",
-      "options": ["Le taux de croissance", "Le taux de chômage", "Le taux d'inflation", "Le taux d'épargne"],
-      "answer": 1,
-      "explanation": "Le taux de chômage correspond à la proportion de personnes sans emploi parmi la population active. Il permet notamment de suivre l'évolution du marché du travail."
-    },
-    {
-      "id": "economie_7",
-      "question": "Comment appelle-t-on l'ensemble des biens et services qu'un pays vend à l'étranger ?",
-      "options": ["Les importations", "Les exportations", "Les investissements", "Les subventions"],
-      "answer": 1,
-      "explanation": "Les exportations désignent les biens et services vendus par un pays à des clients situés à l'étranger. À l'inverse, les achats effectués à l'étranger sont appelés importations."
-    },
-    {
-      "id": "economie_8",
-      "question": "Quelle monnaie numérique décentralisée a été créée en 2009 ?",
-      "options": ["L'Ethereum", "Le Bitcoin", "Le Litecoin", "Le Dogecoin"],
-      "answer": 1,
-      "explanation": "Le Bitcoin a été lancé en 2009 sous le pseudonyme de Satoshi Nakamoto. Il repose sur une technologie appelée blockchain et fonctionne sans banque centrale."
-    },
-    {
-      "id": "economie_9",
-      "question": "Comment appelle-t-on la situation où les dépenses d'un État dépassent ses recettes ?",
-      "options": ["Un excédent budgétaire", "Un déficit budgétaire", "Un équilibre budgétaire", "Une dette publique nulle"],
-      "answer": 1,
-      "explanation": "Un déficit budgétaire apparaît lorsque les dépenses publiques sont supérieures aux recettes sur une période donnée. L'État doit alors généralement financer cette différence par l'emprunt."
-    },
-    {
-      "id": "economie_10",
-      "question": "Comment appelle-t-on le lieu où s'échangent les actions des entreprises cotées ?",
-      "options": ["La banque centrale", "La bourse", "Le trésor public", "La chambre de commerce"],
-      "answer": 1,
-      "explanation": "La bourse est un marché organisé sur lequel peuvent notamment s'échanger les actions d'entreprises cotées. Le prix des actions évolue en fonction de l'offre et de la demande."
+      "explanation": "Le PIB mesure la valeur des biens et services produits sur un territoire pendant une période donnée. Il sert notamment à suivre l'activité économique d'un pays."
     }
+  
+
   ]
 }
