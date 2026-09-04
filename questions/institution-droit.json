@@ -3,24 +3,24 @@
   "questions": [
     {
       "id": "institution-droit_1",
-      "question": "En quelle année la Constitution de la Ve République a-t-elle été adoptée ?",
-      "options": ["1946", "1958", "1962", "1981"],
-      "answer": 1,
-      "explanation": "La Constitution de la Ve République a été adoptée en 1958, sous la présidence de René Coty et avec le général de Gaulle comme principal artisan du nouveau régime."
+      "question": "Quelle est la devise de la République française ?",
+      "options": ["Liberté, égalité, fraternité", "Unité, justice, liberté", "Travail, famille, patrie", "Paix, justice, égalité"],
+      "answer": 0,
+      "explanation": "La devise « Liberté, Égalité, Fraternité » est inscrite dans la Constitution française. Elle apparaît notamment sur les bâtiments publics et certains documents officiels."
     },
     {
       "id": "institution-droit_2",
-      "question": "Combien d'articles compte la Déclaration des droits de l'homme et du citoyen de 1789 ?",
-      "options": ["10", "17", "25", "33"],
+      "question": "Quel régime politique est celui de la France actuelle ?",
+      "options": ["Monarchie", "République", "Empire", "Fédération"],
       "answer": 1,
-      "explanation": "La Déclaration des droits de l'homme et du citoyen de 1789 comporte 17 articles. Elle affirme notamment les principes de liberté et d'égalité des citoyens."
+      "explanation": "La France est une République depuis 1792, même si son histoire politique a connu plusieurs changements de régime depuis. Elle est aujourd'hui organisée selon les institutions de la Ve République."
     },
     {
       "id": "institution-droit_3",
-      "question": "Qui est le chef de l'État en France ?",
-      "options": ["Le Premier ministre", "Le président de l'Assemblée nationale", "Le président de la République", "Le président du Sénat"],
+      "question": "Quelle est la fête nationale française ?",
+      "options": ["1er mai", "8 mai", "14 juillet", "11 novembre"],
       "answer": 2,
-      "explanation": "Le président de la République est le chef de l'État français. Il veille notamment au respect de la Constitution et représente la France dans les relations internationales."
+      "explanation": "Le 14 juillet est la fête nationale française. Cette date rappelle notamment la prise de la Bastille en 1789 et la Fête de la Fédération de 1790."
     },
     {
       "id": "institution-droit_4",
@@ -31,11 +31,17 @@
     },
     {
       "id": "institution-droit_5",
-      "question": "Quelle institution vérifie la conformité des lois à la Constitution en France ?",
-      "options": ["Le Conseil d'État", "La Cour de cassation", "Le Conseil constitutionnel", "La Cour des comptes"],
-      "answer": 2,
-      "explanation": "Le Conseil constitutionnel contrôle la conformité des lois à la Constitution. Il peut notamment être saisi avant la promulgation d'une loi ou dans le cadre d'une question prioritaire de constitutionnalité."
+      "question": "Quelle couleur ne figure pas sur le drapeau français ?",
+      "options": ["Bleu", "Rouge", "Blanc", "Vert"],
+      "answer": 3,
+      "explanation": "Le drapeau français est composé de trois couleurs : bleu, blanc et rouge. Ces couleurs sont disposées en bandes verticales depuis 1794, avec le bleu près du mât."
     },
+
+
+
+
+
+
     {
       "id": "institution-droit_6",
       "question": "Combien de pays compte l'Union européenne depuis le retrait du Royaume-Uni ?",
@@ -85,6 +91,8 @@
       "answer": 1,
       "explanation": "La citoyenneté désigne notamment le fait de bénéficier de droits et de devoirs civiques au sein d'un État. Elle permet par exemple, sous certaines conditions, de participer aux élections."
     }
+
+
   ]
 }
 
