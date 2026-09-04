@@ -70,75 +70,12 @@
       "options": ["Afrique", "Europe", "Asie", "Amérique du Nord"],
       "answer": 2,
       "explanation": "L'Asie est le continent le plus vaste et le plus peuplé de la planète. Elle abrite notamment les deux pays les plus peuplés du monde, la Chine et l'Inde."
-    },
-
-
-
-
-
-    
-
-
-
-
-    {
-      "id": "geographie_11",
-      "question": "Quel est le point culminant du continent africain ?",
-      "options": ["Le mont Kenya", "Le Kilimandjaro", "Le mont Cameroun", "Le Toubkal"],
-      "answer": 1,
-      "explanation": "Le Kilimandjaro, situé en Tanzanie, est le point culminant de l'Afrique avec environ 5 895 mètres d'altitude. Il est célèbre pour ses neiges et ses glaciers au sommet."
-    },
-    {
-      "id": "geographie_12",
-      "question": "Quel type de climat caractérise la forêt amazonienne ?",
-      "options": ["Climat désertique", "Climat polaire", "Climat équatorial", "Climat méditerranéen"],
-      "answer": 2,
-      "explanation": "La forêt amazonienne possède un climat équatorial, chaud et humide toute l'année. Les précipitations y sont particulièrement importantes."
-    },
-    {
-      "id": "geographie_13",
-      "question": "Quelle organisation internationale regroupe la quasi-totalité des pays du monde pour favoriser la coopération ?",
-      "options": ["L'OTAN", "L'ONU", "L'OMC", "Le FMI"],
-      "answer": 1,
-      "explanation": "L'Organisation des Nations unies, ou ONU, a été créée en 1945 pour favoriser notamment la paix, la coopération internationale et le dialogue entre les États."
-    },
-    {
-      "id": "geographie_14",
-      "question": "Quel est le pays de ce drapeau ?",
-      "image": "questions/img/geographie_14.png",
-      "options": ["Portugal", "Brésil", "Angola", "Mexique"],
-      "answer": 1,
-      "explanation": "Ce drapeau est celui du Brésil. Il est reconnaissable à son losange jaune, son globe bleu et sa devise « Ordem e Progresso »."
-    },
-    {
-      "id": "geographie_15",
-      "question": "Quel est le pays de ce drapeau ?",
-      "image": "questions/img/geographie_15.png",
-      "options": ["Chine", "Corée du Sud", "Japon", "Vietnam"],
-      "answer": 2,
-      "explanation": "Ce drapeau est celui du Japon. Son disque rouge représente le soleil, un symbole particulièrement important dans la culture japonaise."
-    },
-    {
-      "id": "geographie_16",
-      "question": "Quel est le pays de ce drapeau ?",
-      "image": "questions/img/geographie_16.png",
-      "options": ["Kenya", "Afrique du Sud", "Nigéria", "Ghana"],
-      "answer": 1,
-      "explanation": "Ce drapeau est celui de l'Afrique du Sud. Il possède une combinaison de couleurs et une forme en Y qui symbolisent notamment la convergence des différentes populations du pays."
-    },
-    {
-      "id": "geographie_17",
-      "question": "Dans quel pays se trouve ce monument ?",
-      "image": "questions/img/geographie_17.png",
-      "options": ["Pakistan", "Inde", "Népal", "Bangladesh"],
-      "answer": 1,
-      "explanation": "Ce monument se trouve en Inde. Le pays possède un patrimoine architectural particulièrement riche, influencé par de nombreuses civilisations et périodes historiques."
-    },
-
-
-
-    {
-
     }
+
+
+
+
+
+
   ]
 }

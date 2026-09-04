@@ -3,39 +3,43 @@
   "questions": [
     {
       "id": "cinema-musique-medias_1",
-      "question": "Qui a réalisé le film 'Titanic' (1997) ?",
-      "options": ["Steven Spielberg", "James Cameron", "Christopher Nolan", "Ridley Scott"],
+      "question": "Quel film met en scène Jack et Rose à bord d'un célèbre bateau ?",
+      "options": ["Avatar", "Titanic", "Pearl Harbor", "Forrest Gump"],
       "answer": 1,
-      "explanation": "James Cameron a réalisé Titanic, sorti en 1997. Le film est devenu l'un des plus grands succès de l'histoire du cinéma et a remporté 11 Oscars."
+      "explanation": "Titanic est réalisé par James Cameron et sort en 1997. Le film mélange fiction romantique et événement historique et remporte de nombreux Oscars."
     },
     {
       "id": "cinema-musique-medias_2",
-      "question": "Quel groupe britannique a interprété 'Bohemian Rhapsody' ?",
-      "options": ["The Beatles", "Queen", "Pink Floyd", "Led Zeppelin"],
-      "answer": 1,
-      "explanation": "Bohemian Rhapsody a été interprétée par le groupe britannique Queen et chantée par Freddie Mercury. La chanson est célèbre pour sa structure originale mélangeant plusieurs styles musicaux."
+      "question": "Quel personnage porte un costume noir et un masque dans Star Wars ?",
+      "options": ["Luke Skywalker", "Han Solo", "Dark Vador", "Obi-Wan Kenobi"],
+      "answer": 2,
+      "explanation": "Dark Vador est l'un des personnages les plus reconnaissables de Star Wars. Son identité et son lien avec Luke Skywalker constituent un élément majeur de la saga."
     },
     {
       "id": "cinema-musique-medias_3",
-      "question": "Quel réalisateur est connu pour les films 'Pulp Fiction' et 'Kill Bill' ?",
-      "options": ["Martin Scorsese", "Quentin Tarantino", "David Fincher", "Guy Ritchie"],
+      "question": "Dans quelle saga trouve-t-on le personnage d'un jeune apprenti sorcier ?",
+      "options": ["Le Seigneur des anneaux", "Harry Potter", "Hunger Games", "Matrix"],
       "answer": 1,
-      "explanation": "Quentin Tarantino est connu pour son style très reconnaissable, mêlant dialogues marquants, humour et références au cinéma. Pulp Fiction a remporté la Palme d'or au Festival de Cannes en 1994."
+      "explanation": "Harry Potter est le personnage principal de la série de romans écrite par J. K. Rowling. L'histoire suit son apprentissage de la magie à l'école de Poudlard."
     },
     {
       "id": "cinema-musique-medias_4",
-      "question": "Quelle saga de science-fiction met en scène les Jedi et les Sith ?",
-      "options": ["Star Trek", "Star Wars", "Dune", "Interstellar"],
+      "question": "Quel film d'animation met en scène Simba ?",
+      "options": ["Aladdin", "Le Roi Lion", "Toy Story", "Shrek"],
       "answer": 1,
-      "explanation": "Star Wars raconte notamment le conflit entre les Jedi et les Sith, deux groupes utilisant la Force de manière opposée. La saga a été créée par George Lucas."
+      "explanation": "Simba est le jeune lion au cœur du film d'animation Le Roi Lion. Le personnage doit trouver sa place et accepter son héritage de futur roi."
     },
     {
       "id": "cinema-musique-medias_5",
-      "question": "Quel compositeur autrichien, mort en 1791, est célèbre pour ses symphonies et opéras ?",
-      "options": ["Ludwig van Beethoven", "Johann Sebastian Bach", "Wolfgang Amadeus Mozart", "Joseph Haydn"],
+      "question": "Quel acteur joue Forrest Gump ?",
+      "options": ["Brad Pitt", "Leonardo DiCaprio", "Tom Hanks", "Tom Cruise"],
       "answer": 2,
-      "explanation": "Wolfgang Amadeus Mozart est l'un des compositeurs les plus célèbres de la période classique. Il a composé des œuvres majeures comme La Flûte enchantée et Don Giovanni."
+      "explanation": "Tom Hanks interprète Forrest Gump dans le film réalisé par Robert Zemeckis en 1994. Le film suit plusieurs décennies de la vie du personnage à travers l'histoire américaine."
     },
+
+
+
+
     {
       "id": "cinema-musique-medias_6",
       "question": "Quel acteur incarne Iron Man dans l'univers cinématographique Marvel ?",
@@ -70,20 +74,9 @@
       "options": ["The Witcher", "Vikings", "Game of Thrones", "The Crown"],
       "answer": 2,
       "explanation": "Game of Thrones est une série adaptée des romans de George R. R. Martin. L'histoire suit plusieurs familles qui s'affrontent pour contrôler le Trône de Fer et le royaume de Westeros."
-    },
-    {
-      "id": "cinema-musique-medias_11",
-      "question": "Quel type de média diffuse des programmes en direct par ondes hertziennes, câble ou satellite ?",
-      "options": ["La presse écrite", "La radio", "La télévision", "L'affichage"],
-      "answer": 2,
-      "explanation": "La télévision diffuse des programmes audiovisuels pouvant être transmis par différents moyens, notamment les ondes, le câble ou le satellite. Elle combine généralement l'image et le son."
-    },
-    {
-      "id": "cinema-musique-medias_12",
-      "question": "Quel réalisateur français a créé 'Le Fabuleux Destin d'Amélie Poulain' ?",
-      "options": ["Luc Besson", "Jean-Pierre Jeunet", "Michel Gondry", "François Ozon"],
-      "answer": 1,
-      "explanation": "Jean-Pierre Jeunet a réalisé Le Fabuleux Destin d'Amélie Poulain, sorti en 2001. Le film est notamment célèbre pour son univers visuel coloré et son interprétation par Audrey Tautou."
     }
+
+
+
   ]
 }
