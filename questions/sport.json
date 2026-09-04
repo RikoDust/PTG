@@ -3,73 +3,38 @@
   "questions": [
     {
       "id": "sport_1",
-      "question": "Tous les combien d'années ont lieu les Jeux olympiques d'été ?",
-      "options": ["2 ans", "3 ans", "4 ans", "5 ans"],
-      "answer": 2,
-      "explanation": "Les Jeux olympiques d'été ont lieu tous les quatre ans. Cette périodicité est appelée une Olympiade."
-    },
-    {
-      "id": "sport_2",
       "question": "Combien de joueurs une équipe de football aligne-t-elle sur le terrain (hors remplaçants) ?",
       "options": ["9", "10", "11", "12"],
       "answer": 2,
       "explanation": "Une équipe de football compte 11 joueurs sur le terrain, dont un gardien de but. Les autres joueurs occupent des rôles défensifs, au milieu ou en attaque."
     },
+    {"id": "sport_2",
+      "question": "Dans quel sport utilise-t-on une raquette et un volant ?",
+      "options": ["Tennis", "Badminton", "Squash", "Tennis de table"],
+      "answer": 1,
+      "explanation": "Le badminton se joue avec une raquette et un volant, appelé aussi « shuttlecock ». Le volant peut atteindre une vitesse très élevée lors d'un smash."
+    }, 
     {
       "id": "sport_3",
-      "question": "Dans quel pays sont nés les Jeux olympiques antiques ?",
-      "options": ["L'Italie", "La Grèce", "L'Égypte", "La Turquie"],
-      "answer": 1,
-      "explanation": "Les Jeux olympiques antiques sont nés en Grèce, à Olympie. Les premières éditions connues remontent à l'Antiquité, dès 776 avant J.-C."
+      "question": "Dans quel sport parle-t-on de « Grand Chelem » ?",
+      "options": ["Tennis", "Natation", "Football", "Cyclisme"],
+      "answer": 0,
+      "explanation": "Le Grand Chelem de tennis comprend quatre tournois majeurs : l'Open d'Australie, Roland-Garros, Wimbledon et l'US Open."
     },
     {
       "id": "sport_4",
-      "question": "Quel sport se joue avec une raquette et un volant ?",
-      "options": ["Le tennis de table", "Le squash", "Le badminton", "Le padel"],
+      "question": "Combien de joueurs composent une équipe de basket-ball sur le terrain ?",
+      "options": ["4", "5", "6", "7"],
       "answer": 2,
-      "explanation": "Le badminton se joue avec une raquette et un volant, également appelé 'shuttlecock' en anglais. Les échanges peuvent être particulièrement rapides."
+      "explanation": "Une équipe de basket-ball compte cinq joueurs sur le terrain. Chaque joueur occupe généralement un rôle différent selon sa position et ses qualités."
     },
     {
       "id": "sport_5",
-      "question": "Combien de points vaut un essai au rugby, avant transformation ?",
-      "options": ["3 points", "5 points", "6 points", "7 points"],
+      "question": "Dans quel sport pratique-t-on le Tour de France ?",
+      "options": ["Athlétisme", "Cyclisme", "Automobile", "Triathlon"],
       "answer": 1,
-      "explanation": "Un essai vaut 5 points au rugby. Après un essai, l'équipe peut tenter une transformation pour marquer 2 points supplémentaires."
-    },
-    {
-      "id": "sport_6",
-      "question": "Quelle célèbre compétition cycliste traverse la France chaque été ?",
-      "options": ["Le Giro", "La Vuelta", "Le Tour de France", "Paris-Roubaix"],
-      "answer": 2,
-      "explanation": "Le Tour de France est une célèbre course cycliste organisée chaque année en juillet. Son parcours traverse différentes régions françaises et peut également passer par les pays voisins."
-    },
-    {
-      "id": "sport_7",
-      "question": "Dans quel sport peut-on marquer un point directement grâce à un service, appelé 'ace' ?",
-      "options": ["Le badminton", "Le tennis", "Le volley-ball", "Le squash"],
-      "answer": 1,
-      "explanation": "Au tennis, un ace est un service que l'adversaire ne parvient pas à toucher. C'est une manière directe de gagner le point grâce au service."
-    },
-    {
-      "id": "sport_8",
-      "question": "Combien de temps dure un match de football en temps réglementaire ?",
-      "options": ["80 minutes", "90 minutes", "100 minutes", "120 minutes"],
-      "answer": 1,
-      "explanation": "Un match de football dure 90 minutes, réparties en deux mi-temps de 45 minutes. Du temps additionnel peut être ajouté à la fin de chaque mi-temps."
-    },
-    {
-      "id": "sport_9",
-      "question": "Quel pays a remporté la Coupe du monde de football qu'il organisait, en 1998 ?",
-      "options": ["Le Brésil", "L'Allemagne", "La France", "L'Italie"],
-      "answer": 2,
-      "explanation": "La France a remporté la Coupe du monde 1998 à domicile en battant le Brésil 3-0 en finale au Stade de France. C'était le premier titre mondial des Bleus."
-    },
-    {
-      "id": "sport_10",
-      "question": "Quel sport olympique se pratique sur un tatami, vêtu d'un kimono ?",
-      "options": ["Le karaté", "Le judo", "L'aïkido", "Le taekwondo"],
-      "answer": 1,
-      "explanation": "Le judo se pratique sur un tatami avec un judogi, souvent appelé à tort 'kimono'. Le but est notamment de projeter ou d'immobiliser son adversaire."
+      "explanation": "Le Tour de France est une célèbre course cycliste par étapes créée en 1903. Il traverse chaque année différentes régions de France et parfois des pays voisins."
     }
+    
   ]
 }
