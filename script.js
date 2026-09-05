@@ -800,6 +800,16 @@ function computeZoneProgressPercent(zone) {
   return Math.round((totalCorrect / totalQuestions) * 100);
 }
 
+/* Convertit une couleur hexadécimale (#RRGGBB) en chaîne rgba() avec l'opacité donnée */
+function hexToRgba(hex, alpha) {
+  const clean = (hex || "").replace("#", "");
+  const bigint = parseInt(clean, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
 /* Construit la liste des carrés d'une zone (état verrouillé/validé/complet + titre/sous-titre) */
 function buildSquaresListElement(zone) {
   const list = document.createElement("div");
@@ -810,6 +820,8 @@ function buildSquaresListElement(zone) {
     const title = theme ? theme.label : square.theme;
     const subtitle = (square.subtitle || "").trim() || "Sous-titre à ajouter";
     const icon = theme ? theme.icon : "fa-circle-question";
+    const themeColor = theme ? theme.color : "#9aa0ac";
+    const boxStyle = `border-color: ${hexToRgba(themeColor, 0.4)}; color: ${themeColor};`;
 
     const percent = getSquareBestPercent(square.id);
     const unlocked = isSquareUnlocked(zone, i);
@@ -823,7 +835,7 @@ function buildSquaresListElement(zone) {
     row.className = "square-row";
     row.disabled = !unlocked;
     row.innerHTML = `
-      <span class="square-box"><i class="fa-solid ${icon}"></i></span>
+      <span class="square-box" style="${boxStyle}"><i class="fa-solid ${icon}"></i></span>
       <span class="square-text">
         <strong class="square-text__title">${title}</strong>
         <small class="square-text__subtitle${square.subtitle ? "" : " is-empty"}">${subtitle}</small>
@@ -872,7 +884,10 @@ function renderAdventureScreen() {
       <button type="button" class="zone-accordion__header" ${unlocked ? "" : "disabled"}>
         <span class="zone-accordion__number"><i class="fa-solid ${numberIconClass}"></i></span>
         <span class="zone-accordion__label-wrap">
-          <span class="zone-accordion__label">${zoneConfig.label}</span>
+          <span class="zone-accordion__label-row">
+            <span class="zone-accordion__label">${zoneConfig.label}</span>
+            <span class="zone-accordion__percent">${progressPercent}%</span>
+          </span>
           <span class="zone-accordion__progress-track">
             <span class="zone-accordion__progress-fill" style="width: ${progressPercent}%;"></span>
           </span>

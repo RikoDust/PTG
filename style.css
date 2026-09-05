@@ -874,8 +874,8 @@ button { font-family: inherit; }
   height: 34px;
   flex-shrink: 0;
   border-radius: 10px;
-  background: rgba(155, 93, 229, 0.15);
-  color: var(--purple);
+  background: rgba(78, 124, 255, 0.15);
+  color: var(--blue);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -894,12 +894,28 @@ button { font-family: inherit; }
   min-width: 0;
 }
 
+.zone-accordion__label-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .zone-accordion__label {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: 1.02rem;
   color: var(--text);
 }
+
+.zone-accordion__percent {
+  flex-shrink: 0;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 0.85rem;
+  color: var(--purple);
+}
+.zone-accordion.is-locked .zone-accordion__percent { color: var(--text-muted); }
 
 .zone-accordion__progress-track {
   display: block;
@@ -972,12 +988,7 @@ button { font-family: inherit; }
   color: var(--text-muted);
   transition: border-color 0.15s ease, color 0.15s ease;
 }
-
-/* Carré accessible (non verrouillé) : icône violette, contour bleu */
-.square-row:not(:disabled) .square-box {
-  border-color: #4e7cff;
-  color: #9b5de5;
-}
+/* Couleur de bordure/icône désormais définie par thème, en style inline (cf. script.js) */
 
 .square-text {
   flex: 1;

@@ -32,7 +32,7 @@
       "id": "francais_5",
       "question": "Quelle phrase est correctement écrite ?",
       "options": ["Il fait très froid aujourd'hui", "Il fais très froid aujourd'hui", "Il font très froid aujourd'hui", "Il faire très froid aujourd'hui"],
-      "answer": 1,
+      "answer": 0,
       "explanation": "On écrit « il fait » avec la forme du verbe faire à la troisième personne du singulier."
     },
     {

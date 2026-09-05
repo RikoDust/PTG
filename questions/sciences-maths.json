@@ -33,7 +33,7 @@
       "id": "sciences-maths_5",
       "question": "Quel organe est principalement responsable de la filtration du sang et de la production d'urine ?",
       "options": ["Le rein", "Le poumon", "L'estomac", "La rate"],
-      "answer": 1,
+      "answer": 0,
       "explanation": "Les reins filtrent continuellement le sang et participent à l'élimination de certains déchets par l'urine. Ils jouent aussi un rôle important dans l'équilibre de l'eau et des sels minéraux."
     },
     {
